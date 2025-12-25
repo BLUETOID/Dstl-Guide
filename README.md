@@ -9,10 +9,6 @@ A lightweight static website for Discrete Structures & Theory of Logic (DSTL) st
 - Formula sheet and Important Theorems pages
 - Simple, mobile-friendly HTML/CSS/JS site — no build step required
 
-## Quick start 🚀
-1. Clone the repo:
-   git clone https://github.com/BLUETOID/Dstl-Guide.git
-2. Open `index.html` in your browser to view the site locally.
 
 ## Project structure 🔧
 - `index.html` — homepage
