@@ -309,6 +309,76 @@
                         <div class="formula-box">
                             Transitive Closure: t(R) = R ∪ R² ∪ R³ ∪ ... ∪ R<sup>n</sup>
                         </div>
+                        <div class="formula-box highlight">
+                            <strong>Warshall's Algorithm:</strong><br>
+                            M<sub>k</sub>[i,j] = M<sub>k-1</sub>[i,j] ∨ (M<sub>k-1</sub>[i,k] ∧ M<sub>k-1</sub>[k,j])
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Composite Relations</h4>
+                        <div class="formula-box">
+                            R⁰ = I<sub>A</sub> (Identity relation)
+                        </div>
+                        <div class="formula-box">
+                            Rⁿ = R ∘ Rⁿ⁻¹
+                        </div>
+                        <div class="formula-box">
+                            (S ∘ R)(a,c) iff ∃b: (a,b) ∈ R and (b,c) ∈ S
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formula-section">
+                    <h3><i class="fas fa-sitemap"></i> Lattices & POSETs</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Lattice Properties</h4>
+                        <div class="quick-ref">
+                            <div class="quick-ref-item">
+                                <div class="icon">∨</div>
+                                <div><strong>Join (LUB):</strong> a ∨ b = sup{a, b}</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">∧</div>
+                                <div><strong>Meet (GLB):</strong> a ∧ b = inf{a, b}</div>
+                            </div>
+                        </div>
+                        <div class="formula-box highlight">
+                            <strong>Lattice equivalence:</strong> a ≤ b ⟺ a ∧ b = a ⟺ a ∨ b = b
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Divisibility Lattice D<sub>n</sub></h4>
+                        <div class="formula-box">
+                            GLB(a, b) = GCD(a, b)
+                        </div>
+                        <div class="formula-box">
+                            LUB(a, b) = LCM(a, b)
+                        </div>
+                        <div class="formula-box highlight">
+                            |D<sub>n</sub>| = τ(n) = Number of divisors of n
+                        </div>
+                        <div class="formula-box">
+                            If n = p₁<sup>a₁</sup>p₂<sup>a₂</sup>...pₖ<sup>aₖ</sup>, then τ(n) = (a₁+1)(a₂+1)...(aₖ+1)
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Lattice Types - Key Conditions</h4>
+                        <div class="formula-box">
+                            <strong>Bounded:</strong> Has 0 (least) and 1 (greatest)
+                        </div>
+                        <div class="formula-box">
+                            <strong>Complemented:</strong> ∀a, ∃a': a ∧ a' = 0, a ∨ a' = 1
+                        </div>
+                        <div class="formula-box highlight">
+                            <strong>Distributive:</strong> a ∧ (b ∨ c) = (a ∧ b) ∨ (a ∧ c)
+                        </div>
+                        <div class="formula-box">
+                            <strong>Modular:</strong> a ≤ c ⟹ a ∨ (b ∧ c) = (a ∨ b) ∧ c
+                        </div>
                     </div>
                 </div>
 
@@ -625,6 +695,45 @@
                         <div class="formula-box highlight">
                             φ(mn) = φ(m) · φ(n) &nbsp;(gcd(m,n) = 1)
                         </div>
+                        <div class="formula-box">
+                            φ(n) = n · ∏(1 - 1/p) for each prime p | n
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Permutation & Symmetric Groups</h4>
+                        <div class="formula-box highlight">
+                            |Sₙ| = n! &nbsp;(Symmetric group order)
+                        </div>
+                        <div class="formula-box highlight">
+                            |Aₙ| = n!/2 &nbsp;(Alternating group order)
+                        </div>
+                        <div class="formula-box">
+                            Order of permutation = LCM of cycle lengths
+                        </div>
+                        <div class="formula-box">
+                            k-cycle parity: even if k is odd, odd if k is even
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-lightbulb"></i>
+                            Every permutation = product of transpositions
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Homomorphism Properties</h4>
+                        <div class="formula-box">
+                            f(e) = e' (identity maps to identity)
+                        </div>
+                        <div class="formula-box">
+                            f(a⁻¹) = [f(a)]⁻¹
+                        </div>
+                        <div class="formula-box highlight">
+                            G/ker(f) ≅ im(f) (First Isomorphism Theorem)
+                        </div>
+                        <div class="formula-box">
+                            |G| = |ker(f)| × |im(f)|
+                        </div>
                     </div>
                 </div>
             </div>
@@ -695,6 +804,42 @@
                         <div class="formula-box highlight">
                             <strong>Four Color Theorem:</strong> χ(planar) ≤ 4
                         </div>
+                        <div class="formula-box">
+                            χ(bipartite) = 2, χ(tree) = 2
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Graph Isomorphism Invariants</h4>
+                        <div class="formula-box">
+                            Same |V| (number of vertices)
+                        </div>
+                        <div class="formula-box">
+                            Same |E| (number of edges)
+                        </div>
+                        <div class="formula-box">
+                            Same degree sequence
+                        </div>
+                        <div class="formula-box">
+                            Same number of cycles of each length
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            These are necessary but NOT sufficient conditions!
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Bipartite Graphs</h4>
+                        <div class="formula-box">
+                            Complete bipartite K<sub>m,n</sub>: Edges = m × n
+                        </div>
+                        <div class="formula-box">
+                            K<sub>m,n</sub> is planar iff m ≤ 2 or n ≤ 2
+                        </div>
+                        <div class="formula-box highlight">
+                            A graph is bipartite ⟺ It has no odd cycles
+                        </div>
                     </div>
 
                     <div class="formula-card">
@@ -719,7 +864,11 @@
                         </table>
                         <div class="formula-note">
                             <i class="fas fa-lightbulb"></i>
-                            <strong>Dirac's Theorem:</strong> If deg(v) ≥ n/2 for all v, then Hamiltonian
+                            <strong>Dirac:</strong> deg(v) ≥ n/2 for all v ⟹ Hamiltonian cycle exists
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Ore:</strong> deg(u)+deg(v) ≥ n for non-adjacent u,v ⟹ Hamiltonian
                         </div>
                     </div>
                 </div>

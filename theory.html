@@ -206,6 +206,49 @@
                 </div>
 
                 <div class="theory-card">
+                    <h3><i class="fas fa-link"></i> Composite & Special Relations</h3>
+                    
+                    <h4>Composite Relation</h4>
+                    <p>If R ⊆ A × B and S ⊆ B × C, then the composite relation S ∘ R ⊆ A × C is defined as:</p>
+                    <div class="key-formula">
+                        S ∘ R = {(a, c) | ∃b ∈ B such that (a, b) ∈ R and (b, c) ∈ S}
+                    </div>
+
+                    <h4>Equality of Relations</h4>
+                    <p>Two relations R and S on a set A are <strong>equal</strong> if and only if they contain exactly the same ordered pairs.</p>
+
+                    <h4>Recursive Definition of Relation</h4>
+                    <div class="key-formula">
+                        • R⁰ = Identity relation I<sub>A</sub> = {(a,a) | a ∈ A}<br>
+                        • R¹ = R<br>
+                        • Rⁿ = R ∘ Rⁿ⁻¹ (n ≥ 2)
+                    </div>
+
+                    <h4>Order of Relation</h4>
+                    <p>The <strong>order</strong> of a relation R on a finite set A is the smallest positive integer k such that Rᵏ = Rᵏ⁺ʲ for some j ≥ 1.</p>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-calculator"></i> Warshall's Algorithm</h3>
+                    
+                    <h4>Purpose</h4>
+                    <p><strong>Warshall's Algorithm</strong> computes the transitive closure of a relation R, denoted R⁺ or R*.</p>
+
+                    <h4>Algorithm Steps</h4>
+                    <div class="key-formula">
+                        <strong>Input:</strong> Adjacency matrix M of relation R on set {1, 2, ..., n}<br><br>
+                        <strong>Process:</strong> For k = 1 to n:<br>
+                        &nbsp;&nbsp;For i = 1 to n:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;For j = 1 to n:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M[i,j] = M[i,j] OR (M[i,k] AND M[k,j])<br><br>
+                        <strong>Output:</strong> M is now the transitive closure matrix
+                    </div>
+
+                    <h4>Key Insight</h4>
+                    <p>At iteration k, we check if there's a path from i to j through vertex k. If M[i,k]=1 and M[k,j]=1, then add edge (i,j).</p>
+                </div>
+
+                <div class="theory-card">
                     <h3><i class="fas fa-sitemap"></i> POSET & Lattices</h3>
                     
                     <h4>Partially Ordered Set (POSET)</h4>
@@ -226,6 +269,20 @@
                         A <strong>Lattice</strong> is a POSET where every pair of elements has:<br>
                         • A unique LUB (join, denoted a ∨ b)<br>
                         • A unique GLB (meet, denoted a ∧ b)
+                    </div>
+
+                    <h4>Types of Lattices</h4>
+                    <ul>
+                        <li><strong>Bounded Lattice:</strong> Has both greatest element (1) and least element (0)</li>
+                        <li><strong>Complemented Lattice:</strong> Every element a has complement a' where a ∧ a' = 0 and a ∨ a' = 1</li>
+                        <li><strong>Distributive Lattice:</strong> a ∧ (b ∨ c) = (a ∧ b) ∨ (a ∧ c) for all elements</li>
+                        <li><strong>Modular Lattice:</strong> If a ≤ c, then a ∨ (b ∧ c) = (a ∨ b) ∧ c</li>
+                        <li><strong>Complete Lattice:</strong> Every subset (not just pairs) has LUB and GLB</li>
+                        <li><strong>Boolean Lattice:</strong> Complemented + Distributive lattice</li>
+                    </ul>
+
+                    <div class="key-formula">
+                        <strong>Key Property:</strong> In a distributive lattice, complements are unique!
                     </div>
                 </div>
 
@@ -304,27 +361,52 @@
                 <div class="theory-card">
                     <h3><i class="fas fa-toggle-on"></i> Boolean Algebra</h3>
                     
+                    <h4>Definition</h4>
+                    <p>A <strong>Boolean Algebra</strong> is a 6-tuple (B, +, ·, ', 0, 1) satisfying the following axioms:</p>
+
+                    <h4>Axioms of Boolean Algebra (Huntington's Postulates)</h4>
+                    <div class="key-formula">
+                        <strong>1. Closure:</strong> B is closed under +, ·, and '<br>
+                        <strong>2. Identity:</strong> A + 0 = A, A · 1 = A<br>
+                        <strong>3. Commutativity:</strong> A + B = B + A, A · B = B · A<br>
+                        <strong>4. Distributivity:</strong> A·(B+C) = AB + AC, A+(B·C) = (A+B)·(A+C)<br>
+                        <strong>5. Complement:</strong> A + A' = 1, A · A' = 0<br>
+                        <strong>6. Distinct elements:</strong> 0 ≠ 1
+                    </div>
+
+                    <h4>Derived Theorems of Boolean Algebra</h4>
+                    <ul>
+                        <li><strong>Idempotent:</strong> A + A = A, A · A = A</li>
+                        <li><strong>Null/Domination:</strong> A + 1 = 1, A · 0 = 0</li>
+                        <li><strong>Involution:</strong> (A')' = A</li>
+                        <li><strong>Absorption:</strong> A + AB = A, A(A + B) = A</li>
+                        <li><strong>De Morgan's:</strong> (A + B)' = A'B', (AB)' = A' + B'</li>
+                        <li><strong>Consensus:</strong> AB + A'C + BC = AB + A'C</li>
+                    </ul>
+
                     <h4>Boolean Operations</h4>
                     <ul>
                         <li><strong>AND (·):</strong> 1 only if both inputs are 1</li>
                         <li><strong>OR (+):</strong> 1 if at least one input is 1</li>
                         <li><strong>NOT ('):</strong> Flips 0 to 1, 1 to 0</li>
                         <li><strong>XOR (⊕):</strong> 1 if inputs are different</li>
+                        <li><strong>NAND:</strong> (AB)' - Universal gate</li>
+                        <li><strong>NOR:</strong> (A+B)' - Universal gate</li>
                     </ul>
 
-                    <h4>Important Laws</h4>
+                    <h4>Algebraic Manipulation Techniques</h4>
                     <div class="key-formula">
-                        • <strong>Identity:</strong> A + 0 = A, A · 1 = A<br>
-                        • <strong>Complement:</strong> A + A' = 1, A · A' = 0<br>
-                        • <strong>Idempotent:</strong> A + A = A, A · A = A<br>
-                        • <strong>Absorption:</strong> A + AB = A, A(A + B) = A<br>
-                        • <strong>De Morgan:</strong> (A + B)' = A'B', (AB)' = A' + B'
+                        <strong>Expansion:</strong> A = A(B + B') = AB + AB'<br>
+                        <strong>Consensus Theorem:</strong> XY + X'Z + YZ = XY + X'Z<br>
+                        <strong>Simplification:</strong> A + A'B = A + B
                     </div>
 
                     <h4>Canonical Forms</h4>
                     <ul>
-                        <li><strong>SOP (Sum of Products):</strong> OR of AND terms (minterms)</li>
-                        <li><strong>POS (Product of Sums):</strong> AND of OR terms (maxterms)</li>
+                        <li><strong>SOP (Sum of Products):</strong> OR of AND terms (minterms) - Σ notation</li>
+                        <li><strong>POS (Product of Sums):</strong> AND of OR terms (maxterms) - Π notation</li>
+                        <li><strong>Minterm mᵢ:</strong> Product term that is 1 for exactly one input combination</li>
+                        <li><strong>Maxterm Mᵢ:</strong> Sum term that is 0 for exactly one input combination</li>
                     </ul>
                 </div>
 
@@ -336,11 +418,22 @@
                     <h4>Grouping Rules</h4>
                     <ul>
                         <li>Groups must be rectangles with size = power of 2 (1, 2, 4, 8...)</li>
-                        <li>Groups can wrap around edges</li>
+                        <li>Groups can wrap around edges (left-right, top-bottom)</li>
                         <li>Each 1 must be in at least one group</li>
-                        <li>Larger groups = simpler terms</li>
-                        <li>Overlapping groups are allowed</li>
+                        <li>Larger groups = simpler terms (fewer literals)</li>
+                        <li>Overlapping groups are allowed and encouraged</li>
                     </ul>
+
+                    <h4>K-Map Sizes</h4>
+                    <div class="key-formula">
+                        • 2 variables: 4 cells (2×2)<br>
+                        • 3 variables: 8 cells (2×4)<br>
+                        • 4 variables: 16 cells (4×4)<br>
+                        • 5 variables: 32 cells (use 2 K-maps)
+                    </div>
+
+                    <h4>Don't Care Conditions</h4>
+                    <p>Marked as 'X' or 'd' in K-map. Can be treated as 0 or 1 to create larger groups.</p>
                 </div>
 
                 <div class="quick-summary">
@@ -413,6 +506,22 @@
                         • <strong>∃!x P(x)</strong> - Unique existential: "There exists exactly one x"
                     </div>
 
+                    <h4>Well-Formed Formulas (WFF)</h4>
+                    <p>A <strong>well-formed formula</strong> in predicate logic is built from:</p>
+                    <ul>
+                        <li>Predicate symbols: P(x), Q(x,y), etc.</li>
+                        <li>Logical connectives: ¬, ∧, ∨, →, ↔</li>
+                        <li>Quantifiers: ∀, ∃</li>
+                        <li>Variables and constants</li>
+                    </ul>
+                    <div class="key-formula">
+                        <strong>WFF Rules:</strong><br>
+                        1. Any predicate symbol with variables is a WFF<br>
+                        2. If P is WFF, then ¬P is WFF<br>
+                        3. If P, Q are WFFs, then (P ∧ Q), (P ∨ Q), (P → Q), (P ↔ Q) are WFFs<br>
+                        4. If P(x) is WFF, then ∀x P(x) and ∃x P(x) are WFFs
+                    </div>
+
                     <h4>Negation of Quantifiers</h4>
                     <ul>
                         <li>¬(∀x P(x)) ≡ ∃x ¬P(x)</li>
@@ -422,12 +531,19 @@
                     <h4>Nested Quantifiers</h4>
                     <p>∀x∃y P(x,y) means "For every x, there exists some y (possibly different for each x)"</p>
                     <p><strong>Order matters!</strong> ∀x∃y ≠ ∃y∀x in general</p>
+
+                    <h4>Bound and Free Variables</h4>
+                    <ul>
+                        <li><strong>Bound variable:</strong> Appears within scope of a quantifier</li>
+                        <li><strong>Free variable:</strong> Not bound by any quantifier</li>
+                        <li>A <strong>sentence</strong> (closed formula) has no free variables</li>
+                    </ul>
                 </div>
 
                 <div class="theory-card">
-                    <h3><i class="fas fa-project-diagram"></i> Inference & Proofs</h3>
+                    <h3><i class="fas fa-project-diagram"></i> Inference Theory</h3>
                     
-                    <h4>Rules of Inference</h4>
+                    <h4>Rules of Inference for Propositional Logic</h4>
                     <div class="key-formula">
                         • <strong>Modus Ponens:</strong> P, P→Q ⊢ Q<br>
                         • <strong>Modus Tollens:</strong> ¬Q, P→Q ⊢ ¬P<br>
@@ -435,15 +551,39 @@
                         • <strong>Disjunctive Syllogism:</strong> P∨Q, ¬P ⊢ Q<br>
                         • <strong>Addition:</strong> P ⊢ P∨Q<br>
                         • <strong>Simplification:</strong> P∧Q ⊢ P<br>
-                        • <strong>Resolution:</strong> P∨Q, ¬P∨R ⊢ Q∨R
+                        • <strong>Conjunction:</strong> P, Q ⊢ P∧Q<br>
+                        • <strong>Resolution:</strong> P∨Q, ¬P∨R ⊢ Q∨R<br>
+                        • <strong>Constructive Dilemma:</strong> (P→Q), (R→S), P∨R ⊢ Q∨S
+                    </div>
+
+                    <h4>Rules of Inference for Predicate Logic</h4>
+                    <div class="key-formula">
+                        • <strong>Universal Instantiation (UI):</strong> ∀x P(x) ⊢ P(c) for any c<br>
+                        • <strong>Universal Generalization (UG):</strong> P(c) for arbitrary c ⊢ ∀x P(x)<br>
+                        • <strong>Existential Instantiation (EI):</strong> ∃x P(x) ⊢ P(c) for some new c<br>
+                        • <strong>Existential Generalization (EG):</strong> P(c) ⊢ ∃x P(x)
+                    </div>
+
+                    <h4>Universal Modus Ponens</h4>
+                    <div class="key-formula">
+                        <strong>Premises:</strong> ∀x (P(x) → Q(x)), P(a)<br>
+                        <strong>Conclusion:</strong> Q(a)
+                    </div>
+
+                    <h4>Universal Modus Tollens</h4>
+                    <div class="key-formula">
+                        <strong>Premises:</strong> ∀x (P(x) → Q(x)), ¬Q(a)<br>
+                        <strong>Conclusion:</strong> ¬P(a)
                     </div>
 
                     <h4>Proof Techniques</h4>
                     <ul>
                         <li><strong>Direct Proof:</strong> Assume P, derive Q to prove P → Q</li>
-                        <li><strong>Contraposition:</strong> Prove ¬Q → ¬P instead</li>
-                        <li><strong>Contradiction:</strong> Assume ¬P, derive a contradiction</li>
+                        <li><strong>Contraposition:</strong> Prove ¬Q → ¬P instead of P → Q</li>
+                        <li><strong>Contradiction:</strong> Assume ¬P, derive a contradiction, conclude P</li>
                         <li><strong>Mathematical Induction:</strong> Base case + inductive step</li>
+                        <li><strong>Proof by Cases:</strong> Divide into exhaustive cases, prove each</li>
+                        <li><strong>Existence Proof:</strong> Constructive (find example) or non-constructive</li>
                     </ul>
                 </div>
 
@@ -545,19 +685,101 @@
                     <ul>
                         <li>(R, +) is an abelian group</li>
                         <li>Multiplication is associative</li>
-                        <li>Distributive laws hold</li>
+                        <li>Distributive laws hold: a(b+c) = ab + ac and (a+b)c = ac + bc</li>
                     </ul>
 
                     <div class="key-formula">
                         <strong>Types of Rings:</strong><br>
-                        • <strong>Commutative Ring:</strong> ab = ba<br>
-                        • <strong>Ring with Unity:</strong> Has multiplicative identity 1<br>
+                        • <strong>Commutative Ring:</strong> ab = ba for all a, b<br>
+                        • <strong>Ring with Unity:</strong> Has multiplicative identity 1 ≠ 0<br>
                         • <strong>Integral Domain:</strong> Commutative, unity, no zero divisors<br>
                         • <strong>Division Ring:</strong> Every non-zero element has multiplicative inverse
                     </div>
 
+                    <h4>Elementary Properties of Rings</h4>
+                    <div class="key-formula">
+                        1. a · 0 = 0 · a = 0<br>
+                        2. a · (-b) = (-a) · b = -(a · b)<br>
+                        3. (-a) · (-b) = a · b<br>
+                        4. a(b - c) = ab - ac<br>
+                        5. If R has unity, then (-1) · a = -a
+                    </div>
+
+                    <h4>Zero Divisors</h4>
+                    <p>An element a ≠ 0 is a <strong>zero divisor</strong> if there exists b ≠ 0 such that ab = 0 or ba = 0.</p>
+
                     <h4>Field</h4>
-                    <p>A <strong>field</strong> is a commutative division ring. Examples: ℚ, ℝ, ℂ, ℤₚ (p prime)</p>
+                    <p>A <strong>field</strong> is a commutative division ring. Equivalently:</p>
+                    <ul>
+                        <li>(F, +) is an abelian group with identity 0</li>
+                        <li>(F \ {0}, ·) is an abelian group with identity 1</li>
+                        <li>Distributive law holds</li>
+                    </ul>
+
+                    <h4>Elementary Properties of Fields</h4>
+                    <div class="key-formula">
+                        1. Fields have no zero divisors<br>
+                        2. Cancellation law holds: ab = ac and a ≠ 0 ⟹ b = c<br>
+                        3. Every field is an integral domain<br>
+                        4. Every finite integral domain is a field<br>
+                        5. ℤₚ is a field if and only if p is prime
+                    </div>
+
+                    <h4>Examples</h4>
+                    <ul>
+                        <li><strong>Fields:</strong> ℚ, ℝ, ℂ, ℤₚ (p prime)</li>
+                        <li><strong>Rings (not fields):</strong> ℤ, ℤₙ (n not prime), M₂(ℝ) (2×2 matrices)</li>
+                        <li><strong>Integral Domain (not field):</strong> ℤ (no multiplicative inverses for most elements)</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-random"></i> Permutation & Symmetric Groups</h3>
+                    
+                    <h4>Permutation</h4>
+                    <p>A <strong>permutation</strong> of a set A is a bijection from A to itself.</p>
+
+                    <h4>Symmetric Group Sₙ</h4>
+                    <div class="key-formula">
+                        <strong>Sₙ</strong> = group of all permutations of {1, 2, ..., n}<br>
+                        Order: |Sₙ| = n!<br>
+                        S₃ has 6 elements, S₄ has 24 elements
+                    </div>
+
+                    <h4>Cycle Notation</h4>
+                    <p>A <strong>cycle</strong> (a₁ a₂ ... aₖ) maps a₁→a₂→...→aₖ→a₁</p>
+                    <ul>
+                        <li><strong>Transposition:</strong> 2-cycle like (1 2)</li>
+                        <li>Every permutation is a product of disjoint cycles</li>
+                        <li>Disjoint cycles commute</li>
+                    </ul>
+
+                    <h4>Order of a Permutation</h4>
+                    <div class="key-formula">
+                        Order of a permutation = LCM of lengths of its disjoint cycles
+                    </div>
+
+                    <h4>Even and Odd Permutations</h4>
+                    <ul>
+                        <li><strong>Even permutation:</strong> Product of even number of transpositions</li>
+                        <li><strong>Odd permutation:</strong> Product of odd number of transpositions</li>
+                        <li>k-cycle is even if k is odd, odd if k is even</li>
+                    </ul>
+
+                    <h4>Alternating Group Aₙ</h4>
+                    <div class="key-formula">
+                        <strong>Aₙ</strong> = subgroup of all even permutations in Sₙ<br>
+                        Order: |Aₙ| = n!/2<br>
+                        Aₙ is a normal subgroup of Sₙ
+                    </div>
+
+                    <h4>Properties of Sₙ</h4>
+                    <ul>
+                        <li>S₁ and S₂ are abelian</li>
+                        <li>Sₙ is non-abelian for n ≥ 3</li>
+                        <li>Sₙ is generated by transpositions</li>
+                        <li>Sₙ is generated by (1 2) and (1 2 3 ... n)</li>
+                    </ul>
                 </div>
 
                 <div class="quick-summary">
@@ -568,6 +790,8 @@
                         <li>Lagrange: |H| divides |G|</li>
                         <li>Every subgroup of a cyclic group is cyclic</li>
                         <li>ℤₚ is a field only when p is prime</li>
+                        <li>|Sₙ| = n! and |Aₙ| = n!/2</li>
+                        <li>Order of permutation = LCM of cycle lengths</li>
                     </ul>
                 </div>
             </div>
@@ -590,10 +814,20 @@
                     <h4>Graph Types</h4>
                     <ul>
                         <li><strong>Simple Graph:</strong> No loops, no multiple edges</li>
-                        <li><strong>Multigraph:</strong> Multiple edges allowed</li>
-                        <li><strong>Directed Graph (Digraph):</strong> Edges have direction</li>
+                        <li><strong>Multigraph:</strong> Multiple edges between same vertices allowed</li>
+                        <li><strong>Pseudograph:</strong> Loops and multiple edges allowed</li>
+                        <li><strong>Directed Graph (Digraph):</strong> Edges have direction (ordered pairs)</li>
                         <li><strong>Weighted Graph:</strong> Edges have weights/costs</li>
                     </ul>
+
+                    <h4>Multigraphs</h4>
+                    <p>A <strong>multigraph</strong> G = (V, E) allows multiple edges between the same pair of vertices. It is represented as G = (V, E, f) where f: E → {{u,v} : u,v ∈ V}.</p>
+                    <div class="key-formula">
+                        In multigraphs:<br>
+                        • Degree counts each edge incident to a vertex<br>
+                        • Multiple edges contribute separately to degree<br>
+                        • Handshaking theorem still applies
+                    </div>
 
                     <h4>Special Graphs</h4>
                     <ul>
@@ -601,8 +835,48 @@
                         <li><strong>Cycle Cₙ:</strong> n vertices in a cycle, each degree 2</li>
                         <li><strong>Path Pₙ:</strong> n vertices in a line, n-1 edges</li>
                         <li><strong>Complete Bipartite Kₘ,ₙ:</strong> Two sets, all cross-edges, m×n edges</li>
-                        <li><strong>Wheel Wₙ:</strong> Cycle with central hub</li>
+                        <li><strong>Wheel Wₙ:</strong> Cycle with central hub, n+1 vertices</li>
+                        <li><strong>Hypercube Qₙ:</strong> 2ⁿ vertices, degree n each</li>
                     </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-exchange-alt"></i> Graph Isomorphism & Homeomorphism</h3>
+                    
+                    <h4>Graph Isomorphism</h4>
+                    <p>Two graphs G₁ = (V₁, E₁) and G₂ = (V₂, E₂) are <strong>isomorphic</strong> (G₁ ≅ G₂) if there exists a bijection f: V₁ → V₂ such that {u, v} ∈ E₁ iff {f(u), f(v)} ∈ E₂.</p>
+
+                    <div class="key-formula">
+                        <strong>Isomorphism Invariants:</strong><br>
+                        • Same number of vertices<br>
+                        • Same number of edges<br>
+                        • Same degree sequence<br>
+                        • Same number of cycles of each length<br>
+                        • Same number of connected components
+                    </div>
+
+                    <h4>Checking for Isomorphism</h4>
+                    <ol>
+                        <li>Compare basic properties (|V|, |E|, degree sequence)</li>
+                        <li>Look for vertices with same degrees and neighborhoods</li>
+                        <li>Try to find explicit bijection</li>
+                        <li>Check that adjacency is preserved</li>
+                    </ol>
+
+                    <h4>Elementary Subdivision</h4>
+                    <p>An <strong>elementary subdivision</strong> removes an edge {u, v} and replaces it with a new vertex w and edges {u, w} and {w, v}.</p>
+
+                    <h4>Homeomorphism of Graphs</h4>
+                    <p>Two graphs are <strong>homeomorphic</strong> if they can be obtained from the same graph by a sequence of elementary subdivisions.</p>
+                    <div class="key-formula">
+                        <strong>Key Insight:</strong><br>
+                        Homeomorphic graphs have the same "shape" - degree-2 vertices can be added/removed on edges.<br><br>
+                        Isomorphism preserves adjacency exactly.<br>
+                        Homeomorphism allows subdivision of edges.
+                    </div>
+
+                    <h4>Kuratowski's Theorem (Restated)</h4>
+                    <p>A graph is planar iff it contains no subgraph homeomorphic to K₅ or K₃,₃.</p>
                 </div>
 
                 <div class="theory-card">

@@ -336,6 +336,93 @@
             </div>
 
             <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Lattice Absorption Laws <span class="badge-important">IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> In any lattice (L, ∧, ∨), for all a, b ∈ L:<br><br>
+                    (i) a ∨ (a ∧ b) = a<br>
+                    (ii) a ∧ (a ∨ b) = a
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof of (i):</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>We know a ∧ b ≤ a (definition of meet)</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>Also a ≤ a (reflexivity)</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>So a is an upper bound of {a, a ∧ b}</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">4</span>
+                        <div>Since a ∨ (a ∧ b) is LUB of {a, a ∧ b}, we have a ∨ (a ∧ b) ≤ a</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>But a ≤ a ∨ (a ∧ b) always. Therefore a ∨ (a ∧ b) = a. ∎</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Complement Uniqueness in Distributive Lattice <span class="badge-important">IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> In a bounded distributive lattice, if an element has a complement, it is unique.
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof:</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>Suppose a has two complements b and c in lattice L.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>Then a ∧ b = 0, a ∨ b = 1, a ∧ c = 0, a ∨ c = 1</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>b = b ∧ 1 = b ∧ (a ∨ c) = (b ∧ a) ∨ (b ∧ c) = 0 ∨ (b ∧ c) = b ∧ c</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">4</span>
+                        <div>Similarly: c = c ∧ (a ∨ b) = (c ∧ a) ∨ (c ∧ b) = b ∧ c</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Therefore b = b ∧ c = c. Complement is unique! ∎</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> Modular Lattice Characterization <span class="badge-unit">Unit III</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> A lattice L is modular if and only if it does not contain the pentagon N₅ as a sublattice.
+                </div>
+                <div class="example-box">
+                    <h5><i class="fas fa-lightbulb"></i> Pentagon N₅:</h5>
+                    The pentagon N₅ = {0, a, b, c, 1} where 0 < a < 1, 0 < b < c < 1, and a is incomparable with b and c.<br>
+                    This is the smallest non-modular lattice.
+                </div>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> Distributive Lattice Characterization <span class="badge-unit">Unit III</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> A lattice L is distributive if and only if it contains neither the pentagon N₅ nor the diamond M₃ as a sublattice.
+                </div>
+                <div class="corollary-box">
+                    <h5><i class="fas fa-arrow-right"></i> Corollary:</h5>
+                    Every distributive lattice is modular (but not vice versa).
+                </div>
+            </div>
+
+            <div class="theorem-card important">
                 <h3><i class="fas fa-star"></i> Every Finite Lattice has Max and Min Elements <span class="badge-important">IMPORTANT</span></h3>
                 <div class="theorem-statement">
                     <strong>Theorem:</strong> Every finite lattice has a greatest element (1) and a least element (0).
@@ -424,6 +511,54 @@
                     <h5><i class="fas fa-lightbulb"></i> Example:</h5>
                     In ℤ₁₂, subgroup H = {0, 4, 8} has order 3, which divides 12 ✓<br>
                     Index [ℤ₁₂ : H] = 12/3 = 4 cosets ✓
+                </div>
+            </div>
+
+            <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Group Homomorphism Properties <span class="badge-important">IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> Let f: G → G' be a group homomorphism. Then:<br><br>
+                    (i) f(eG) = eG' (identity maps to identity)<br>
+                    (ii) f(a⁻¹) = [f(a)]⁻¹ (inverse maps to inverse)<br>
+                    (iii) f(aⁿ) = [f(a)]ⁿ for all n ∈ ℤ
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof:</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div><strong>(i)</strong> f(e) = f(e·e) = f(e)·f(e)</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>Multiply both sides by [f(e)]⁻¹: e' = f(e) ✓</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div><strong>(ii)</strong> f(a)·f(a⁻¹) = f(a·a⁻¹) = f(e) = e'</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">4</span>
+                        <div>So f(a⁻¹) is the inverse of f(a), i.e., f(a⁻¹) = [f(a)]⁻¹ ✓</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div><strong>(iii)</strong> follows by induction using the homomorphism property. ∎</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> First Isomorphism Theorem <span class="badge-unit">Unit IV</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> If f: G → G' is a group homomorphism, then:<br><br>
+                    G / ker(f) ≅ im(f)
+                </div>
+                <div class="corollary-box">
+                    <h5><i class="fas fa-arrow-right"></i> Key Concepts:</h5>
+                    • <strong>Kernel:</strong> ker(f) = {a ∈ G : f(a) = e'}<br>
+                    • <strong>Image:</strong> im(f) = {f(a) : a ∈ G}<br>
+                    • ker(f) is a normal subgroup of G
                 </div>
             </div>
 

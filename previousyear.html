@@ -546,6 +546,165 @@ AB=10│ 1  │    │    │ 1  │  m8,m10
                     </div>
 
                     <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q4b</span>Prove De Morgan's Laws for Boolean Algebra: (i) (a + b)' = a' · b' (ii) (a · b)' = a' + b'</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>De Morgan's Laws - Proof using Boolean Algebra Axioms</strong><br><br>
+                            
+                            <strong>(i) Prove: (a + b)' = a' · b'</strong><br><br>
+                            
+                            We need to show that (a + b)' is the complement of (a + b).<br>
+                            By definition of complement, x' is unique element such that:<br>
+                            • x + x' = 1<br>
+                            • x · x' = 0<br><br>
+                            
+                            <strong>Step 1: Show (a + b) + (a' · b') = 1</strong><br>
+                            (a + b) + (a' · b')<br>
+                            = [(a + b) + a'] · [(a + b) + b']  ... Distributive<br>
+                            = [(a + a') + b] · [a + (b + b')]  ... Associative + Commutative<br>
+                            = [1 + b] · [a + 1]  ... Complement law<br>
+                            = 1 · 1 = 1 ✓  ... Identity law<br><br>
+                            
+                            <strong>Step 2: Show (a + b) · (a' · b') = 0</strong><br>
+                            (a + b) · (a' · b')<br>
+                            = (a · a' · b') + (b · a' · b')  ... Distributive<br>
+                            = (0 · b') + (a' · 0)  ... Complement law<br>
+                            = 0 + 0 = 0 ✓  ... Identity law<br><br>
+                            
+                            ∴ (a + b)' = a' · b' ∎<br><br>
+                            
+                            <hr><br>
+                            <strong>(ii) Prove: (a · b)' = a' + b'</strong><br><br>
+                            
+                            <strong>Step 1: Show (a · b) + (a' + b') = 1</strong><br>
+                            (a · b) + (a' + b')<br>
+                            = (a · b + a') + b'  ... Associative<br>
+                            = [(a + a') · (b + a')] + b'  ... Distributive<br>
+                            = [1 · (b + a')] + b'  ... Complement<br>
+                            = (b + a') + b'  ... Identity<br>
+                            = a' + (b + b')  ... Commutative + Associative<br>
+                            = a' + 1 = 1 ✓  ... Complement + Identity<br><br>
+                            
+                            <strong>Step 2: Show (a · b) · (a' + b') = 0</strong><br>
+                            (a · b) · (a' + b')<br>
+                            = (a · b · a') + (a · b · b')  ... Distributive<br>
+                            = (a · a' · b) + (a · b · b')  ... Commutative<br>
+                            = (0 · b) + (a · 0)  ... Complement<br>
+                            = 0 + 0 = 0 ✓  ... Identity<br><br>
+                            
+                            ∴ (a · b)' = a' + b' ∎<br><br>
+                            
+                            <strong>Alternative Proof using Duality:</strong><br>
+                            Since we proved (a + b)' = a' · b', by principle of duality (interchanging + and ·), we get (a · b)' = a' + b'.<br><br>
+                            
+                            <em>These laws are fundamental in digital circuit simplification!</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q5a</span>Using inference rules, prove: Premises: (i) ∀x [P(x) → Q(x)] (ii) ∀x [Q(x) → R(x)] (iii) ∃x P(x). Conclusion: ∃x R(x)</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Formal Proof using Predicate Logic Inference Rules</strong><br><br>
+                            
+                            <strong>Given Premises:</strong><br>
+                            1. ∀x [P(x) → Q(x)]<br>
+                            2. ∀x [Q(x) → R(x)]<br>
+                            3. ∃x P(x)<br><br>
+                            
+                            <strong>To Prove: ∃x R(x)</strong><br><br>
+                            
+                            <strong>Proof:</strong><br><br>
+                            
+                            <strong>Step 1:</strong> From premise 3 (∃x P(x)), by Existential Instantiation (EI):<br>
+                            Let c be a particular element such that P(c) is true.<br>
+                            <strong>4. P(c)</strong> ... EI on premise 3<br><br>
+                            
+                            <strong>Step 2:</strong> From premise 1 (∀x [P(x) → Q(x)]), by Universal Instantiation (UI) with x = c:<br>
+                            <strong>5. P(c) → Q(c)</strong> ... UI on premise 1<br><br>
+                            
+                            <strong>Step 3:</strong> From statements 4 and 5, by Modus Ponens:<br>
+                            <strong>6. Q(c)</strong> ... MP (4, 5)<br><br>
+                            
+                            <strong>Step 4:</strong> From premise 2 (∀x [Q(x) → R(x)]), by Universal Instantiation (UI) with x = c:<br>
+                            <strong>7. Q(c) → R(c)</strong> ... UI on premise 2<br><br>
+                            
+                            <strong>Step 5:</strong> From statements 6 and 7, by Modus Ponens:<br>
+                            <strong>8. R(c)</strong> ... MP (6, 7)<br><br>
+                            
+                            <strong>Step 6:</strong> From statement 8, by Existential Generalization (EG):<br>
+                            <strong>9. ∃x R(x)</strong> ... EG on statement 8 ✓<br><br>
+                            
+                            <strong>∴ ∃x R(x) is proved. ∎</strong><br><br>
+                            
+                            <strong>Summary of Inference Rules Used:</strong><br>
+                            • <strong>EI (Existential Instantiation):</strong> ∃x P(x) → P(c) for some c<br>
+                            • <strong>UI (Universal Instantiation):</strong> ∀x P(x) → P(c) for any c<br>
+                            • <strong>MP (Modus Ponens):</strong> p, p→q ⊢ q<br>
+                            • <strong>EG (Existential Generalization):</strong> P(c) → ∃x P(x)<br><br>
+                            
+                            <em>This proof demonstrates the transitivity of implication in predicate logic!</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q5b</span>Construct truth table and verify that [(p → q) ∧ (q → r)] → (p → r) is a tautology.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Verifying Tautology: [(p → q) ∧ (q → r)] → (p → r)</strong><br><br>
+                            
+                            This is the <strong>Hypothetical Syllogism</strong> law.<br><br>
+                            
+                            <strong>Truth Table:</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 15px; border-radius: 5px;">
+p | q | r | p→q | q→r | (p→q)∧(q→r) | p→r | [(p→q)∧(q→r)]→(p→r)
+──┼───┼───┼─────┼─────┼─────────────┼─────┼─────────────────────
+T | T | T |  T  |  T  |      T      |  T  |         T
+T | T | F |  T  |  F  |      F      |  F  |         T
+T | F | T |  F  |  T  |      F      |  T  |         T
+T | F | F |  F  |  T  |      F      |  F  |         T
+F | T | T |  T  |  T  |      T      |  T  |         T
+F | T | F |  T  |  F  |      F      |  T  |         T
+F | F | T |  T  |  T  |      T      |  T  |         T
+F | F | F |  T  |  T  |      T      |  T  |         T
+</pre>
+                            
+                            <strong>Analysis:</strong><br><br>
+                            
+                            <strong>Key Rows to Notice:</strong><br>
+                            • <strong>Row 1 (TTT):</strong> All implications true, final result T ✓<br>
+                            • <strong>Row 2 (TTF):</strong> q→r is false, so antecedent becomes false, making whole expression T ✓<br>
+                            • <strong>Row 3 (TFT):</strong> p→q is false, so antecedent becomes false, final T ✓<br>
+                            • <strong>Row 5 (FTT):</strong> p is false, so p→q and p→r both true, final T ✓<br>
+                            • <strong>Rows 4,6,7,8:</strong> When antecedent is false, implication is always true ✓<br><br>
+                            
+                            <strong>Final Column Analysis:</strong><br>
+                            All 8 rows result in <strong>TRUE</strong>.<br><br>
+                            
+                            <strong>∴ [(p → q) ∧ (q → r)] → (p → r) is a TAUTOLOGY! ✓</strong><br><br>
+                            
+                            <strong>Logical Interpretation:</strong><br>
+                            "If p implies q, and q implies r, then p implies r."<br>
+                            This captures the <strong>transitivity of implication</strong>.<br><br>
+                            
+                            <strong>Alternative Proof (Algebraic):</strong><br>
+                            [(p → q) ∧ (q → r)] → (p → r)<br>
+                            = [(¬p ∨ q) ∧ (¬q ∨ r)] → (¬p ∨ r)<br>
+                            = ¬[(¬p ∨ q) ∧ (¬q ∨ r)] ∨ (¬p ∨ r)<br>
+                            = [¬(¬p ∨ q) ∨ ¬(¬q ∨ r)] ∨ (¬p ∨ r)  ... De Morgan's<br>
+                            = [(p ∧ ¬q) ∨ (q ∧ ¬r)] ∨ (¬p ∨ r)  ... De Morgan's<br>
+                            = (p ∧ ¬q) ∨ (q ∧ ¬r) ∨ ¬p ∨ r<br>
+                            = [(p ∧ ¬q) ∨ ¬p] ∨ [(q ∧ ¬r) ∨ r]  ... Rearrange<br>
+                            = T ∨ T = T ✓  ... Absorption<br><br>
+                            
+                            <em>This is a fundamental rule in logic and mathematics!</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
                         <p class="question-text"><span class="q-number">Q6a</span>Calculate the number of generators of the cyclic group of order 8.</p>
                         <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
                         <div class="answer-box">
@@ -564,6 +723,163 @@ AB=10│ 1  │    │    │ 1  │  m8,m10
                             <strong>Generators: k ∈ {1, 3, 5, 7}</strong><br><br>
                             <strong>Number of generators = φ(8) = 4</strong><br><br>
                             <em>Euler's totient: φ(8) = 8(1-1/2) = 4</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q6b</span>Let G be a group and H be a subgroup of G. Prove that the left cosets of H in G partition G.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Theorem: Left cosets of H partition G</strong><br><br>
+                            
+                            <strong>Given:</strong><br>
+                            • G is a group<br>
+                            • H is a subgroup of G<br>
+                            • Left coset: aH = {ah | h ∈ H} for a ∈ G<br><br>
+                            
+                            <strong>To Prove:</strong> The collection of all distinct left cosets {aH | a ∈ G} partitions G.<br><br>
+                            
+                            For partition, we must show:<br>
+                            1. Every element of G is in some coset (covering)<br>
+                            2. Two cosets are either identical or disjoint (no overlap)<br><br>
+                            
+                            <hr><br>
+                            <strong>Part 1: Every element is in some coset (Covering)</strong><br><br>
+                            
+                            Let a ∈ G be any element.<br>
+                            Since H is a subgroup, e ∈ H (identity element).<br>
+                            Therefore, a = ae ∈ aH.<br><br>
+                            
+                            ∴ Every element of G belongs to at least one left coset. ✓<br><br>
+                            
+                            <hr><br>
+                            <strong>Part 2: Two cosets are identical or disjoint</strong><br><br>
+                            
+                            Let aH and bH be two left cosets.<br>
+                            We'll prove: If aH ∩ bH ≠ ∅, then aH = bH.<br><br>
+                            
+                            <strong>Assume:</strong> aH ∩ bH ≠ ∅<br>
+                            Then ∃ x ∈ aH ∩ bH<br><br>
+                            
+                            Since x ∈ aH: x = ah₁ for some h₁ ∈ H ... (1)<br>
+                            Since x ∈ bH: x = bh₂ for some h₂ ∈ H ... (2)<br><br>
+                            
+                            From (1) and (2): ah₁ = bh₂<br>
+                            ⟹ a = bh₂h₁⁻¹<br><br>
+                            
+                            <strong>Now show aH ⊆ bH:</strong><br>
+                            Let y ∈ aH, then y = ah for some h ∈ H<br>
+                            y = ah = (bh₂h₁⁻¹)h = b(h₂h₁⁻¹h)<br><br>
+                            
+                            Since H is a subgroup, h₂h₁⁻¹h ∈ H<br>
+                            ∴ y ∈ bH<br>
+                            Thus aH ⊆ bH ✓<br><br>
+                            
+                            <strong>Similarly show bH ⊆ aH:</strong><br>
+                            From ah₁ = bh₂, we get b = ah₁h₂⁻¹<br>
+                            Let z ∈ bH, then z = bh' for some h' ∈ H<br>
+                            z = bh' = (ah₁h₂⁻¹)h' = a(h₁h₂⁻¹h')<br>
+                            Since h₁h₂⁻¹h' ∈ H, z ∈ aH<br>
+                            Thus bH ⊆ aH ✓<br><br>
+                            
+                            ∴ aH = bH<br><br>
+                            
+                            <strong>Conclusion:</strong><br>
+                            If two cosets overlap, they must be identical.<br>
+                            Otherwise, they are disjoint.<br><br>
+                            
+                            <strong>∴ The left cosets of H partition G. ∎</strong><br><br>
+                            
+                            <strong>Consequence (Lagrange's Theorem):</strong><br>
+                            Since cosets partition G and all cosets have equal size |H|:<br>
+                            |G| = (number of cosets) × |H|<br>
+                            ∴ |H| divides |G|<br><br>
+                            
+                            <em>This is a fundamental result in group theory!</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q7a</span>For the graph K₅ (complete graph on 5 vertices), determine: (i) Total number of spanning trees (ii) Whether it is planar or not (justify using Kuratowski's theorem)</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Analysis of Complete Graph K₅</strong><br><br>
+                            
+                            K₅ = Complete graph with 5 vertices<br>
+                            • Vertices: |V| = 5<br>
+                            • Edges: |E| = C(5,2) = 10<br>
+                            • Degree of each vertex: 4<br><br>
+                            
+                            <hr><br>
+                            <strong>(i) Total Number of Spanning Trees</strong><br><br>
+                            
+                            <strong>Method: Cayley's Formula</strong><br>
+                            For complete graph Kₙ, number of spanning trees = <strong>nⁿ⁻²</strong><br><br>
+                            
+                            For K₅: n = 5<br>
+                            Number of spanning trees = 5⁵⁻² = 5³ = <strong>125</strong><br><br>
+                            
+                            <strong>Verification using Matrix-Tree Theorem:</strong><br>
+                            Degree matrix D:<br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+D = diag(4, 4, 4, 4, 4)
+</pre>
+                            
+                            Adjacency matrix A (all 1s except diagonal):<br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+    ┌─────────────┐
+    │ 0 1 1 1 1 │
+    │ 1 0 1 1 1 │
+A = │ 1 1 0 1 1 │
+    │ 1 1 1 0 1 │
+    │ 1 1 1 1 0 │
+    └─────────────┘
+</pre>
+                            
+                            Laplacian L = D - A:<br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+    ┌──────────────────┐
+    │  4 -1 -1 -1 -1 │
+    │ -1  4 -1 -1 -1 │
+L = │ -1 -1  4 -1 -1 │
+    │ -1 -1 -1  4 -1 │
+    │ -1 -1 -1 -1  4 │
+    └──────────────────┘
+</pre>
+                            
+                            Number of spanning trees = any cofactor of L = <strong>125</strong> ✓<br><br>
+                            
+                            <hr><br>
+                            <strong>(ii) Planarity Test using Kuratowski's Theorem</strong><br><br>
+                            
+                            <strong>Kuratowski's Theorem:</strong><br>
+                            A graph is planar if and only if it does NOT contain a subgraph that is homeomorphic to K₅ or K₃,₃.<br><br>
+                            
+                            <strong>Analysis:</strong><br>
+                            K₅ itself IS one of the two forbidden graphs (Kuratowski graphs)!<br><br>
+                            
+                            <strong>∴ K₅ is NOT planar. ✗</strong><br><br>
+                            
+                            <strong>Alternative Verification using Euler's Formula:</strong><br>
+                            For planar graph: v - e + f = 2 (Euler's formula)<br>
+                            where v = vertices, e = edges, f = faces<br><br>
+                            
+                            For K₅: v = 5, e = 10<br>
+                            If planar: 5 - 10 + f = 2 ⟹ f = 7<br><br>
+                            
+                            Each face has at least 3 edges: 2e ≥ 3f<br>
+                            Check: 2(10) = 20 ≥ 3(7) = 21<br>
+                            <strong>20 ≱ 21 - Contradiction! ✗</strong><br><br>
+                            
+                            ∴ K₅ cannot be planar.<br><br>
+                            
+                            <strong>Summary:</strong><br>
+                            • Total spanning trees: <strong>125</strong><br>
+                            • Planarity: <strong>NOT planar</strong> (Kuratowski forbidden subgraph)<br><br>
+                            
+                            <em>K₅ and K₃,₃ are the two fundamental non-planar graphs!</em>
                         </div>
                     </div>
 
