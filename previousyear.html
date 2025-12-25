@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Year Questions - AKTU | DSTL Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .pyq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .year-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 70px;
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        .year-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .year-btn:hover, .year-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .year-content {
+            display: none;
+        }
+        .year-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        .section-box {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+        .section-box h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-box h3 .badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        .pyq-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+        .pyq-card.section-b {
+            border-left-color: var(--warning-color);
+        }
+        .pyq-card.section-c {
+            border-left-color: var(--danger-color);
+        }
+        .q-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-color);
+            color: white;
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.85rem;
+        }
+        .pyq-card.section-b .q-number {
+            background: var(--warning-color);
+            color: #333;
+        }
+        .pyq-card.section-c .q-number {
+            background: var(--danger-color);
+        }
+        .question-text {
+            font-weight: 500;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .answer-box {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+            display: none;
+        }
+        .answer-box.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .answer-box h4 {
+            color: #28a745;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .toggle-answer {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #667eea 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .toggle-answer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        .paper-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .paper-info h2 {
+            margin-bottom: 10px;
+        }
+        .paper-info p {
+            opacity: 0.9;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="units/unit1.html">Unit I</a></li>
+                <li><a href="units/unit2.html">Unit II</a></li>
+                <li><a href="units/unit3.html">Unit III</a></li>
+                <li><a href="units/unit4.html">Unit IV</a></li>
+                <li><a href="units/unit5.html">Unit V</a></li>
+                <li><a href="theory.html">Theory</a></li>
+                <li><a href="questions.html">Questions</a></li>
+                <li><a href="previousyear.html" class="active">PYQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-file-alt"></i> Previous Year Questions</h1>
+                <p>AKTU DSTL Exam Papers with Detailed Solutions (2020-2025)</p>
+            </div>
+        </header>
+
+        <section class="pyq-container">
+            <div class="year-selector">
+                <button class="year-btn active" onclick="showYear('y2024')">2024-25</button>
+                <button class="year-btn" onclick="showYear('y2023')">2023-24</button>
+                <button class="year-btn" onclick="showYear('y2022')">2022-23</button>
+                <button class="year-btn" onclick="showYear('y2021')">2021-22</button>
+                <button class="year-btn" onclick="showYear('y2020')">2020-21</button>
+            </div>
+
+            <!-- 2024-25 Paper -->
+            <div class="year-content active" id="y2024">
+                <div class="paper-info">
+                    <h2><i class="fas fa-scroll"></i> Session 2024-25</h2>
+                    <p>Paper ID: 311973 | Most Recent Paper</p>
+                </div>
+
+                <!-- Section A -->
+                <div class="section-box">
+                    <h3><i class="fas fa-a"></i> Section A <span class="badge">Short Answer - 2 marks each</span></h3>
+                    
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">1</span><strong>Sets:</strong> Let A={x : x is a prime number &lt; 20} and B={x : x is an odd number &lt; 20}. Compute A∪B and A∩B.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>A = {2, 3, 5, 7, 11, 13, 17, 19}</strong> (primes &lt; 20)<br>
+                            <strong>B = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19}</strong> (odd numbers &lt; 20)<br><br>
+                            <strong>A ∪ B</strong> = {1, 2, 3, 5, 7, 9, 11, 13, 15, 17, 19}<br><br>
+                            <strong>A ∩ B</strong> = {3, 5, 7, 11, 13, 17, 19}<br>
+                            <em>(All odd primes less than 20)</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">2</span><strong>Relations:</strong> Let A={1,2,3} and B={a,b}. Compute the total number of possible relations from A to B.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            A relation from A to B is a subset of A × B.<br><br>
+                            |A × B| = |A| × |B| = 3 × 2 = 6<br><br>
+                            Number of relations = 2<sup>|A×B|</sup> = 2<sup>6</sup> = <strong>64 relations</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">3</span><strong>Predicate Logic:</strong> If P(x) is "x is a prime number" and Q(x) is "x is odd", write in logic:<br>(a) "There exists an even prime number."<br>(b) "All prime numbers greater than 2 are odd."</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>(a) "There exists an even prime number":</strong><br>
+                            ∃x (P(x) ∧ ¬Q(x))<br>
+                            <em>Or: ∃x (P(x) ∧ Even(x))</em><br><br>
+                            <strong>(b) "All prime numbers greater than 2 are odd":</strong><br>
+                            ∀x ((P(x) ∧ x > 2) → Q(x))
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">4</span><strong>Functions:</strong> Calculate g∘f if f:R→R is f(x)=e<sup>x</sup> and g:R→R is g(x)=sin(x).</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            (g ∘ f)(x) = g(f(x))<br><br>
+                            = g(e<sup>x</sup>)<br><br>
+                            = sin(e<sup>x</sup>)<br><br>
+                            <strong>(g ∘ f)(x) = sin(e<sup>x</sup>)</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">5</span><strong>Groups:</strong> Define Abelian group.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            An <strong>Abelian group</strong> (or commutative group) is a group (G, *) that satisfies:<br><br>
+                            1. <strong>Closure:</strong> a * b ∈ G for all a, b ∈ G<br>
+                            2. <strong>Associativity:</strong> (a * b) * c = a * (b * c)<br>
+                            3. <strong>Identity:</strong> ∃e ∈ G such that a * e = e * a = a<br>
+                            4. <strong>Inverse:</strong> For each a ∈ G, ∃a⁻¹ such that a * a⁻¹ = e<br>
+                            5. <strong>Commutativity:</strong> a * b = b * a for all a, b ∈ G<br><br>
+                            <em>Example: (ℤ, +) is an Abelian group.</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">6</span><strong>Combinatorics:</strong> In how many ways can you arrange the letters of "DISCRETE"?</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            DISCRETE has 8 letters: D, I, S, C, R, E, T, E<br><br>
+                            Letter count: D=1, I=1, S=1, C=1, R=1, E=2, T=1<br><br>
+                            Using permutation with repetition:<br>
+                            = 8! / 2!<br>
+                            = 40320 / 2<br>
+                            = <strong>20,160 arrangements</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">7</span><strong>Graphs:</strong> Illustrate a graph using an adjacency matrix with vertices V={A,B,C,D} and edges E={(A,B),(B,C),(C,D),(D,A)}.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            The graph forms a cycle (square): A—B—C—D—A<br><br>
+                            <strong>Adjacency Matrix:</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+     A  B  C  D
+  ┌────────────┐
+A │  0  1  0  1 │
+B │  1  0  1  0 │
+C │  0  1  0  1 │
+D │  1  0  1  0 │
+  └────────────┘
+</pre>
+                            <em>Matrix is symmetric (undirected graph).</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section B -->
+                <div class="section-box">
+                    <h3><i class="fas fa-b"></i> Section B <span class="badge">Attempt any 3 - 5 marks each</span></h3>
+                    
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">1</span>Examine if R={(a,b) | a≡b (mod m)} is an equivalence relation on ℤ. Also ensure if x₁≡y₁ and x₂≡y₂, then (x₁+x₂)≡(y₁+y₂).</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Part 1: Equivalence Relation Check</strong><br><br>
+                            <strong>Reflexive:</strong> a ≡ a (mod m) ✓<br>
+                            Since a - a = 0 = 0·m, divisible by m.<br><br>
+                            <strong>Symmetric:</strong> If a ≡ b (mod m), then b ≡ a (mod m) ✓<br>
+                            a - b = km ⟹ b - a = -km, also divisible by m.<br><br>
+                            <strong>Transitive:</strong> If a ≡ b and b ≡ c (mod m), then a ≡ c (mod m) ✓<br>
+                            a - b = k₁m, b - c = k₂m<br>
+                            a - c = (a-b) + (b-c) = (k₁+k₂)m<br><br>
+                            <strong>Yes, R is an equivalence relation!</strong><br><br>
+                            <hr><br>
+                            <strong>Part 2: Addition Property</strong><br><br>
+                            Given: x₁ ≡ y₁ (mod m) and x₂ ≡ y₂ (mod m)<br><br>
+                            This means:<br>
+                            x₁ - y₁ = k₁m for some integer k₁<br>
+                            x₂ - y₂ = k₂m for some integer k₂<br><br>
+                            Adding: (x₁ + x₂) - (y₁ + y₂) = (k₁ + k₂)m<br><br>
+                            Since (k₁ + k₂) is an integer:<br>
+                            <strong>(x₁ + x₂) ≡ (y₁ + y₂) (mod m) ✓</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">2</span>Solve the Boolean function using K-map (SOP): F(A,B,C)=Σ(1,2,5,7) with Don't Care D(0,4,6).</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>3-Variable K-Map:</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+        BC
+       00  01  11  10
+    ┌────┬────┬────┬────┐
+A=0 │ X  │ 1  │    │ 1  │  ← m0(X), m1, m2
+    ├────┼────┼────┼────┤
+A=1 │ X  │ 1  │ 1  │ X  │  ← m4(X), m5, m7, m6(X)
+    └────┴────┴────┴────┘
+</pre>
+                            <strong>Groupings (using don't cares):</strong><br>
+                            • Group 1: m1, m5 (column 01) → <strong>B'C</strong><br>
+                            • Group 2: m5, m7 → <strong>AC</strong><br>
+                            • Group 3: m0, m2, m4, m6 (corners) → <strong>C'</strong><br><br>
+                            <strong>F = B'C + AC + C'</strong><br>
+                            Simplified: <strong>F = C' + B'C + AC</strong><br>
+                            Or: <strong>F = C' + C(B' + A) = C' + AC + B'C</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">3</span>Analyse argument validity: "If a person is happy, they smile. John is smiling. Conclusion: John is happy."</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Symbolize:</strong><br>
+                            H: "Person is happy"<br>
+                            S: "Person smiles"<br><br>
+                            <strong>Premises:</strong><br>
+                            1. H → S (If happy, then smiles)<br>
+                            2. S (John is smiling)<br><br>
+                            <strong>Conclusion:</strong> H (John is happy)<br><br>
+                            <strong>Analysis:</strong><br>
+                            This is the <strong>Fallacy of Affirming the Consequent!</strong><br><br>
+                            The argument form is: H → S, S ⊢ H<br>
+                            This is <strong>INVALID</strong>!<br><br>
+                            <strong>Counterexample:</strong><br>
+                            John could be smiling for other reasons (someone told a joke, being polite, etc.) without actually being happy.<br><br>
+                            <em>Valid form would be Modus Ponens: H → S, H ⊢ S</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">4</span>In group ℤ₁₂ (addition modulo 12), consider subgroup H={0,4,8}. Compute all distinct Cosets of H.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Given:</strong> G = ℤ₁₂ = {0,1,2,...,11}, H = {0,4,8}<br><br>
+                            <strong>Left cosets a + H:</strong><br><br>
+                            0 + H = {0,4,8} = H<br>
+                            1 + H = {1,5,9}<br>
+                            2 + H = {2,6,10}<br>
+                            3 + H = {3,7,11}<br>
+                            4 + H = {4,8,0} = H (same as 0+H)<br>
+                            5 + H = {5,9,1} (same as 1+H)<br>
+                            ... and so on<br><br>
+                            <strong>Distinct Cosets (4 total):</strong><br>
+                            • H = {0, 4, 8}<br>
+                            • 1 + H = {1, 5, 9}<br>
+                            • 2 + H = {2, 6, 10}<br>
+                            • 3 + H = {3, 7, 11}<br><br>
+                            <strong>Index [G:H] = |G|/|H| = 12/3 = 4 ✓</strong><br>
+                            <em>These 4 cosets partition ℤ₁₂.</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">5</span>Examine whether graph K₃ and a graph formed by adding a single vertex in the middle of one edge of K₃ are homeomorphic.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>K₃:</strong> Complete graph on 3 vertices (triangle)<br>
+                            Vertices: 3, Edges: 3<br><br>
+                            <strong>Modified graph (K₃ with subdivision):</strong><br>
+                            Add vertex v in middle of one edge, say (A,B):<br>
+                            • Original edge (A,B) becomes (A,v) and (v,B)<br>
+                            • Vertices: 4, Edges: 4<br><br>
+                            <strong>Definition:</strong> Two graphs are homeomorphic if one can be obtained from the other by subdivision (adding degree-2 vertices on edges) or its inverse.<br><br>
+                            <strong>Analysis:</strong><br>
+                            The modified graph is obtained from K₃ by elementary subdivision of one edge.<br><br>
+                            <strong>Yes, they ARE homeomorphic!</strong><br><br>
+                            <em>Subdivision preserves the essential topological structure.</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section C -->
+                <div class="section-box">
+                    <h3><i class="fas fa-c"></i> Section C <span class="badge">Long Answer - 10 marks each</span></h3>
+                    
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3a</span>Let R={(1,2),(2,3),(3,1)} on A={1,2,3}. Calculate transitive closure using Warshall's algorithm.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Initial Matrix M⁰ (for R):</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+    1 2 3
+  ┌───────┐
+1 │ 0 1 0 │
+2 │ 0 0 1 │
+3 │ 1 0 0 │
+  └───────┘
+</pre>
+                            <strong>k=1:</strong> Check paths through vertex 1<br>
+                            M[3,1]=1, M[1,2]=1 → M[3,2]=1<br><br>
+                            <strong>k=2:</strong> Check paths through vertex 2<br>
+                            M[1,2]=1, M[2,3]=1 → M[1,3]=1<br>
+                            M[3,2]=1, M[2,3]=1 → M[3,3]=1<br><br>
+                            <strong>k=3:</strong> Check paths through vertex 3<br>
+                            M[1,3]=1, M[3,1]=1 → M[1,1]=1<br>
+                            M[1,3]=1, M[3,2]=1 → M[1,2]=1 ✓<br>
+                            M[2,3]=1, M[3,1]=1 → M[2,1]=1<br>
+                            M[2,3]=1, M[3,2]=1 → M[2,2]=1<br><br>
+                            <strong>Final Transitive Closure M*:</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+    1 2 3
+  ┌───────┐
+1 │ 1 1 1 │
+2 │ 1 1 1 │
+3 │ 1 1 1 │
+  └───────┘
+</pre>
+                            <strong>R⁺ = A × A</strong> (all pairs are related!)
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3b</span>Justify that (D₄₂, |) is a lattice. Also, show if L₁=D₆ and L₂=(P(S),⊆) where S={a,b} are isomorphic.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Part 1: (D₄₂, |) is a lattice</strong><br><br>
+                            D₄₂ = divisors of 42 = {1, 2, 3, 6, 7, 14, 21, 42}<br>
+                            42 = 2 × 3 × 7<br><br>
+                            For lattice, every pair must have LUB (join) and GLB (meet).<br><br>
+                            In divisibility poset:<br>
+                            • GLB(a,b) = GCD(a,b)<br>
+                            • LUB(a,b) = LCM(a,b)<br><br>
+                            Since all elements divide 42, LCM always exists in set.<br>
+                            GCD of any two divisors is also a divisor of 42.<br><br>
+                            <strong>Yes, (D₄₂, |) is a lattice! ✓</strong><br><br>
+                            <hr><br>
+                            <strong>Part 2: Isomorphism</strong><br><br>
+                            <strong>L₁ = D₆ = {1, 2, 3, 6}</strong> under divisibility<br>
+                            <strong>L₂ = P({a,b}) = {∅, {a}, {b}, {a,b}}</strong> under ⊆<br><br>
+                            Both have 4 elements. Check structure:<br><br>
+                            Mapping: 1↔∅, 2↔{a}, 3↔{b}, 6↔{a,b}<br><br>
+                            • 1|2, 1|3, 1|6 ↔ ∅⊆{a}, ∅⊆{b}, ∅⊆{a,b} ✓<br>
+                            • 2|6, 3|6 ↔ {a}⊆{a,b}, {b}⊆{a,b} ✓<br>
+                            • GCD(2,3)=1, LCM(2,3)=6 ↔ {a}∩{b}=∅, {a}∪{b}={a,b} ✓<br><br>
+                            <strong>Yes, L₁ ≅ L₂ (isomorphic)! ✓</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q4a</span>Solve using K-map: (i) F(A,B,C,D)=Σ(0,1,2,4,5,6,8,12,13,14) (ii) F(A,B,C,D)=Σ(0,2,5,7,8,10,13,15)</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>(i) F(A,B,C,D)=Σ(0,1,2,4,5,6,8,12,13,14)</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+         CD
+        00  01  11  10
+     ┌────┬────┬────┬────┐
+AB=00│ 1  │ 1  │    │ 1  │  m0,m1,m2
+     ├────┼────┼────┼────┤
+AB=01│ 1  │ 1  │    │ 1  │  m4,m5,m6
+     ├────┼────┼────┼────┤
+AB=11│ 1  │ 1  │    │ 1  │  m12,m13,m14
+     ├────┼────┼────┼────┤
+AB=10│ 1  │    │    │    │  m8
+     └────┴────┴────┴────┘
+</pre>
+                            Groups:<br>
+                            • Column CD=00: m0,m4,m12,m8 → <strong>C'D'</strong><br>
+                            • Row 00,01 column 10: m2,m6 + m0,m4 → <strong>A'D'</strong><br>
+                            • m1,m5,m13,... → <strong>C'D</strong> (partial)<br><br>
+                            <strong>F = C'D' + A'D' + A'C'D + BCD'</strong><br><br>
+                            <hr><br>
+                            <strong>(ii) F(A,B,C,D)=Σ(0,2,5,7,8,10,13,15)</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+         CD
+        00  01  11  10
+     ┌────┬────┬────┬────┐
+AB=00│ 1  │    │    │ 1  │  m0,m2
+     ├────┼────┼────┼────┤
+AB=01│    │ 1  │ 1  │    │  m5,m7
+     ├────┼────┼────┼────┤
+AB=11│    │ 1  │ 1  │    │  m13,m15
+     ├────┼────┼────┼────┤
+AB=10│ 1  │    │    │ 1  │  m8,m10
+     └────┴────┴────┴────┘
+</pre>
+                            Groups:<br>
+                            • m0,m2,m8,m10 (column 00,10) → <strong>C'</strong> or <strong>B'D'</strong><br>
+                            • m5,m7,m13,m15 (column 01,11) → <strong>BD</strong><br><br>
+                            <strong>F = B'D' + BD = B ⊙ D</strong> (XNOR of B and D)
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q6a</span>Calculate the number of generators of the cyclic group of order 8.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Theorem:</strong> In cyclic group of order n, an element a^k is a generator iff gcd(k, n) = 1.<br><br>
+                            For n = 8, we need k where gcd(k, 8) = 1 and 1 ≤ k ≤ 8.<br><br>
+                            Check each k:<br>
+                            • k=1: gcd(1,8)=1 ✓<br>
+                            • k=2: gcd(2,8)=2 ✗<br>
+                            • k=3: gcd(3,8)=1 ✓<br>
+                            • k=4: gcd(4,8)=4 ✗<br>
+                            • k=5: gcd(5,8)=1 ✓<br>
+                            • k=6: gcd(6,8)=2 ✗<br>
+                            • k=7: gcd(7,8)=1 ✓<br>
+                            • k=8: gcd(8,8)=8 ✗<br><br>
+                            <strong>Generators: k ∈ {1, 3, 5, 7}</strong><br><br>
+                            <strong>Number of generators = φ(8) = 4</strong><br><br>
+                            <em>Euler's totient: φ(8) = 8(1-1/2) = 4</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q7b</span>Prove that in any group of 13 people, at least two must have birthdays in the same month.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Pigeonhole Principle:</strong><br>
+                            If n items are placed into k containers where n > k, at least one container has more than one item.<br><br>
+                            <strong>Application:</strong><br>
+                            • Pigeons (items) = 13 people<br>
+                            • Pigeonholes (containers) = 12 months<br><br>
+                            Since 13 > 12:<br><br>
+                            By Pigeonhole Principle, at least one month must contain more than one birthday.<br><br>
+                            <strong>Using Generalized Pigeonhole:</strong><br>
+                            At least ⌈13/12⌉ = ⌈1.083⌉ = 2 people share a birth month.<br><br>
+                            <strong>∴ At least 2 people must have birthdays in the same month. ∎</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2023-24 Paper -->
+            <div class="year-content" id="y2023">
+                <div class="paper-info">
+                    <h2><i class="fas fa-scroll"></i> Session 2023-24</h2>
+                    <p>Paper ID: 311571</p>
+                </div>
+
+                <!-- Section A -->
+                <div class="section-box">
+                    <h3><i class="fas fa-a"></i> Section A <span class="badge">Short Answer - 2 marks each</span></h3>
+                    
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">1</span><strong>Posets:</strong> Determine GLB and LUB of set {2,3,6} in Poset (D₂₄, |).</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            D₂₄ = {1, 2, 3, 4, 6, 8, 12, 24} (divisors of 24)<br><br>
+                            For {2, 3, 6}:<br>
+                            <strong>GLB (Greatest Lower Bound) = GCD(2, 3, 6) = 1</strong><br>
+                            <strong>LUB (Least Upper Bound) = LCM(2, 3, 6) = 6</strong><br><br>
+                            <em>In divisibility lattice: GLB = GCD, LUB = LCM</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">2</span><strong>Power Set:</strong> Express power set of: (1) {0, {0}} (2) {a, {a}}</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>(1) P({0, {0}}):</strong><br>
+                            = {∅, {0}, {{0}}, {0, {0}}}<br>
+                            (4 elements = 2² ✓)<br><br>
+                            <strong>(2) P({a, {a}}):</strong><br>
+                            = {∅, {a}, {{a}}, {a, {a}}}<br>
+                            (4 elements = 2² ✓)
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">3</span><strong>Functions:</strong> Investigate if f(x) = x² - 1 is injective for f: ℝ → ℝ.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            For injective: f(a) = f(b) ⟹ a = b<br><br>
+                            Check: f(2) = 4 - 1 = 3<br>
+                            f(-2) = 4 - 1 = 3<br><br>
+                            f(2) = f(-2) but 2 ≠ -2<br><br>
+                            <strong>f(x) = x² - 1 is NOT injective (one-to-one)</strong><br><br>
+                            <em>The function fails horizontal line test.</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">4</span><strong>Boolean:</strong> Express E(x,y,z) = xy + y'z into complete Sum-of-Products form.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Expand xy:</strong><br>
+                            xy = xy(z + z') = xyz + xyz'<br><br>
+                            <strong>Expand y'z:</strong><br>
+                            y'z = (x + x')y'z = xy'z + x'y'z<br><br>
+                            <strong>Complete SOP:</strong><br>
+                            E(x,y,z) = xyz + xyz' + xy'z + x'y'z<br>
+                            = <strong>Σ(3, 5, 6, 7)</strong> in minterm form<br>
+                            = <strong>m₃ + m₅ + m₆ + m₇</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">5</span><strong>Logic:</strong> Construct inverse of: "If I wake up early in the morning, then I will be healthy."</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Original:</strong> p → q<br>
+                            p: "I wake up early in the morning"<br>
+                            q: "I will be healthy"<br><br>
+                            <strong>Inverse (¬p → ¬q):</strong><br>
+                            "If I do NOT wake up early in the morning, then I will NOT be healthy."<br><br>
+                            <em>Note: Contrapositive (¬q → ¬p) would be: "If I am not healthy, then I did not wake up early."</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">6</span><strong>Groups:</strong> Show that the identity element is unique in a group.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Proof by Contradiction:</strong><br><br>
+                            Assume e and e' are both identity elements in group G.<br><br>
+                            Since e is identity: e * e' = e' ... (1)<br>
+                            Since e' is identity: e * e' = e ... (2)<br><br>
+                            From (1) and (2): e = e'<br><br>
+                            <strong>∴ Identity element is unique. ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">7</span><strong>Graphs:</strong> Compare Euler circuit and Hamiltonian circuit.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <table style="width:100%; border-collapse: collapse;">
+                                <tr style="background: var(--primary-color); color: white;">
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Euler Circuit</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Hamiltonian Circuit</th>
+                                </tr>
+                                <tr><td style="padding: 10px; border: 1px solid #ddd;">Visits every <strong>edge</strong> exactly once</td><td style="padding: 10px; border: 1px solid #ddd;">Visits every <strong>vertex</strong> exactly once</td></tr>
+                                <tr><td style="padding: 10px; border: 1px solid #ddd;">May visit vertices multiple times</td><td style="padding: 10px; border: 1px solid #ddd;">Uses only some edges</td></tr>
+                                <tr><td style="padding: 10px; border: 1px solid #ddd;">Exists iff all vertices have even degree</td><td style="padding: 10px; border: 1px solid #ddd;">No simple condition (NP-complete)</td></tr>
+                                <tr><td style="padding: 10px; border: 1px solid #ddd;">Based on edges</td><td style="padding: 10px; border: 1px solid #ddd;">Based on vertices</td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section B -->
+                <div class="section-box">
+                    <h3><i class="fas fa-b"></i> Section B <span class="badge">Attempt any 3 - 5 marks each</span></h3>
+                    
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">1</span>Construct Hasse Diagram for (P(S), ⊆) where S = {a, ∅}. Determine if it's a Lattice.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Power Set P(S) where S = {a, ∅}:</strong><br>
+                            P(S) = {∅, {a}, {{∅}}, {a, ∅}}<br>
+                            (Note: ∅ is an element of S, not empty set)<br><br>
+                            <strong>Hasse Diagram:</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+        {a, ∅}
+        /    \
+     {a}      {∅}
+        \    /
+          ∅
+</pre>
+                            <strong>Lattice Check:</strong><br>
+                            • Every pair has LUB (∪) ✓<br>
+                            • Every pair has GLB (∩) ✓<br><br>
+                            <strong>Yes, (P(S), ⊆) is a Lattice!</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">2</span>Solve K-map: F(A,B,C,D) = Σ(0,2,5,7,8,10,13,15)</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+         CD
+        00  01  11  10
+     ┌────┬────┬────┬────┐
+AB=00│ 1  │    │    │ 1  │
+     ├────┼────┼────┼────┤
+AB=01│    │ 1  │ 1  │    │
+     ├────┼────┼────┼────┤
+AB=11│    │ 1  │ 1  │    │
+     ├────┼────┼────┼────┤
+AB=10│ 1  │    │    │ 1  │
+     └────┴────┴────┴────┘
+</pre>
+                            <strong>Groups:</strong><br>
+                            • m0, m2, m8, m10 (B'D') → corners<br>
+                            • m5, m7, m13, m15 (BD) → middle column<br><br>
+                            <strong>F = B'D' + BD = B ⊙ D</strong><br>
+                            (XNOR of B and D)
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">3</span>Let G = {1, -1, i, -i} with multiplication. Determine if Abelian. If Cyclic, find generators.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Cayley Table:</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px;">
+  ×  |  1   -1   i   -i
+─────┼───────────────────
+  1  |  1   -1   i   -i
+ -1  | -1    1  -i    i
+  i  |  i   -i  -1    1
+ -i  | -i    i   1   -1
+</pre>
+                            <strong>Abelian Check:</strong><br>
+                            Table is symmetric about diagonal → <strong>Abelian ✓</strong><br><br>
+                            <strong>Cyclic Check:</strong><br>
+                            i¹ = i, i² = -1, i³ = -i, i⁴ = 1<br>
+                            ⟨i⟩ = {1, -1, i, -i} = G ✓<br><br>
+                            <strong>G is Cyclic! Generators: i and -i</strong><br>
+                            (Both have order 4 = |G|)
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">4</span>Explain Pigeonhole principle and Generalized form. Show if 6 colors paint 37 homes, at least 7 have same color.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Pigeonhole Principle:</strong><br>
+                            If n items are placed into k containers (n > k), at least one container has more than one item.<br><br>
+                            <strong>Generalized Form:</strong><br>
+                            If n items in k containers, at least one container has ⌈n/k⌉ items.<br><br>
+                            <strong>Application:</strong><br>
+                            • Pigeons (homes) = 37<br>
+                            • Holes (colors) = 6<br><br>
+                            ⌈37/6⌉ = ⌈6.17⌉ = 7<br><br>
+                            <strong>∴ At least 7 homes have the same color! ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">5</span>Show validity: "If it is not sunny and colder than yesterday, I will wear a jacket. It is not sunny. It is colder. Conclusion: I will wear a jacket."</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Let:</strong><br>
+                            p: "It is sunny"<br>
+                            q: "It is colder than yesterday"<br>
+                            r: "I will wear a jacket"<br><br>
+                            <strong>Premises:</strong><br>
+                            1. (¬p ∧ q) → r<br>
+                            2. ¬p<br>
+                            3. q<br><br>
+                            <strong>Proof:</strong><br>
+                            From (2) and (3): ¬p ∧ q (Conjunction)<br>
+                            From (1) and (¬p ∧ q): r (Modus Ponens)<br><br>
+                            <strong>∴ Argument is VALID! ∎</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section C -->
+                <div class="section-box">
+                    <h3><i class="fas fa-c"></i> Section C <span class="badge">Long Answer - 10 marks each</span></h3>
+                    
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3a</span>Relation R = {(a,b) | a,b have same number of 0s} on binary strings. Check reflexive, symmetric, transitive, partial order.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Reflexive:</strong> aRa?<br>
+                            Any string a has same number of 0s as itself. ✓<br><br>
+                            <strong>Symmetric:</strong> aRb ⟹ bRa?<br>
+                            If a,b have same #0s, then b,a have same #0s. ✓<br><br>
+                            <strong>Transitive:</strong> aRb, bRc ⟹ aRc?<br>
+                            If a,b have same #0s and b,c have same #0s, then a,c have same #0s. ✓<br><br>
+                            <strong>Anti-symmetric:</strong> aRb, bRa ⟹ a=b?<br>
+                            "01" R "10" and "10" R "01" but "01" ≠ "10". ✗<br><br>
+                            <strong>Conclusion:</strong><br>
+                            • R is an <strong>equivalence relation</strong> (Ref + Sym + Trans) ✓<br>
+                            • R is NOT a partial order (fails anti-symmetry) ✗
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3b</span>Show (D₄₂, |) is a lattice. Compare distributive and complemented lattice.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>D₄₂ = {1, 2, 3, 6, 7, 14, 21, 42}</strong><br>
+                            42 = 2 × 3 × 7<br><br>
+                            For any a, b ∈ D₄₂:<br>
+                            • GLB(a,b) = GCD(a,b) ∈ D₄₂ ✓<br>
+                            • LUB(a,b) = LCM(a,b) ∈ D₄₂ ✓<br><br>
+                            <strong>(D₄₂, |) is a Lattice! ✓</strong><br><br>
+                            <hr><br>
+                            <strong>Distributive Lattice:</strong><br>
+                            a ∧ (b ∨ c) = (a ∧ b) ∨ (a ∧ c)<br>
+                            a ∨ (b ∧ c) = (a ∨ b) ∧ (a ∨ c)<br>
+                            D₄₂ IS distributive (square-free number).<br><br>
+                            <strong>Complemented Lattice:</strong><br>
+                            Every element has a complement a' such that:<br>
+                            a ∧ a' = 0 and a ∨ a' = 1<br>
+                            D₄₂ IS complemented (e.g., 2' = 21, 3' = 14, 6' = 7).
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q6a</span>Distinguish Semigroup, Monoid, and Group.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <table style="width:100%; border-collapse: collapse;">
+                                <tr style="background: var(--primary-color); color: white;">
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Property</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Semigroup</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Monoid</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd;">Group</th>
+                                </tr>
+                                <tr><td style="padding: 10px; border: 1px solid #ddd;">Closure</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✓</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✓</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✓</td></tr>
+                                <tr><td style="padding: 10px; border: 1px solid #ddd;">Associativity</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✓</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✓</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✓</td></tr>
+                                <tr><td style="padding: 10px; border: 1px solid #ddd;">Identity</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✗</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✓</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✓</td></tr>
+                                <tr><td style="padding: 10px; border: 1px solid #ddd;">Inverse</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✗</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✗</td><td style="padding: 10px; border: 1px solid #ddd; text-align:center;">✓</td></tr>
+                                <tr><td style="padding: 10px; border: 1px solid #ddd;">Example</td><td style="padding: 10px; border: 1px solid #ddd;">(ℤ⁺, +)</td><td style="padding: 10px; border: 1px solid #ddd;">(ℕ, +)</td><td style="padding: 10px; border: 1px solid #ddd;">(ℤ, +)</td></tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q6b</span>Group G = {1,2,3,4,5,6} under multiplication mod 7. Construct table, find inverses of 2,3,6, orders, and check if cyclic.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Cayley Table (mod 7):</strong><br>
+<pre style="font-family: monospace; background: #f0f0f0; padding: 10px; border-radius: 5px; font-size: 0.85rem;">
+×₇| 1  2  3  4  5  6
+──┼──────────────────
+1 | 1  2  3  4  5  6
+2 | 2  4  6  1  3  5
+3 | 3  6  2  5  1  4
+4 | 4  1  5  2  6  3
+5 | 5  3  1  6  4  2
+6 | 6  5  4  3  2  1
+</pre>
+                            <strong>Inverses:</strong><br>
+                            • 2⁻¹ = 4 (since 2×4 = 8 ≡ 1 mod 7)<br>
+                            • 3⁻¹ = 5 (since 3×5 = 15 ≡ 1 mod 7)<br>
+                            • 6⁻¹ = 6 (since 6×6 = 36 ≡ 1 mod 7)<br><br>
+                            <strong>Orders:</strong><br>
+                            • ord(3): 3¹=3, 3²=2, 3³=6, 3⁴=4, 3⁵=5, 3⁶=1 → order = 6<br>
+                            • Since ord(3) = 6 = |G|, <strong>G is cyclic!</strong><br><br>
+                            <strong>Generators: 3 and 5</strong> (primitive roots mod 7)
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q7</span>Compare bipartite and complete graph. Draw K₃,₄ and K₅. Explain why K₃,₃ is not planar.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Complete Graph Kₙ:</strong><br>
+                            Every vertex connected to every other. Edges = n(n-1)/2<br><br>
+                            <strong>Complete Bipartite Kₘ,ₙ:</strong><br>
+                            Two sets of m, n vertices. Every vertex in one set connected to all in other.<br>
+                            Edges = m × n<br><br>
+                            <strong>K₅:</strong> 5 vertices, 10 edges<br>
+                            <strong>K₃,₄:</strong> 3+4=7 vertices, 12 edges<br><br>
+                            <hr><br>
+                            <strong>Why K₃,₃ is NOT planar:</strong><br><br>
+                            K₃,₃ has V=6, E=9<br><br>
+                            For planar graphs with no triangles: E ≤ 2V - 4<br>
+                            Check: 9 ≤ 2(6) - 4 = 8? <strong>NO! 9 > 8</strong><br><br>
+                            <strong>∴ K₃,₃ is non-planar by Kuratowski's theorem.</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2022-23 Paper -->
+            <div class="year-content" id="y2022">
+                <div class="paper-info">
+                    <h2><i class="fas fa-scroll"></i> Session 2022-23</h2>
+                    <p>Paper ID: 23DP2_290</p>
+                </div>
+
+                <!-- Section A -->
+                <div class="section-box">
+                    <h3><i class="fas fa-a"></i> Section A <span class="badge">Short Answer - 2 marks each</span></h3>
+                    
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">1</span>Identify whether ⌈x+y⌉ = ⌈x⌉ + ⌈y⌉.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Counterexample:</strong><br>
+                            Let x = 1.5, y = 1.5<br><br>
+                            LHS: ⌈1.5 + 1.5⌉ = ⌈3⌉ = 3<br>
+                            RHS: ⌈1.5⌉ + ⌈1.5⌉ = 2 + 2 = 4<br><br>
+                            3 ≠ 4<br><br>
+                            <strong>∴ ⌈x+y⌉ ≠ ⌈x⌉ + ⌈y⌉ in general</strong><br><br>
+                            <em>Correct inequality: ⌈x⌉ + ⌈y⌉ - 1 ≤ ⌈x+y⌉ ≤ ⌈x⌉ + ⌈y⌉</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">2</span>Find composite mapping g∘f if f(x) = eˣ, g(x) = sin x.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            (g ∘ f)(x) = g(f(x))<br><br>
+                            = g(eˣ)<br><br>
+                            = sin(eˣ)<br><br>
+                            <strong>(g ∘ f)(x) = sin(eˣ)</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">3</span>Define Big-O notation.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Big-O Notation:</strong><br><br>
+                            f(x) = O(g(x)) if there exist positive constants c and n₀ such that:<br><br>
+                            <strong>|f(x)| ≤ c|g(x)| for all x ≥ n₀</strong><br><br>
+                            <em>Examples:</em><br>
+                            • 3x² + 5x = O(x²)<br>
+                            • 2ⁿ + n³ = O(2ⁿ)<br>
+                            • log n = O(n)<br><br>
+                            It describes the upper bound of growth rate.
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">4</span>Calculate Power set P(A) for A = {∅, b}.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            A = {∅, b} has 2 elements.<br><br>
+                            |P(A)| = 2² = 4<br><br>
+                            <strong>P(A) = {∅, {∅}, {b}, {∅, b}}</strong><br><br>
+                            <em>Note: ∅ is an element here, not empty set. {∅} is a singleton containing empty set.</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">5</span>Identify if (p ∧ q) → (p ∨ q) is tautology using truth table.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <table style="width:100%; border-collapse: collapse;">
+                                <tr style="background: var(--primary-color); color: white;">
+                                    <th style="padding: 8px; border: 1px solid #ddd;">p</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">q</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">p∧q</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">p∨q</th>
+                                    <th style="padding: 8px; border: 1px solid #ddd;">(p∧q)→(p∨q)</th>
+                                </tr>
+                                <tr><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;"><strong>T</strong></td></tr>
+                                <tr><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;"><strong>T</strong></td></tr>
+                                <tr><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;"><strong>T</strong></td></tr>
+                                <tr><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 8px; border: 1px solid #ddd; text-align:center;"><strong>T</strong></td></tr>
+                            </table><br>
+                            All values in last column are T.<br>
+                            <strong>∴ (p ∧ q) → (p ∨ q) is a TAUTOLOGY ✓</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">6</span>Describe Planar graph and Euler's formula.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Planar Graph:</strong><br>
+                            A graph that can be drawn on a plane without any edges crossing.<br><br>
+                            <strong>Euler's Formula:</strong><br>
+                            For a connected planar graph:<br>
+                            <strong style="font-size: 1.2rem;">V - E + F = 2</strong><br><br>
+                            where:<br>
+                            V = number of vertices<br>
+                            E = number of edges<br>
+                            F = number of faces (regions, including outer)<br><br>
+                            <em>Example: Triangle has V=3, E=3, F=2 → 3-3+2=2 ✓</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">7</span>Define normal subgroup.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Normal Subgroup:</strong><br><br>
+                            A subgroup H of G is normal (H ⊴ G) if:<br><br>
+                            <strong>gHg⁻¹ = H</strong> for all g ∈ G<br><br>
+                            Equivalently: gH = Hg for all g ∈ G<br>
+                            (Left cosets = Right cosets)<br><br>
+                            <em>Example: In any abelian group, every subgroup is normal.</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section B -->
+                <div class="section-box">
+                    <h3><i class="fas fa-b"></i> Section B <span class="badge">Attempt any 3 - 5 marks each</span></h3>
+                    
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">1</span>Check if relations on {1,2,3,4} are reflexive/symmetric/transitive/antisymmetric.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Testing Method:</strong><br><br>
+                            <strong>Reflexive:</strong> (a,a) ∈ R for all a<br>
+                            Check: (1,1), (2,2), (3,3), (4,4) must all be present<br><br>
+                            <strong>Symmetric:</strong> (a,b) ∈ R ⟹ (b,a) ∈ R<br>
+                            Check each pair both ways<br><br>
+                            <strong>Transitive:</strong> (a,b), (b,c) ∈ R ⟹ (a,c) ∈ R<br>
+                            Check all chains<br><br>
+                            <strong>Anti-symmetric:</strong> (a,b), (b,a) ∈ R ⟹ a = b<br>
+                            No two distinct elements related both ways<br><br>
+                            <em>Example: R = {(1,1),(2,2),(3,3),(4,4),(1,2)} is reflexive, antisymmetric, transitive but not symmetric.</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">2</span>Function f: ℝ-{3} → ℝ-{1}, f(x) = (x-1)/(x-3). Show bijective and find inverse.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Injective (One-to-one):</strong><br>
+                            If f(a) = f(b), then (a-1)/(a-3) = (b-1)/(b-3)<br>
+                            Cross multiply: (a-1)(b-3) = (b-1)(a-3)<br>
+                            ab - 3a - b + 3 = ab - 3b - a + 3<br>
+                            -3a - b = -3b - a<br>
+                            2a = 2b ⟹ a = b ✓<br><br>
+                            <strong>Surjective (Onto):</strong><br>
+                            Let y ∈ ℝ-{1}. Solve y = (x-1)/(x-3)<br>
+                            y(x-3) = x-1<br>
+                            yx - 3y = x - 1<br>
+                            x(y-1) = 3y - 1<br>
+                            x = (3y-1)/(y-1), defined for y ≠ 1 ✓<br><br>
+                            <strong>∴ f is Bijective!</strong><br><br>
+                            <strong>Inverse:</strong> f⁻¹(y) = (3y-1)/(y-1)<br>
+                            Or: <strong>f⁻¹(x) = (3x-1)/(x-1)</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">3</span>(i) Converse, Inverse, Contrapositive of "If x+5=8 then x=3". (ii) Show P↔Q ≡ (P∧Q)∨(¬P∧¬Q).</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>(i) Original: p → q</strong><br>
+                            p: "x + 5 = 8", q: "x = 3"<br><br>
+                            <strong>Converse (q → p):</strong><br>
+                            "If x = 3, then x + 5 = 8"<br><br>
+                            <strong>Inverse (¬p → ¬q):</strong><br>
+                            "If x + 5 ≠ 8, then x ≠ 3"<br><br>
+                            <strong>Contrapositive (¬q → ¬p):</strong><br>
+                            "If x ≠ 3, then x + 5 ≠ 8"<br><br>
+                            <hr><br>
+                            <strong>(ii) Proof by Truth Table:</strong><br>
+                            P↔Q is true when both P,Q are same (TT or FF)<br>
+                            (P∧Q)∨(¬P∧¬Q) is true when both true OR both false<br><br>
+                            <table style="width:100%; border-collapse: collapse; font-size: 0.9rem;">
+                                <tr style="background: var(--primary-color); color: white;">
+                                    <th style="padding: 6px; border: 1px solid #ddd;">P</th>
+                                    <th style="padding: 6px; border: 1px solid #ddd;">Q</th>
+                                    <th style="padding: 6px; border: 1px solid #ddd;">P↔Q</th>
+                                    <th style="padding: 6px; border: 1px solid #ddd;">(P∧Q)∨(¬P∧¬Q)</th>
+                                </tr>
+                                <tr><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">T</td></tr>
+                                <tr><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">F</td></tr>
+                                <tr><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">F</td></tr>
+                                <tr><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">F</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">T</td><td style="padding: 6px; border: 1px solid #ddd; text-align:center;">T</td></tr>
+                            </table><br>
+                            Columns match! <strong>∴ P↔Q ≡ (P∧Q)∨(¬P∧¬Q) ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">4</span>Solve recurrence aₙ + 5aₙ₋₁ + 6aₙ₋₂ = 42, with a₀ = 1, a₁ = -2.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Homogeneous solution:</strong><br>
+                            Characteristic: r² + 5r + 6 = 0<br>
+                            (r + 2)(r + 3) = 0<br>
+                            r = -2, -3<br>
+                            aₙ⁽ʰ⁾ = A(-2)ⁿ + B(-3)ⁿ<br><br>
+                            <strong>Particular solution:</strong><br>
+                            Try aₙ⁽ᵖ⁾ = C (constant)<br>
+                            C + 5C + 6C = 42<br>
+                            12C = 42 ⟹ C = 7/2<br><br>
+                            <strong>General:</strong> aₙ = A(-2)ⁿ + B(-3)ⁿ + 7/2<br><br>
+                            <strong>Apply initial conditions:</strong><br>
+                            a₀ = 1: A + B + 7/2 = 1 ⟹ A + B = -5/2<br>
+                            a₁ = -2: -2A - 3B + 7/2 = -2 ⟹ -2A - 3B = -11/2<br><br>
+                            Solving: A = -2, B = -1/2<br><br>
+                            <strong>aₙ = -2(-2)ⁿ - (1/2)(-3)ⁿ + 7/2</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">5</span>Pigeonhole: Select n integers from S={1..9} so that (i) sum of two is even (ii) difference of two is 5.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>(i) Sum of two is even:</strong><br>
+                            Sum is even when both odd or both even.<br>
+                            S = {1,2,3,4,5,6,7,8,9}<br>
+                            Odd: {1,3,5,7,9} - 5 numbers<br>
+                            Even: {2,4,6,8} - 4 numbers<br><br>
+                            If we pick 3 numbers from same parity, two will sum to even.<br>
+                            <strong>Minimum n = 3</strong><br><br>
+                            <strong>(ii) Difference of two is 5:</strong><br>
+                            Pairs with difference 5: (1,6), (2,7), (3,8), (4,9)<br>
+                            These are 4 "pigeonholes".<br>
+                            Also 5 is alone (no pair with difference 5 in S).<br><br>
+                            5 pigeonholes total. To guarantee picking from same hole:<br>
+                            <strong>Minimum n = 6</strong> (by pigeonhole principle)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section C -->
+                <div class="section-box">
+                    <h3><i class="fas fa-c"></i> Section C <span class="badge">Long Answer - 10 marks each</span></h3>
+                    
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3a</span>Group G = {1, -1, i, -i} with multiplication. Check if algebraic structure is a group.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Closure:</strong><br>
+                            Check all products stay in G. e.g., i × i = -1 ∈ G ✓<br><br>
+                            <strong>Associativity:</strong><br>
+                            Complex multiplication is associative ✓<br><br>
+                            <strong>Identity:</strong><br>
+                            1 × a = a × 1 = a for all a ∈ G ✓<br>
+                            Identity = 1<br><br>
+                            <strong>Inverse:</strong><br>
+                            • 1⁻¹ = 1<br>
+                            • (-1)⁻¹ = -1<br>
+                            • i⁻¹ = -i (since i × (-i) = 1)<br>
+                            • (-i)⁻¹ = i ✓<br><br>
+                            <strong>∴ (G, ×) is a GROUP!</strong><br>
+                            Also Abelian (commutative) and Cyclic (generated by i).
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3b</span>Group Homomorphism proofs: (i) f(e) = e' (ii) f(x⁻¹) = [f(x)]⁻¹</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            Let f: G → G' be a homomorphism.<br>
+                            So f(ab) = f(a)f(b) for all a,b ∈ G.<br><br>
+                            <strong>(i) f(e) = e':</strong><br>
+                            f(e) = f(e·e) = f(e)·f(e)<br>
+                            Multiply both sides by [f(e)]⁻¹:<br>
+                            e' = f(e)<br>
+                            <strong>∴ f(e) = e' ∎</strong><br><br>
+                            <strong>(ii) f(x⁻¹) = [f(x)]⁻¹:</strong><br>
+                            f(x)·f(x⁻¹) = f(x·x⁻¹) = f(e) = e'<br>
+                            So f(x⁻¹) is the inverse of f(x) in G'.<br>
+                            <strong>∴ f(x⁻¹) = [f(x)]⁻¹ ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q5a</span>Define Complemented lattice. Show uniqueness of complement in distributive lattice.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Complemented Lattice:</strong><br>
+                            A bounded lattice (L, ∧, ∨, 0, 1) where every element a has a complement a' such that:<br>
+                            a ∧ a' = 0 and a ∨ a' = 1<br><br>
+                            <hr><br>
+                            <strong>Uniqueness in Distributive Lattice:</strong><br><br>
+                            Assume a has two complements b and c.<br>
+                            a ∧ b = 0, a ∨ b = 1<br>
+                            a ∧ c = 0, a ∨ c = 1<br><br>
+                            <strong>Show b = c:</strong><br>
+                            b = b ∧ 1 = b ∧ (a ∨ c)<br>
+                            = (b ∧ a) ∨ (b ∧ c) &nbsp;[Distributive]<br>
+                            = 0 ∨ (b ∧ c) = b ∧ c<br><br>
+                            Similarly: c = c ∧ (a ∨ b) = (c ∧ a) ∨ (c ∧ b) = b ∧ c<br><br>
+                            <strong>∴ b = b ∧ c = c ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q6</span>Validity of argument: "If Mary runs for office, she'll be disappointed. If she is disappointed, her friends will be unhappy. Therefore if Mary runs for office, her friends will be unhappy."</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Let:</strong><br>
+                            p: "Mary runs for office"<br>
+                            q: "Mary is disappointed"<br>
+                            r: "Her friends will be unhappy"<br><br>
+                            <strong>Premises:</strong><br>
+                            1. p → q<br>
+                            2. q → r<br><br>
+                            <strong>Conclusion:</strong> p → r<br><br>
+                            <strong>Proof using Hypothetical Syllogism:</strong><br>
+                            From p → q and q → r:<br>
+                            By Hypothetical Syllogism: p → r<br><br>
+                            <strong>∴ Argument is VALID! ∎</strong><br><br>
+                            <em>This is a direct application of the chain rule in logic.</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q7a</span>Prove set of residues {0,1,2,3,4} mod 5 is a Field under addition and multiplication mod 5.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>ℤ₅ = {0,1,2,3,4}</strong><br><br>
+                            <strong>1. (ℤ₅, +₅) is Abelian Group:</strong><br>
+                            • Closure: sums mod 5 stay in ℤ₅ ✓<br>
+                            • Associative ✓<br>
+                            • Identity: 0 ✓<br>
+                            • Inverse: a + (5-a) ≡ 0 ✓<br>
+                            • Commutative ✓<br><br>
+                            <strong>2. (ℤ₅*, ×₅) is Abelian Group:</strong><br>
+                            ℤ₅* = {1,2,3,4}<br>
+                            • Closure: products of non-zero stay non-zero ✓<br>
+                            • Associative ✓<br>
+                            • Identity: 1 ✓<br>
+                            • Inverse: 1⁻¹=1, 2⁻¹=3, 3⁻¹=2, 4⁻¹=4 ✓<br>
+                            • Commutative ✓<br><br>
+                            <strong>3. Distributive:</strong><br>
+                            a(b+c) = ab + ac (mod 5) ✓<br><br>
+                            <strong>∴ (ℤ₅, +, ×) is a FIELD! ∎</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2021-22 Paper -->
+            <div class="year-content" id="y2021">
+                <div class="paper-info">
+                    <h2><i class="fas fa-scroll"></i> Session 2021-22</h2>
+                    <p>Paper ID: 411824</p>
+                </div>
+
+                <!-- Section A -->
+                <div class="section-box">
+                    <h3><i class="fas fa-a"></i> Section A <span class="badge">Short Answer - 2 marks each</span></h3>
+                    
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">1</span>In set A={1,2,3,4} the number of elements in equivalence class [1] if R={(1,1),(2,2),(3,3),(4,4),(1,2),(2,1)}.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            R is an equivalence relation (reflexive, symmetric, transitive).<br><br>
+                            [1] = {x ∈ A | (1,x) ∈ R}<br>
+                            (1,1) ∈ R → 1 ∈ [1]<br>
+                            (1,2) ∈ R → 2 ∈ [1]<br><br>
+                            [1] = {1, 2}<br><br>
+                            <strong>Number of elements in [1] = 2</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">2</span>Compute A(2,1) using Ackerman function.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Ackerman Function:</strong><br>
+                            A(0,n) = n+1<br>
+                            A(m,0) = A(m-1,1)<br>
+                            A(m,n) = A(m-1, A(m,n-1))<br><br>
+                            <strong>Calculate A(2,1):</strong><br>
+                            A(2,1) = A(1, A(2,0))<br>
+                            A(2,0) = A(1,1) = A(0, A(1,0))<br>
+                            A(1,0) = A(0,1) = 2<br>
+                            A(1,1) = A(0,2) = 3<br>
+                            A(2,0) = 3<br>
+                            A(2,1) = A(1,3) = A(0, A(1,2))<br>
+                            A(1,2) = A(0, A(1,1)) = A(0,3) = 4<br>
+                            A(1,3) = A(0,4) = 5<br><br>
+                            <strong>A(2,1) = 5</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">3</span>Find the generator of the cyclic group (ℤ₆, ⊕₆).</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            ℤ₆ = {0, 1, 2, 3, 4, 5}<br><br>
+                            <strong>Check a = 1:</strong><br>
+                            1¹=1, 1²=2, 1³=3, 1⁴=4, 1⁵=5, 1⁶=0<br>
+                            ⟨1⟩ = ℤ₆ ✓<br><br>
+                            <strong>Check a = 5:</strong><br>
+                            5, 10≡4, 15≡3, 20≡2, 25≡1, 30≡0<br>
+                            ⟨5⟩ = ℤ₆ ✓<br><br>
+                            <strong>Generators: gcd(a,6) = 1 → a ∈ {1, 5}</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">4</span>Describe Ring and Field.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Ring (R, +, ·):</strong><br>
+                            1. (R, +) is an abelian group<br>
+                            2. (R, ·) is a semigroup (closed, associative)<br>
+                            3. Distributive: a(b+c) = ab + ac<br><br>
+                            <strong>Field (F, +, ·):</strong><br>
+                            1. (F, +) is an abelian group<br>
+                            2. (F*, ·) is an abelian group (F* = F - {0})<br>
+                            3. Distributive laws hold<br><br>
+                            <em>Every field is a ring, but not vice versa.</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">5</span>Define lattice. Give an example.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Lattice:</strong><br>
+                            A POSET (L, ≤) where every pair of elements has:<br>
+                            • LUB (join): a ∨ b<br>
+                            • GLB (meet): a ∧ b<br><br>
+                            <strong>Example: (P({a,b}), ⊆)</strong><br>
+                            P({a,b}) = {∅, {a}, {b}, {a,b}}<br><br>
+                            {a} ∨ {b} = {a,b} (union)<br>
+                            {a} ∧ {b} = ∅ (intersection)<br><br>
+                            <em>Other examples: (ℤ⁺, |) divisibility, (ℕ, min/max)</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">6</span>Write De Morgan's law for any set.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>De Morgan's Laws for Sets:</strong><br><br>
+                            <strong>1. (A ∪ B)' = A' ∩ B'</strong><br>
+                            "Complement of union = Intersection of complements"<br><br>
+                            <strong>2. (A ∩ B)' = A' ∪ B'</strong><br>
+                            "Complement of intersection = Union of complements"<br><br>
+                            <strong>For Logic:</strong><br>
+                            ¬(p ∨ q) ≡ ¬p ∧ ¬q<br>
+                            ¬(p ∧ q) ≡ ¬p ∨ ¬q
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">7</span>Write contrapositive of "If x+5=8 then x=3".</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Original:</strong> p → q<br>
+                            p: "x + 5 = 8"<br>
+                            q: "x = 3"<br><br>
+                            <strong>Contrapositive: ¬q → ¬p</strong><br><br>
+                            <strong>"If x ≠ 3, then x + 5 ≠ 8"</strong><br><br>
+                            <em>Note: Contrapositive is logically equivalent to the original statement.</em>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section B -->
+                <div class="section-box">
+                    <h3><i class="fas fa-b"></i> Section B <span class="badge">Attempt any 3 - 5 marks each</span></h3>
+                    
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">1</span>Define Universal Modus Ponens and Universal Modus Tollens.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Universal Modus Ponens:</strong><br>
+                            Premises:<br>
+                            1. ∀x, P(x) → Q(x)<br>
+                            2. P(a) for some particular a<br>
+                            Conclusion: Q(a)<br><br>
+                            <em>Example: "All men are mortal. Socrates is a man. ∴ Socrates is mortal."</em><br><br>
+                            <hr><br>
+                            <strong>Universal Modus Tollens:</strong><br>
+                            Premises:<br>
+                            1. ∀x, P(x) → Q(x)<br>
+                            2. ¬Q(a) for some particular a<br>
+                            Conclusion: ¬P(a)<br><br>
+                            <em>Example: "All birds fly. Penguin doesn't fly. ∴ Penguin is not a bird." (in this context)</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">2</span>Draw Hasse diagram of D₃₀ = {1, 2, 3, 5, 6, 10, 15, 30} and find GLB, LUB of {10, 15}.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>D₃₀ under divisibility:</strong><br><br>
+                            <pre style="font-family: monospace; font-size: 0.9rem;">
+            30
+          / | \
+        10  15  6
+        /\ /\ / \
+       5  2  3  
+        \ | /
+          1
+                            </pre><br>
+                            <strong>For {10, 15}:</strong><br><br>
+                            10 = 2 × 5<br>
+                            15 = 3 × 5<br><br>
+                            <strong>GLB{10, 15} = gcd(10, 15) = 5</strong><br>
+                            <strong>LUB{10, 15} = lcm(10, 15) = 30</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">3</span>Explain Euler's formula for regions in a planar graph with example.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Euler's Formula:</strong><br>
+                            For connected planar graph:<br>
+                            <strong style="font-size: 1.3rem;">V - E + F = 2</strong><br><br>
+                            V = vertices, E = edges, F = faces (including outer)<br><br>
+                            <strong>Example: K₄ (Complete graph on 4 vertices)</strong><br>
+                            V = 4<br>
+                            E = C(4,2) = 6<br>
+                            F = ?<br><br>
+                            4 - 6 + F = 2<br>
+                            F = 4<br><br>
+                            (3 inner triangular regions + 1 outer region)<br><br>
+                            <strong>Another Example: Cube (planar embedding)</strong><br>
+                            V = 8, E = 12, F = 6<br>
+                            8 - 12 + 6 = 2 ✓
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">4</span>Prove p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r) using truth table.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Distributive Law of OR over AND:</strong><br><br>
+                            <table style="width:100%; border-collapse: collapse; font-size: 0.85rem;">
+                                <tr style="background: var(--primary-color); color: white;">
+                                    <th style="padding: 5px; border: 1px solid #ddd;">p</th>
+                                    <th style="padding: 5px; border: 1px solid #ddd;">q</th>
+                                    <th style="padding: 5px; border: 1px solid #ddd;">r</th>
+                                    <th style="padding: 5px; border: 1px solid #ddd;">q∧r</th>
+                                    <th style="padding: 5px; border: 1px solid #ddd;">p∨(q∧r)</th>
+                                    <th style="padding: 5px; border: 1px solid #ddd;">p∨q</th>
+                                    <th style="padding: 5px; border: 1px solid #ddd;">p∨r</th>
+                                    <th style="padding: 5px; border: 1px solid #ddd;">(p∨q)∧(p∨r)</th>
+                                </tr>
+                                <tr><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td></tr>
+                                <tr><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td></tr>
+                                <tr><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td></tr>
+                                <tr><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td></tr>
+                                <tr><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td></tr>
+                                <tr><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td></tr>
+                                <tr><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td></tr>
+                                <tr><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:5px;border:1px solid #ddd;text-align:center;">F</td></tr>
+                            </table><br>
+                            Columns 5 and 8 match!<br>
+                            <strong>∴ p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r) ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">5</span>Find transitive closure of R = {(1,2),(2,3),(3,1)} using Warshall algorithm.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Initial Matrix M₀:</strong><br>
+                            <pre style="font-family: monospace;">
+   1 2 3
+1 [0 1 0]
+2 [0 0 1]
+3 [1 0 0]
+                            </pre><br>
+                            <strong>k=1: If M[i,1]=1 and M[1,j]=1, set M[i,j]=1</strong><br>
+                            M[3,1]=1, M[1,2]=1 → M[3,2]=1<br>
+                            <pre style="font-family: monospace;">
+M₁:
+   1 2 3
+1 [0 1 0]
+2 [0 0 1]
+3 [1 1 0]
+                            </pre><br>
+                            <strong>k=2:</strong> M[1,2]=1, M[2,3]=1 → M[1,3]=1<br>
+                            M[3,2]=1, M[2,3]=1 → M[3,3]=1<br>
+                            <pre style="font-family: monospace;">
+M₂:
+   1 2 3
+1 [0 1 1]
+2 [0 0 1]
+3 [1 1 1]
+                            </pre><br>
+                            <strong>k=3:</strong> Complete remaining paths<br>
+                            <pre style="font-family: monospace;">
+M₃ (Final):
+   1 2 3
+1 [1 1 1]
+2 [1 1 1]
+3 [1 1 1]
+                            </pre><br>
+                            <strong>R* = A × A</strong> (all pairs are in transitive closure)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section C -->
+                <div class="section-box">
+                    <h3><i class="fas fa-c"></i> Section C <span class="badge">Long Answer - 10 marks each</span></h3>
+                    
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3a</span>Define Modular Lattice. Give an example of non-modular lattice.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Modular Lattice:</strong><br>
+                            A lattice L is modular if for all a, b, c ∈ L:<br>
+                            <strong>If a ≤ c, then a ∨ (b ∧ c) = (a ∨ b) ∧ c</strong><br><br>
+                            <strong>Non-Modular Lattice (Pentagon N₅):</strong><br>
+                            <pre style="font-family: monospace;">
+      1
+     /|\
+    a | c
+    | |/
+    | b
+    |/
+    0
+                            </pre><br>
+                            With 0 < b < c < 1 and 0 < a < 1, a and b incomparable.<br><br>
+                            <strong>Violation:</strong><br>
+                            Take b ≤ c (TRUE), but:<br>
+                            b ∨ (a ∧ c) = b ∨ 0 = b<br>
+                            (b ∨ a) ∧ c = 1 ∧ c = c<br>
+                            b ≠ c, so <strong>N₅ is NOT modular</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3b</span>Prove in a lattice (L, ≤): a ≤ b iff a ∧ b = a iff a ∨ b = b.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Prove: a ≤ b ⟺ a ∧ b = a</strong><br><br>
+                            (⟹) Assume a ≤ b<br>
+                            Since a ∧ b ≤ a always (GLB property)<br>
+                            And a ≤ a, a ≤ b means a is lower bound of {a,b}<br>
+                            Since a ∧ b is GLB, a ≤ a ∧ b<br>
+                            ∴ a = a ∧ b ✓<br><br>
+                            (⟸) Assume a ∧ b = a<br>
+                            a ∧ b ≤ b always (GLB ≤ each element)<br>
+                            ∴ a ≤ b ✓<br><br>
+                            <hr><br>
+                            <strong>Prove: a ≤ b ⟺ a ∨ b = b</strong><br><br>
+                            (⟹) Assume a ≤ b<br>
+                            a ∨ b ≥ b always (LUB property)<br>
+                            b ≥ a and b ≥ b, so b is upper bound of {a,b}<br>
+                            Since a ∨ b is LUB, a ∨ b ≤ b<br>
+                            ∴ a ∨ b = b ✓<br><br>
+                            (⟸) Assume a ∨ b = b<br>
+                            a ≤ a ∨ b always<br>
+                            ∴ a ≤ b ✓<br><br>
+                            <strong>∎ All three conditions are equivalent.</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q4a</span>State and prove Lagrange's theorem for groups.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Lagrange's Theorem:</strong><br>
+                            If G is a finite group and H is a subgroup of G, then |H| divides |G|.<br>
+                            Moreover: |G| = |H| × [G:H]<br>
+                            where [G:H] is the index (number of cosets).<br><br>
+                            <hr><br>
+                            <strong>Proof:</strong><br><br>
+                            1. Left cosets of H partition G (disjoint and cover G)<br><br>
+                            2. All left cosets have same cardinality:<br>
+                            φ: H → aH defined by φ(h) = ah is a bijection<br>
+                            • Injective: ah₁ = ah₂ ⟹ h₁ = h₂<br>
+                            • Surjective: every ah ∈ aH is image of h<br>
+                            ∴ |aH| = |H| for all a ∈ G<br><br>
+                            3. Let there be k distinct left cosets: a₁H, a₂H, ..., aₖH<br><br>
+                            4. Since G = a₁H ∪ a₂H ∪ ... ∪ aₖH (disjoint):<br>
+                            |G| = |a₁H| + |a₂H| + ... + |aₖH|<br>
+                            |G| = k × |H|<br><br>
+                            <strong>∴ |H| divides |G| ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q5a</span>Draw Hasse diagram for POSET (D₃₆, |) and find maximal, minimal, greatest, least elements.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>D₃₆ = {1, 2, 3, 4, 6, 9, 12, 18, 36}</strong><br><br>
+                            <pre style="font-family: monospace; font-size: 0.9rem;">
+            36
+          / | \
+        18  12  
+       /| \ |\ 
+      9  6  4
+      | /|\ |
+      3  2   
+       \ | /
+         1
+                            </pre><br>
+                            <strong>Elements:</strong><br><br>
+                            <strong>Minimal:</strong> 1 (no element below)<br>
+                            <strong>Maximal:</strong> 36 (no element above)<br>
+                            <strong>Least (minimum):</strong> 1 (1 | a for all a)<br>
+                            <strong>Greatest (maximum):</strong> 36 (a | 36 for all a)<br><br>
+                            This is a <strong>bounded lattice</strong> with 0=1 and 1=36.
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q6</span>Prove (p → q) ∧ (q → r) → (p → r) is a tautology using truth table.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Hypothetical Syllogism as Tautology:</strong><br><br>
+                            <table style="width:100%; border-collapse: collapse; font-size: 0.8rem;">
+                                <tr style="background: var(--primary-color); color: white;">
+                                    <th style="padding: 4px; border: 1px solid #ddd;">p</th>
+                                    <th style="padding: 4px; border: 1px solid #ddd;">q</th>
+                                    <th style="padding: 4px; border: 1px solid #ddd;">r</th>
+                                    <th style="padding: 4px; border: 1px solid #ddd;">p→q</th>
+                                    <th style="padding: 4px; border: 1px solid #ddd;">q→r</th>
+                                    <th style="padding: 4px; border: 1px solid #ddd;">p→r</th>
+                                    <th style="padding: 4px; border: 1px solid #ddd;">(p→q)∧(q→r)</th>
+                                    <th style="padding: 4px; border: 1px solid #ddd;">Final</th>
+                                </tr>
+                                <tr><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;"><b>T</b></td></tr>
+                                <tr><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;"><b>T</b></td></tr>
+                                <tr><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;"><b>T</b></td></tr>
+                                <tr><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;"><b>T</b></td></tr>
+                                <tr><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;"><b>T</b></td></tr>
+                                <tr><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;"><b>T</b></td></tr>
+                                <tr><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;"><b>T</b></td></tr>
+                                <tr><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">F</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;">T</td><td style="padding:4px;border:1px solid #ddd;text-align:center;"><b>T</b></td></tr>
+                            </table><br>
+                            Last column all T!<br>
+                            <strong>∴ (p → q) ∧ (q → r) → (p → r) is a TAUTOLOGY ∎</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2020-21 Paper -->
+            <div class="year-content" id="y2020">
+                <div class="paper-info">
+                    <h2><i class="fas fa-scroll"></i> Session 2020-21</h2>
+                    <p>Paper ID: 311218</p>
+                </div>
+
+                <!-- Section A -->
+                <div class="section-box">
+                    <h3><i class="fas fa-a"></i> Section A <span class="badge">Short Answer - 2 marks each</span></h3>
+                    
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">1</span>Check whether f: Z → Z, f(x) = x³ is injective.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Injective Test:</strong> f(a) = f(b) ⟹ a = b<br><br>
+                            If a³ = b³, then a = b (for integers)<br><br>
+                            <strong>Verification:</strong><br>
+                            a³ = b³<br>
+                            a³ - b³ = 0<br>
+                            (a-b)(a² + ab + b²) = 0<br><br>
+                            For real/integer: a² + ab + b² = 0 only when a = b = 0<br>
+                            Otherwise a - b = 0, so a = b<br><br>
+                            <strong>∴ f(x) = x³ is INJECTIVE ✓</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">2</span>How many reflexive relations can be defined on set A = {1, 2, 3}?</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            |A| = 3<br><br>
+                            For reflexive: (1,1), (2,2), (3,3) must be in R<br><br>
+                            Remaining pairs: 3² - 3 = 6 pairs<br>
+                            These 6 pairs can be chosen freely.<br><br>
+                            Number of reflexive relations = <strong>2⁶ = 64</strong><br><br>
+                            <em>Formula: 2^(n² - n) = 2^(n(n-1))</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">3</span>How many symmetric relations can be defined on A = {1, 2, 3}?</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            |A| = 3<br><br>
+                            For symmetric: if (a,b) ∈ R then (b,a) ∈ R<br><br>
+                            • 3 diagonal pairs: (1,1), (2,2), (3,3) - each can be chosen independently<br>
+                            • 3 off-diagonal pairs: {(1,2),(2,1)}, {(1,3),(3,1)}, {(2,3),(3,2)}<br>
+                            Each pair is either both in or both out.<br><br>
+                            Total choices = 2³ × 2³ = <strong>2⁶ = 64</strong><br><br>
+                            <em>Formula: 2^(n(n+1)/2)</em>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">4</span>Define Group and Ring.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Group (G, *):</strong><br>
+                            1. Closure: a * b ∈ G<br>
+                            2. Associative: (a * b) * c = a * (b * c)<br>
+                            3. Identity: ∃e, e * a = a * e = a<br>
+                            4. Inverse: ∃a⁻¹, a * a⁻¹ = a⁻¹ * a = e<br><br>
+                            <strong>Ring (R, +, ·):</strong><br>
+                            1. (R, +) is an abelian group<br>
+                            2. Multiplication is closed and associative<br>
+                            3. Distributive: a(b+c) = ab + ac
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">5</span>Draw Hasse diagram for POSET ({1,2,3,4,6,8,12,24}, |).</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>D₂₄ under divisibility:</strong><br><br>
+                            <pre style="font-family: monospace; font-size: 0.9rem;">
+           24
+          /  \
+        12    8
+       / \   /|
+      6   4   |
+     / \ / \ |
+    3   2    |
+     \ | /---/
+       1
+                            </pre><br>
+                            Divisibility chains:<br>
+                            1 → 2 → 4 → 8 → 24<br>
+                            1 → 2 → 6 → 12 → 24<br>
+                            1 → 3 → 6 → 12 → 24
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">6</span>Prove in a lattice: (a ∧ b) ∨ (a ∧ c) ≤ a ∧ (b ∨ c).</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Proof:</strong><br><br>
+                            a ∧ b ≤ a and a ∧ b ≤ b<br>
+                            Since b ≤ b ∨ c, we have a ∧ b ≤ b ∨ c<br>
+                            So a ∧ b ≤ a and a ∧ b ≤ b ∨ c<br>
+                            ∴ <strong>a ∧ b ≤ a ∧ (b ∨ c)</strong><br><br>
+                            Similarly: a ∧ c ≤ a and a ∧ c ≤ c ≤ b ∨ c<br>
+                            ∴ <strong>a ∧ c ≤ a ∧ (b ∨ c)</strong><br><br>
+                            Since both a ∧ b and a ∧ c are ≤ a ∧ (b ∨ c):<br>
+                            <strong>(a ∧ b) ∨ (a ∧ c) ≤ a ∧ (b ∨ c) ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card">
+                        <p class="question-text"><span class="q-number">7</span>Write negation: "Every student in this class has taken a course in calculus."</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Original:</strong> ∀x(S(x) → C(x))<br>
+                            S(x): "x is a student in this class"<br>
+                            C(x): "x has taken calculus"<br><br>
+                            <strong>Negation:</strong><br>
+                            ¬∀x(S(x) → C(x))<br>
+                            ≡ ∃x¬(S(x) → C(x))<br>
+                            ≡ ∃x¬(¬S(x) ∨ C(x))<br>
+                            ≡ ∃x(S(x) ∧ ¬C(x))<br><br>
+                            <strong>"There exists a student in this class who has NOT taken a course in calculus."</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section B -->
+                <div class="section-box">
+                    <h3><i class="fas fa-b"></i> Section B <span class="badge">Attempt any 3 - 5 marks each</span></h3>
+                    
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">1</span>Express symbolically: (a) Not every student has access to Internet. (b) Mary's brother has an iPhone.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>(a) "Not every student has access to Internet"</strong><br><br>
+                            Let S(x): "x is a student"<br>
+                            Let I(x): "x has access to Internet"<br><br>
+                            Original: ∀x(S(x) → I(x))<br>
+                            Negation: <strong>¬∀x(S(x) → I(x)) ≡ ∃x(S(x) ∧ ¬I(x))</strong><br><br>
+                            "Some student does not have access to Internet"<br><br>
+                            <hr><br>
+                            <strong>(b) "Mary's brother has an iPhone"</strong><br><br>
+                            Let B(x,y): "x is brother of y"<br>
+                            Let H(x): "x has an iPhone"<br>
+                            m: Mary<br><br>
+                            <strong>∃x(B(x,m) ∧ H(x))</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">2</span>Prove 1² + 2² + ... + n² = n(n+1)(2n+1)/6 using induction.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Base Case (n=1):</strong><br>
+                            LHS: 1² = 1<br>
+                            RHS: 1(2)(3)/6 = 6/6 = 1 ✓<br><br>
+                            <strong>Inductive Hypothesis:</strong><br>
+                            Assume true for n=k:<br>
+                            1² + 2² + ... + k² = k(k+1)(2k+1)/6<br><br>
+                            <strong>Inductive Step (n=k+1):</strong><br>
+                            1² + 2² + ... + k² + (k+1)²<br>
+                            = k(k+1)(2k+1)/6 + (k+1)²<br>
+                            = (k+1)[k(2k+1)/6 + (k+1)]<br>
+                            = (k+1)[k(2k+1) + 6(k+1)]/6<br>
+                            = (k+1)[2k² + k + 6k + 6]/6<br>
+                            = (k+1)[2k² + 7k + 6]/6<br>
+                            = (k+1)(k+2)(2k+3)/6<br>
+                            = (k+1)((k+1)+1)(2(k+1)+1)/6 ✓<br><br>
+                            <strong>∴ By PMI, formula holds for all n ∈ ℕ ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">3</span>State Lagrange theorem. Find left cosets of H = {0, 2, 4} in G = (Z₆, +₆).</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Lagrange's Theorem:</strong><br>
+                            If H is a subgroup of finite group G, then |H| divides |G|.<br>
+                            |G| = |H| × [G:H]<br><br>
+                            <hr><br>
+                            <strong>G = ℤ₆ = {0, 1, 2, 3, 4, 5}</strong><br>
+                            <strong>H = {0, 2, 4}</strong><br><br>
+                            |G| = 6, |H| = 3<br>
+                            Number of cosets = 6/3 = 2<br><br>
+                            <strong>Left Cosets:</strong><br>
+                            0 + H = {0, 2, 4} = H<br>
+                            1 + H = {1, 3, 5}<br>
+                            2 + H = {2, 4, 0} = H<br>
+                            3 + H = {3, 5, 1} = 1 + H<br>
+                            4 + H = {4, 0, 2} = H<br>
+                            5 + H = {5, 1, 3} = 1 + H<br><br>
+                            <strong>Distinct cosets: {0, 2, 4} and {1, 3, 5}</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">4</span>Full binary tree with 11 vertices. Find number of leaves, internal vertices, and edges.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Full Binary Tree Properties:</strong><br>
+                            Each internal vertex has exactly 2 children.<br><br>
+                            Let i = internal vertices, l = leaves<br>
+                            Total vertices: i + l = 11<br><br>
+                            <strong>Key Property:</strong> l = i + 1<br>
+                            (In full binary tree, leaves = internal + 1)<br><br>
+                            Substituting: i + (i + 1) = 11<br>
+                            2i + 1 = 11<br>
+                            i = 5<br>
+                            l = 6<br><br>
+                            <strong>Internal vertices: 5</strong><br>
+                            <strong>Leaves: 6</strong><br>
+                            <strong>Edges: n - 1 = 11 - 1 = 10</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-b">
+                        <p class="question-text"><span class="q-number">5</span>Solve recurrence aₙ - 3aₙ₋₁ - 4aₙ₋₂ = 0 with a₀ = 1, a₁ = 2.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Characteristic equation:</strong><br>
+                            r² - 3r - 4 = 0<br>
+                            (r - 4)(r + 1) = 0<br>
+                            r = 4, r = -1<br><br>
+                            <strong>General solution:</strong><br>
+                            aₙ = A(4)ⁿ + B(-1)ⁿ<br><br>
+                            <strong>Apply initial conditions:</strong><br>
+                            a₀ = 1: A + B = 1 ... (1)<br>
+                            a₁ = 2: 4A - B = 2 ... (2)<br><br>
+                            Adding (1) and (2): 5A = 3 ⟹ A = 3/5<br>
+                            From (1): B = 1 - 3/5 = 2/5<br><br>
+                            <strong>aₙ = (3/5)(4)ⁿ + (2/5)(-1)ⁿ</strong><br><br>
+                            Or: <strong>aₙ = (3·4ⁿ + 2·(-1)ⁿ)/5</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section C -->
+                <div class="section-box">
+                    <h3><i class="fas fa-c"></i> Section C <span class="badge">Long Answer - 10 marks each</span></h3>
+                    
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3a</span>Prove (L, ≤) is a lattice where L = {1, 2, 3, 6, 9, 18} under divisibility.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>D₁₈ = {1, 2, 3, 6, 9, 18}</strong><br><br>
+                            <strong>Step 1: (L, |) is a POSET</strong><br>
+                            • Reflexive: a | a ✓<br>
+                            • Antisymmetric: a|b and b|a ⟹ a=b ✓<br>
+                            • Transitive: a|b and b|c ⟹ a|c ✓<br><br>
+                            <strong>Step 2: Every pair has GLB and LUB</strong><br>
+                            GLB(a,b) = gcd(a,b)<br>
+                            LUB(a,b) = lcm(a,b) if lcm ∈ L<br><br>
+                            <strong>Verification:</strong><br>
+                            • GLB(2,3) = 1 ∈ L ✓<br>
+                            • LUB(2,3) = 6 ∈ L ✓<br>
+                            • GLB(6,9) = 3 ∈ L ✓<br>
+                            • LUB(6,9) = 18 ∈ L ✓<br>
+                            • GLB(2,9) = 1 ∈ L ✓<br>
+                            • LUB(2,9) = 18 ∈ L ✓<br><br>
+                            All pairs checked - GLB and LUB exist in L.<br>
+                            <strong>∴ (L, |) is a LATTICE ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q3b</span>Prove in a Boolean algebra: (a + b)(a + c) = a + bc.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>LHS: (a + b)(a + c)</strong><br><br>
+                            = a·a + a·c + b·a + b·c &nbsp;[Distribution]<br>
+                            = a + ac + ab + bc &nbsp;[Idempotent: a·a = a]<br>
+                            = a(1 + c + b) + bc &nbsp;[Factor out a]<br>
+                            = a·1 + bc &nbsp;[1 + x = 1]<br>
+                            = a + bc<br>
+                            = <strong>RHS ∎</strong><br><br>
+                            <hr><br>
+                            <strong>Alternative using Absorption:</strong><br>
+                            (a + b)(a + c)<br>
+                            = a + ac + ab + bc<br>
+                            = a(1 + c) + ab + bc<br>
+                            = a + ab + bc<br>
+                            = a(1 + b) + bc<br>
+                            = a + bc ∎
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q4a</span>Show K₃,₃ and K₅ are non-planar.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>For planar graphs:</strong><br>
+                            • If V ≥ 3: E ≤ 3V - 6<br>
+                            • If no triangles: E ≤ 2V - 4<br><br>
+                            <hr><br>
+                            <strong>K₅ (Complete graph on 5 vertices):</strong><br>
+                            V = 5<br>
+                            E = C(5,2) = 10<br><br>
+                            Check: E ≤ 3V - 6<br>
+                            10 ≤ 3(5) - 6 = 9?<br>
+                            <strong>10 > 9 - VIOLATION!</strong><br>
+                            ∴ K₅ is NOT planar ∎<br><br>
+                            <hr><br>
+                            <strong>K₃,₃ (Complete bipartite):</strong><br>
+                            V = 6<br>
+                            E = 3 × 3 = 9<br><br>
+                            K₃,₃ has no triangles (bipartite), so use:<br>
+                            E ≤ 2V - 4<br>
+                            9 ≤ 2(6) - 4 = 8?<br>
+                            <strong>9 > 8 - VIOLATION!</strong><br>
+                            ∴ K₃,₃ is NOT planar ∎
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q5a</span>Show (ℤ, +) is a group. Is it also Abelian?</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Proving (ℤ, +) is a Group:</strong><br><br>
+                            <strong>1. Closure:</strong><br>
+                            For any a, b ∈ ℤ: a + b ∈ ℤ ✓<br><br>
+                            <strong>2. Associativity:</strong><br>
+                            For any a, b, c ∈ ℤ: (a + b) + c = a + (b + c) ✓<br><br>
+                            <strong>3. Identity:</strong><br>
+                            0 ∈ ℤ and a + 0 = 0 + a = a for all a ∈ ℤ<br>
+                            Identity element = 0 ✓<br><br>
+                            <strong>4. Inverse:</strong><br>
+                            For each a ∈ ℤ, -a ∈ ℤ<br>
+                            a + (-a) = (-a) + a = 0 ✓<br><br>
+                            <strong>∴ (ℤ, +) is a GROUP ∎</strong><br><br>
+                            <hr><br>
+                            <strong>Abelian Check:</strong><br>
+                            For any a, b ∈ ℤ: a + b = b + a ✓<br><br>
+                            <strong>Yes, (ℤ, +) is an ABELIAN GROUP ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="pyq-card section-c">
+                        <p class="question-text"><span class="q-number">Q6</span>Solve recurrence aₙ = 2aₙ₋₁ + 3·2ⁿ with a₁ = 5.</p>
+                        <button class="toggle-answer" onclick="toggleAns(this)">Show Answer</button>
+                        <div class="answer-box">
+                            <h4><i class="fas fa-check-circle"></i> Solution:</h4>
+                            <strong>Homogeneous solution:</strong><br>
+                            aₙ - 2aₙ₋₁ = 0<br>
+                            r - 2 = 0 ⟹ r = 2<br>
+                            aₙ⁽ʰ⁾ = A·2ⁿ<br><br>
+                            <strong>Particular solution:</strong><br>
+                            RHS = 3·2ⁿ, and 2 is a root of homogeneous.<br>
+                            Try aₙ⁽ᵖ⁾ = Cn·2ⁿ<br><br>
+                            Substitute: Cn·2ⁿ = 2·C(n-1)·2ⁿ⁻¹ + 3·2ⁿ<br>
+                            Cn·2ⁿ = C(n-1)·2ⁿ + 3·2ⁿ<br>
+                            Cn = C(n-1) + 3<br>
+                            C = 3<br><br>
+                            aₙ⁽ᵖ⁾ = 3n·2ⁿ<br><br>
+                            <strong>General:</strong> aₙ = A·2ⁿ + 3n·2ⁿ = (A + 3n)·2ⁿ<br><br>
+                            <strong>Apply a₁ = 5:</strong><br>
+                            (A + 3)·2 = 5<br>
+                            A + 3 = 5/2<br>
+                            A = -1/2<br><br>
+                            <strong>aₙ = (-1/2 + 3n)·2ⁿ = (6n - 1)·2ⁿ⁻¹</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="units/unit1.html">Unit I</a></li>
+                        <li><a href="units/unit2.html">Unit II</a></li>
+                        <li><a href="units/unit3.html">Unit III</a></li>
+                        <li><a href="units/unit4.html">Unit IV</a></li>
+                        <li><a href="units/unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function showYear(yearId) {
+            document.querySelectorAll('.year-content').forEach(y => y.classList.remove('active'));
+            document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(yearId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function toggleAns(btn) {
+            const answer = btn.nextElementSibling;
+            answer.classList.toggle('show');
+            btn.textContent = answer.classList.contains('show') ? 'Hide Answer' : 'Show Answer';
+        }
+    </script>
+</body>
+</html>

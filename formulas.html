@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula Sheet | DSTL Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .formula-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .unit-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 70px;
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        .unit-tab {
+            padding: 10px 20px;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .unit-tab:hover, .unit-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .unit-content {
+            display: none;
+        }
+        .unit-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        .formula-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+        .formula-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .formula-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+        .formula-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .formula-box {
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Georgia', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            color: #333;
+        }
+        .formula-box.highlight {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-color: #667eea;
+        }
+        .formula-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+        .formula-note i {
+            color: #ffc107;
+            margin-right: 8px;
+        }
+        .formula-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .formula-table th, .formula-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        .formula-table th {
+            background: var(--primary-color);
+            color: white;
+        }
+        .formula-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .quick-ref {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .quick-ref-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .quick-ref-item .icon {
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="units/unit1.html">Unit I</a></li>
+                <li><a href="units/unit2.html">Unit II</a></li>
+                <li><a href="units/unit3.html">Unit III</a></li>
+                <li><a href="units/unit4.html">Unit IV</a></li>
+                <li><a href="units/unit5.html">Unit V</a></li>
+                <li><a href="theory.html">Theory</a></li>
+                <li><a href="questions.html">Questions</a></li>
+                <li><a href="previousyear.html">PYQ</a></li>
+                <li><a href="formulas.html" class="active">Formulas</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-square-root-alt"></i> Formula Sheet</h1>
+                <p>Quick Reference for All DSTL Formulas & Key Concepts</p>
+            </div>
+        </header>
+
+        <section class="formula-container">
+            <div class="unit-tabs">
+                <button class="unit-tab active" onclick="showUnit('u1')">Unit I - Sets & Relations</button>
+                <button class="unit-tab" onclick="showUnit('u2')">Unit II - Logic</button>
+                <button class="unit-tab" onclick="showUnit('u3')">Unit III - Boolean & Lattices</button>
+                <button class="unit-tab" onclick="showUnit('u4')">Unit IV - Groups</button>
+                <button class="unit-tab" onclick="showUnit('u5')">Unit V - Graphs</button>
+            </div>
+
+            <!-- Unit 1: Sets & Relations -->
+            <div class="unit-content active" id="u1">
+                <div class="formula-section">
+                    <h3><i class="fas fa-layer-group"></i> Set Theory Formulas</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Cardinality Formulas</h4>
+                        <div class="formula-box highlight">
+                            |A ∪ B| = |A| + |B| - |A ∩ B|
+                        </div>
+                        <div class="formula-box">
+                            |A ∪ B ∪ C| = |A| + |B| + |C| - |A∩B| - |B∩C| - |A∩C| + |A∩B∩C|
+                        </div>
+                        <div class="formula-box">
+                            |A - B| = |A| - |A ∩ B|
+                        </div>
+                        <div class="formula-box">
+                            |A × B| = |A| · |B|
+                        </div>
+                        <div class="formula-box highlight">
+                            |P(A)| = 2<sup>|A|</sup> &nbsp;&nbsp;(Power Set)
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Set Laws</h4>
+                        <table class="formula-table">
+                            <tr>
+                                <th>Law</th>
+                                <th>Union</th>
+                                <th>Intersection</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Identity</strong></td>
+                                <td>A ∪ ∅ = A</td>
+                                <td>A ∩ U = A</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Domination</strong></td>
+                                <td>A ∪ U = U</td>
+                                <td>A ∩ ∅ = ∅</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Idempotent</strong></td>
+                                <td>A ∪ A = A</td>
+                                <td>A ∩ A = A</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Complement</strong></td>
+                                <td>A ∪ A' = U</td>
+                                <td>A ∩ A' = ∅</td>
+                            </tr>
+                            <tr>
+                                <td><strong>De Morgan's</strong></td>
+                                <td>(A ∪ B)' = A' ∩ B'</td>
+                                <td>(A ∩ B)' = A' ∪ B'</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="formula-section">
+                    <h3><i class="fas fa-arrows-alt-h"></i> Relations Formulas</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Counting Relations</h4>
+                        <div class="formula-box highlight">
+                            Total relations from A to B = 2<sup>|A|×|B|</sup>
+                        </div>
+                        <div class="formula-box">
+                            Relations on set A = 2<sup>|A|²</sup>
+                        </div>
+                        <div class="formula-box">
+                            Reflexive relations on A = 2<sup>|A|² - |A|</sup>
+                        </div>
+                        <div class="formula-box">
+                            Symmetric relations on A = 2<sup>|A|(|A|+1)/2</sup>
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Properties of Relations</h4>
+                        <div class="quick-ref">
+                            <div class="quick-ref-item">
+                                <div class="icon">R</div>
+                                <div><strong>Reflexive:</strong> (a,a) ∈ R ∀a ∈ A</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">S</div>
+                                <div><strong>Symmetric:</strong> (a,b) ∈ R ⟹ (b,a) ∈ R</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">T</div>
+                                <div><strong>Transitive:</strong> (a,b),(b,c) ∈ R ⟹ (a,c) ∈ R</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">A</div>
+                                <div><strong>Anti-symmetric:</strong> (a,b),(b,a) ∈ R ⟹ a=b</div>
+                            </div>
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Equivalence Relation</strong> = Reflexive + Symmetric + Transitive
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Partial Order</strong> = Reflexive + Anti-symmetric + Transitive
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Closures</h4>
+                        <div class="formula-box">
+                            Reflexive Closure: r(R) = R ∪ I<sub>A</sub>
+                        </div>
+                        <div class="formula-box">
+                            Symmetric Closure: s(R) = R ∪ R<sup>-1</sup>
+                        </div>
+                        <div class="formula-box">
+                            Transitive Closure: t(R) = R ∪ R² ∪ R³ ∪ ... ∪ R<sup>n</sup>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formula-section">
+                    <h3><i class="fas fa-exchange-alt"></i> Functions</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Counting Functions</h4>
+                        <div class="formula-box highlight">
+                            Total functions from A to B = |B|<sup>|A|</sup>
+                        </div>
+                        <div class="formula-box">
+                            Injective (one-to-one) = P(|B|, |A|) = |B|!/(|B|-|A|)!
+                        </div>
+                        <div class="formula-box">
+                            Bijective = |A|! &nbsp;(when |A| = |B|)
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Composition</h4>
+                        <div class="formula-box highlight">
+                            (g ∘ f)(x) = g(f(x))
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-info-circle"></i>
+                            Apply f first, then apply g to the result
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit 2: Logic -->
+            <div class="unit-content" id="u2">
+                <div class="formula-section">
+                    <h3><i class="fas fa-brain"></i> Propositional Logic</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Logical Connectives Truth Table</h4>
+                        <table class="formula-table">
+                            <tr>
+                                <th>p</th>
+                                <th>q</th>
+                                <th>¬p</th>
+                                <th>p ∧ q</th>
+                                <th>p ∨ q</th>
+                                <th>p → q</th>
+                                <th>p ↔ q</th>
+                                <th>p ⊕ q</th>
+                            </tr>
+                            <tr><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td>F</td></tr>
+                            <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+                            <tr><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+                            <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td><td>F</td></tr>
+                        </table>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Important Equivalences</h4>
+                        <div class="formula-box highlight">
+                            p → q ≡ ¬p ∨ q
+                        </div>
+                        <div class="formula-box">
+                            p ↔ q ≡ (p → q) ∧ (q → p)
+                        </div>
+                        <div class="formula-box">
+                            ¬(p → q) ≡ p ∧ ¬q
+                        </div>
+                        <div class="formula-box highlight">
+                            Contrapositive: p → q ≡ ¬q → ¬p
+                        </div>
+                        <div class="formula-box">
+                            De Morgan's: ¬(p ∧ q) ≡ ¬p ∨ ¬q
+                        </div>
+                        <div class="formula-box">
+                            De Morgan's: ¬(p ∨ q) ≡ ¬p ∧ ¬q
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Rules of Inference</h4>
+                        <div class="quick-ref">
+                            <div class="quick-ref-item">
+                                <div class="icon">MP</div>
+                                <div><strong>Modus Ponens:</strong><br>p, p→q ⊢ q</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">MT</div>
+                                <div><strong>Modus Tollens:</strong><br>¬q, p→q ⊢ ¬p</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">HS</div>
+                                <div><strong>Hypothetical Syllogism:</strong><br>p→q, q→r ⊢ p→r</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">DS</div>
+                                <div><strong>Disjunctive Syllogism:</strong><br>p∨q, ¬p ⊢ q</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">∧I</div>
+                                <div><strong>Conjunction:</strong><br>p, q ⊢ p ∧ q</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">∨I</div>
+                                <div><strong>Addition:</strong><br>p ⊢ p ∨ q</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formula-section">
+                    <h3><i class="fas fa-infinity"></i> Predicate Logic</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Quantifier Negation</h4>
+                        <div class="formula-box highlight">
+                            ¬∀x P(x) ≡ ∃x ¬P(x)
+                        </div>
+                        <div class="formula-box highlight">
+                            ¬∃x P(x) ≡ ∀x ¬P(x)
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Quantifier Distribution</h4>
+                        <div class="formula-box">
+                            ∀x (P(x) ∧ Q(x)) ≡ ∀x P(x) ∧ ∀x Q(x)
+                        </div>
+                        <div class="formula-box">
+                            ∃x (P(x) ∨ Q(x)) ≡ ∃x P(x) ∨ ∃x Q(x)
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>Warning:</strong> ∀ does NOT distribute over ∨, and ∃ does NOT distribute over ∧
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit 3: Boolean Algebra & Lattices -->
+            <div class="unit-content" id="u3">
+                <div class="formula-section">
+                    <h3><i class="fas fa-toggle-on"></i> Boolean Algebra</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Boolean Laws</h4>
+                        <table class="formula-table">
+                            <tr>
+                                <th>Law</th>
+                                <th>+ (OR)</th>
+                                <th>· (AND)</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Identity</strong></td>
+                                <td>A + 0 = A</td>
+                                <td>A · 1 = A</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Null</strong></td>
+                                <td>A + 1 = 1</td>
+                                <td>A · 0 = 0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Idempotent</strong></td>
+                                <td>A + A = A</td>
+                                <td>A · A = A</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Complement</strong></td>
+                                <td>A + A' = 1</td>
+                                <td>A · A' = 0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Absorption</strong></td>
+                                <td>A + AB = A</td>
+                                <td>A(A + B) = A</td>
+                            </tr>
+                            <tr>
+                                <td><strong>De Morgan's</strong></td>
+                                <td>(A + B)' = A'B'</td>
+                                <td>(AB)' = A' + B'</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>K-Map Grouping Rules</h4>
+                        <div class="quick-ref">
+                            <div class="quick-ref-item">
+                                <div class="icon">1</div>
+                                <div>Groups must be powers of 2 (1, 2, 4, 8...)</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">2</div>
+                                <div>Larger groups = simpler expression</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">3</div>
+                                <div>Groups can wrap around edges</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">4</div>
+                                <div>Every 1 must be in at least one group</div>
+                            </div>
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>SOP:</strong> Group 1s, <strong>POS:</strong> Group 0s (then complement variables)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formula-section">
+                    <h3><i class="fas fa-sitemap"></i> Lattices & Posets</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Lattice Definitions</h4>
+                        <div class="quick-ref">
+                            <div class="quick-ref-item">
+                                <div class="icon">∨</div>
+                                <div><strong>Join (LUB):</strong> Least Upper Bound of a,b</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">∧</div>
+                                <div><strong>Meet (GLB):</strong> Greatest Lower Bound of a,b</div>
+                            </div>
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Lattice:</strong> A poset where every pair has both LUB and GLB
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Divisibility Lattice D<sub>n</sub></h4>
+                        <div class="formula-box">
+                            GLB(a, b) = GCD(a, b)
+                        </div>
+                        <div class="formula-box">
+                            LUB(a, b) = LCM(a, b)
+                        </div>
+                        <div class="formula-box highlight">
+                            |D<sub>n</sub>| = Number of divisors of n = τ(n)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit 4: Groups -->
+            <div class="unit-content" id="u4">
+                <div class="formula-section">
+                    <h3><i class="fas fa-cubes"></i> Group Theory</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Group Axioms</h4>
+                        <div class="quick-ref">
+                            <div class="quick-ref-item">
+                                <div class="icon">C</div>
+                                <div><strong>Closure:</strong> a * b ∈ G</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">A</div>
+                                <div><strong>Associativity:</strong> (a*b)*c = a*(b*c)</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">I</div>
+                                <div><strong>Identity:</strong> ∃e: a*e = e*a = a</div>
+                            </div>
+                            <div class="quick-ref-item">
+                                <div class="icon">N</div>
+                                <div><strong>Inverse:</strong> ∃a⁻¹: a*a⁻¹ = e</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Key Theorems</h4>
+                        <div class="formula-box highlight">
+                            <strong>Lagrange's Theorem:</strong> |H| divides |G|
+                        </div>
+                        <div class="formula-box">
+                            Index: [G : H] = |G| / |H|
+                        </div>
+                        <div class="formula-box highlight">
+                            <strong>Euler's Theorem:</strong> a<sup>φ(n)</sup> ≡ 1 (mod n), gcd(a,n)=1
+                        </div>
+                        <div class="formula-box">
+                            <strong>Fermat's Little:</strong> a<sup>p-1</sup> ≡ 1 (mod p), p prime
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Cyclic Groups</h4>
+                        <div class="formula-box highlight">
+                            Number of generators of ℤ<sub>n</sub> = φ(n)
+                        </div>
+                        <div class="formula-box">
+                            Order of a<sup>k</sup> in ℤ<sub>n</sub> = n / gcd(k, n)
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-lightbulb"></i>
+                            a is a generator iff gcd(a, n) = 1
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Euler's Totient Function</h4>
+                        <div class="formula-box">
+                            φ(p) = p - 1 &nbsp;(p prime)
+                        </div>
+                        <div class="formula-box">
+                            φ(p<sup>k</sup>) = p<sup>k</sup> - p<sup>k-1</sup> = p<sup>k-1</sup>(p - 1)
+                        </div>
+                        <div class="formula-box highlight">
+                            φ(mn) = φ(m) · φ(n) &nbsp;(gcd(m,n) = 1)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit 5: Graphs -->
+            <div class="unit-content" id="u5">
+                <div class="formula-section">
+                    <h3><i class="fas fa-project-diagram"></i> Graph Theory</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Basic Formulas</h4>
+                        <div class="formula-box highlight">
+                            <strong>Handshaking Lemma:</strong> Σ deg(v) = 2|E|
+                        </div>
+                        <div class="formula-box">
+                            Number of odd-degree vertices is always EVEN
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Complete Graphs K<sub>n</sub></h4>
+                        <div class="formula-box">
+                            Vertices = n
+                        </div>
+                        <div class="formula-box highlight">
+                            Edges = n(n-1)/2 = C(n,2)
+                        </div>
+                        <div class="formula-box">
+                            Degree of each vertex = n - 1
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Trees</h4>
+                        <div class="formula-box highlight">
+                            <strong>Tree with n vertices:</strong> Edges = n - 1
+                        </div>
+                        <div class="formula-box">
+                            <strong>Cayley's Formula:</strong> Labeled trees on n vertices = n<sup>n-2</sup>
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Planar Graphs - Euler's Formula</h4>
+                        <div class="formula-box highlight">
+                            <strong>V - E + F = 2</strong>
+                        </div>
+                        <div class="formula-box">
+                            For connected planar graph: E ≤ 3V - 6
+                        </div>
+                        <div class="formula-box">
+                            If no triangles: E ≤ 2V - 4
+                        </div>
+                        <div class="formula-note">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Kuratowski:</strong> Non-planar iff contains K₅ or K₃,₃ subdivision
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Graph Coloring</h4>
+                        <div class="formula-box">
+                            χ(K<sub>n</sub>) = n
+                        </div>
+                        <div class="formula-box">
+                            χ(C<sub>n</sub>) = 2 if n even, 3 if n odd
+                        </div>
+                        <div class="formula-box highlight">
+                            <strong>Four Color Theorem:</strong> χ(planar) ≤ 4
+                        </div>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Euler & Hamiltonian Paths</h4>
+                        <table class="formula-table">
+                            <tr>
+                                <th>Type</th>
+                                <th>Condition</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Eulerian Circuit</strong></td>
+                                <td>All vertices have even degree</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Eulerian Path</strong></td>
+                                <td>Exactly 2 vertices have odd degree</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hamiltonian</strong></td>
+                                <td>No simple necessary/sufficient condition</td>
+                            </tr>
+                        </table>
+                        <div class="formula-note">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Dirac's Theorem:</strong> If deg(v) ≥ n/2 for all v, then Hamiltonian
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formula-section">
+                    <h3><i class="fas fa-calculator"></i> Combinatorics Quick Reference</h3>
+                    
+                    <div class="formula-card">
+                        <h4>Counting Formulas</h4>
+                        <div class="formula-box">
+                            <strong>Permutation:</strong> P(n,r) = n! / (n-r)!
+                        </div>
+                        <div class="formula-box">
+                            <strong>Combination:</strong> C(n,r) = n! / [r!(n-r)!]
+                        </div>
+                        <div class="formula-box highlight">
+                            <strong>With Repetition:</strong> n! / (n₁! · n₂! · ... · nₖ!)
+                        </div>
+                        <div class="formula-box">
+                            <strong>Pigeonhole:</strong> ⌈n/k⌉ items in some box
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="units/unit1.html">Unit I</a></li>
+                        <li><a href="units/unit2.html">Unit II</a></li>
+                        <li><a href="units/unit3.html">Unit III</a></li>
+                        <li><a href="units/unit4.html">Unit IV</a></li>
+                        <li><a href="units/unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function showUnit(unitId) {
+            document.querySelectorAll('.unit-content').forEach(u => u.classList.remove('active'));
+            document.querySelectorAll('.unit-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(unitId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

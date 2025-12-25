@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Questions - Chapter-wise | DSTL Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .questions-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .chapter-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 70px;
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        .chapter-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .chapter-btn:hover, .chapter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .chapter-content {
+            display: none;
+        }
+        .chapter-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        .question-category {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+        .question-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-color);
+        }
+        .question-card.medium {
+            border-left-color: var(--warning-color);
+        }
+        .question-card.hard {
+            border-left-color: var(--danger-color);
+        }
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            min-width: 30px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            vertical-align: middle;
+        }
+        .question-card.medium .question-number {
+            background: var(--warning-color);
+            color: #333;
+        }
+        .question-card.hard .question-number {
+            background: var(--danger-color);
+        }
+        .question-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .question-hint {
+            background: #fff3cd;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+        .question-hint.show {
+            display: block;
+        }
+        .question-answer {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+        }
+        .question-answer.show {
+            display: block;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .hint-btn, .answer-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .hint-btn {
+            background: #ffc107;
+            color: #333;
+        }
+        .answer-btn {
+            background: var(--success-color);
+            color: white;
+        }
+        .hint-btn:hover, .answer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .difficulty-legend {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .difficulty-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+        .difficulty-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+        .difficulty-dot.easy { background: var(--primary-color); }
+        .difficulty-dot.medium { background: var(--warning-color); }
+        .difficulty-dot.hard { background: var(--danger-color); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="units/unit1.html">Unit I</a></li>
+                <li><a href="units/unit2.html">Unit II</a></li>
+                <li><a href="units/unit3.html">Unit III</a></li>
+                <li><a href="units/unit4.html">Unit IV</a></li>
+                <li><a href="units/unit5.html">Unit V</a></li>
+                <li><a href="theory.html">Theory</a></li>
+                <li><a href="questions.html" class="active">Questions</a></li>
+                <li><a href="previousyear.html">PYQ</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="theorems.html">Theorems</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-question-circle"></i> Practice Questions</h1>
+                <p>Chapter-wise questions for exam preparation</p>
+            </div>
+        </header>
+
+        <div class="questions-container">
+            <!-- Difficulty Legend -->
+            <div class="difficulty-legend">
+                <div class="difficulty-item"><div class="difficulty-dot easy"></div> Easy</div>
+                <div class="difficulty-item"><div class="difficulty-dot medium"></div> Medium</div>
+                <div class="difficulty-item"><div class="difficulty-dot hard"></div> Hard</div>
+            </div>
+
+            <!-- Chapter Selector -->
+            <div class="chapter-selector">
+                <button class="chapter-btn active" onclick="showChapter('unit1')">Unit I: Sets & Relations</button>
+                <button class="chapter-btn" onclick="showChapter('unit2')">Unit II: Functions & Boolean</button>
+                <button class="chapter-btn" onclick="showChapter('unit3')">Unit III: Logic</button>
+                <button class="chapter-btn" onclick="showChapter('unit4')">Unit IV: Algebraic Structures</button>
+                <button class="chapter-btn" onclick="showChapter('unit5')">Unit V: Graphs</button>
+            </div>
+
+            <!-- UNIT 1 QUESTIONS -->
+            <div class="chapter-content active" id="unit1">
+                <div class="question-category">
+                    <h3><i class="fas fa-layer-group"></i> Set Theory Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>If A = {1, 2, 3, 4, 5} and B = {4, 5, 6, 7}, find A ∪ B, A ∩ B, A - B, and B - A.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Union combines all elements, intersection takes common, difference takes elements in first but not second.</div>
+                        <div class="question-answer">
+                            <strong>A ∪ B</strong> = {1, 2, 3, 4, 5, 6, 7}<br>
+                            <strong>A ∩ B</strong> = {4, 5}<br>
+                            <strong>A - B</strong> = {1, 2, 3}<br>
+                            <strong>B - A</strong> = {6, 7}
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">2</span>Find the power set of A = {a, b, c}. How many elements does P(A) have?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Power set contains all subsets, including empty set and the set itself. |P(A)| = 2^|A|</div>
+                        <div class="question-answer">
+                            <strong>P(A)</strong> = {∅, {a}, {b}, {c}, {a,b}, {a,c}, {b,c}, {a,b,c}}<br>
+                            <strong>|P(A)|</strong> = 2³ = <strong>8 elements</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>Prove using set identities: (A ∩ B)' = A' ∪ B' (De Morgan's Law)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Show that an element is in LHS iff it's in RHS. Use definition of complement and intersection.</div>
+                        <div class="question-answer">
+                            x ∈ (A ∩ B)' ⟺ x ∉ (A ∩ B)<br>
+                            ⟺ ¬(x ∈ A ∧ x ∈ B)<br>
+                            ⟺ (x ∉ A) ∨ (x ∉ B) [De Morgan in logic]<br>
+                            ⟺ x ∈ A' ∨ x ∈ B'<br>
+                            ⟺ x ∈ (A' ∪ B') ✓
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">4</span>In a class of 60 students, 35 study Mathematics, 30 study Physics, and 10 study both. How many study neither?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use Inclusion-Exclusion: |A ∪ B| = |A| + |B| - |A ∩ B|</div>
+                        <div class="question-answer">
+                            |M ∪ P| = |M| + |P| - |M ∩ P|<br>
+                            |M ∪ P| = 35 + 30 - 10 = 55<br>
+                            Students studying neither = 60 - 55 = <strong>5 students</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">5</span>If |A| = 5 and |B| = 3, find the maximum and minimum values of |A ∪ B| and |A ∩ B|.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Consider when B ⊆ A (maximum overlap) and when A and B are disjoint (no overlap).</div>
+                        <div class="question-answer">
+                            <strong>|A ∪ B|:</strong><br>
+                            • Maximum = 5 + 3 = 8 (when disjoint)<br>
+                            • Minimum = 5 (when B ⊆ A)<br><br>
+                            <strong>|A ∩ B|:</strong><br>
+                            • Maximum = 3 (when B ⊆ A)<br>
+                            • Minimum = 0 (when disjoint)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-exchange-alt"></i> Relations Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>Let R = {(1,1), (1,2), (2,1), (2,2), (3,3)} on A = {1, 2, 3}. Check if R is reflexive, symmetric, transitive.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Reflexive: (a,a) for all a. Symmetric: (a,b) implies (b,a). Transitive: (a,b) and (b,c) implies (a,c).</div>
+                        <div class="question-answer">
+                            <strong>Reflexive:</strong> Yes ✓ - (1,1), (2,2), (3,3) all present<br>
+                            <strong>Symmetric:</strong> Yes ✓ - (1,2) and (2,1) both present<br>
+                            <strong>Transitive:</strong> Yes ✓ - Check all pairs, satisfied<br>
+                            <strong>R is an Equivalence Relation!</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">2</span>Draw the Hasse diagram for the poset (P({a,b}), ⊆).</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">P({a,b}) = {∅, {a}, {b}, {a,b}}. Draw edges for immediate subset relations.</div>
+                        <div class="question-answer">
+                            <pre style="font-family: monospace;">
+        {a,b}
+        /    \
+      {a}    {b}
+        \    /
+          ∅
+                            </pre>
+                            Bottom: ∅, Top: {a,b}<br>
+                            {a} and {b} are incomparable.
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">3</span>Prove that an equivalence relation on a set A partitions A into disjoint equivalence classes.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Show: (1) Every element is in some class (reflexive), (2) Classes are either equal or disjoint.</div>
+                        <div class="question-answer">
+                            1. Every a ∈ A is in [a] (reflexive: a ~ a)<br>
+                            2. If [a] ∩ [b] ≠ ∅, take x ∈ [a] ∩ [b]<br>
+                               Then a ~ x and b ~ x<br>
+                               By symmetry: x ~ b<br>
+                               By transitivity: a ~ b<br>
+                               Hence [a] = [b]<br>
+                            3. Classes partition A: disjoint, cover all of A ✓
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">4</span>Find the transitive closure of R = {(1,2), (2,3), (3,4)} on A = {1,2,3,4}.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Add all pairs (a,c) whenever there's a path from a to c through any sequence of pairs in R.</div>
+                        <div class="question-answer">
+                            <strong>Original R:</strong> {(1,2), (2,3), (3,4)}<br><br>
+                            <strong>Step 1:</strong> From (1,2) and (2,3) → add (1,3)<br>
+                            <strong>Step 2:</strong> From (2,3) and (3,4) → add (2,4)<br>
+                            <strong>Step 3:</strong> From (1,3) and (3,4) → add (1,4)<br><br>
+                            <strong>Transitive Closure R⁺:</strong><br>
+                            {(1,2), (2,3), (3,4), (1,3), (2,4), (1,4)}
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">5</span>Determine if R = {(a,b) | a divides b} on ℤ⁺ is a partial order. Find LUB and GLB of {4, 6} in divisibility poset.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Partial order needs reflexive, antisymmetric, transitive. LUB = LCM, GLB = GCD for divisibility.</div>
+                        <div class="question-answer">
+                            <strong>Partial Order Check:</strong><br>
+                            • <strong>Reflexive:</strong> a | a ✓ (every number divides itself)<br>
+                            • <strong>Antisymmetric:</strong> If a | b and b | a, then a = b ✓<br>
+                            • <strong>Transitive:</strong> If a | b and b | c, then a | c ✓<br><br>
+                            <strong>Yes, divisibility is a partial order!</strong><br><br>
+                            For {4, 6}:<br>
+                            • <strong>GLB (Greatest Lower Bound)</strong> = GCD(4,6) = <strong>2</strong><br>
+                            • <strong>LUB (Least Upper Bound)</strong> = LCM(4,6) = <strong>12</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">6</span>Is the poset ({1, 2, 3, 6, 12, 24}, |) a lattice? Justify your answer.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">A lattice requires every pair of elements to have both a LUB (join) and GLB (meet) within the set.</div>
+                        <div class="question-answer">
+                            <strong>Check for every pair:</strong><br><br>
+                            In divisibility poset:<br>
+                            • GLB(a,b) = GCD(a,b)<br>
+                            • LUB(a,b) = LCM(a,b)<br><br>
+                            For all pairs in {1, 2, 3, 6, 12, 24}:<br>
+                            • GCD always exists and is in the set<br>
+                            • LCM always exists and is in the set (since they all divide 24)<br><br>
+                            Examples:<br>
+                            • LCM(2,3) = 6 ∈ set ✓<br>
+                            • LCM(3,12) = 12 ∈ set ✓<br>
+                            • GCD(12,24) = 12 ∈ set ✓<br><br>
+                            <strong>Yes, it is a lattice!</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">7</span>Find the reflexive closure and symmetric closure of R = {(1,2), (2,3)} on A = {1,2,3}.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Reflexive closure: add all (a,a). Symmetric closure: add (b,a) for each (a,b).</div>
+                        <div class="question-answer">
+                            <strong>Original R:</strong> {(1,2), (2,3)}<br><br>
+                            <strong>Reflexive Closure r(R):</strong><br>
+                            Add (1,1), (2,2), (3,3)<br>
+                            r(R) = {(1,1), (2,2), (3,3), (1,2), (2,3)}<br><br>
+                            <strong>Symmetric Closure s(R):</strong><br>
+                            Add (2,1) for (1,2), add (3,2) for (2,3)<br>
+                            s(R) = {(1,2), (2,1), (2,3), (3,2)}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-graduation-cap"></i> AKTU Exam Important Questions</h3>
+                    
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">1</span>[AKTU 2023] Let R be a relation on set A = {1, 2, 3, 4} defined as R = {(1,1), (1,2), (2,1), (2,2), (3,4), (4,3), (3,3), (4,4)}. Find the equivalence classes and determine if R is an equivalence relation.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Check reflexive (all (a,a)), symmetric (if (a,b) then (b,a)), and transitive properties.</div>
+                        <div class="question-answer">
+                            <strong>Check Properties:</strong><br><br>
+                            <strong>1. Reflexive:</strong> (1,1), (2,2), (3,3), (4,4) all present ✓<br><br>
+                            <strong>2. Symmetric:</strong><br>
+                            • (1,2) → (2,1) present ✓<br>
+                            • (2,1) → (1,2) present ✓<br>
+                            • (3,4) → (4,3) present ✓<br>
+                            • (4,3) → (3,4) present ✓<br>
+                            All symmetric ✓<br><br>
+                            <strong>3. Transitive:</strong><br>
+                            • (1,2), (2,1) → (1,1) present ✓<br>
+                            • (3,4), (4,3) → (3,3) present ✓<br>
+                            All transitive ✓<br><br>
+                            <strong>R is an equivalence relation!</strong><br><br>
+                            <strong>Equivalence Classes:</strong><br>
+                            [1] = [2] = {1, 2}<br>
+                            [3] = [4] = {3, 4}<br><br>
+                            <strong>Partition of A:</strong> {{1,2}, {3,4}}
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">2</span>[AKTU 2022] Draw the Hasse diagram for the poset (D₃₀, |) where D₃₀ = {1, 2, 3, 5, 6, 10, 15, 30}. Find all maximal elements, minimal elements, greatest element, and least element.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">In divisibility poset, a|b means a is below b. Draw edges only for immediate divisibility.</div>
+                        <div class="question-answer">
+                            <strong>Hasse Diagram (bottom to top):</strong><br>
+<pre style="font-family: monospace; font-size: 12px; line-height: 1.3;">
+         30
+       / | \
+     6  10  15
+    /\ / \ /\
+   2  3   5
+    \  \ /
+      1
+</pre>
+                            <strong>Analysis:</strong><br><br>
+                            • <strong>Minimal Element:</strong> 1 (nothing divides it except itself)<br>
+                            • <strong>Maximal Element:</strong> 30 (divides nothing else in set)<br>
+                            • <strong>Least Element (⊥):</strong> 1 (divides all elements) ✓<br>
+                            • <strong>Greatest Element (⊤):</strong> 30 (divided by all elements) ✓<br><br>
+                            <em>Note: Since least and greatest exist, (D₃₀, |) is a bounded lattice.</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">3</span>[AKTU 2021] Prove that for any two sets A and B: |A ∪ B| = |A| + |B| - |A ∩ B|</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Partition A∪B into disjoint parts and count each element exactly once.</div>
+                        <div class="question-answer">
+                            <strong>Proof (Inclusion-Exclusion for 2 sets):</strong><br><br>
+                            <strong>Method 1: Partition Argument</strong><br>
+                            A ∪ B can be partitioned into 3 disjoint regions:<br>
+                            1. A ∩ B (elements in both)<br>
+                            2. A - B (elements only in A)<br>
+                            3. B - A (elements only in B)<br><br>
+                            So: |A ∪ B| = |A - B| + |A ∩ B| + |B - A|<br><br>
+                            We know:<br>
+                            • |A| = |A - B| + |A ∩ B|<br>
+                            • |B| = |B - A| + |A ∩ B|<br><br>
+                            Adding: |A| + |B| = |A - B| + |B - A| + 2|A ∩ B|<br><br>
+                            Therefore: |A - B| + |B - A| = |A| + |B| - 2|A ∩ B|<br><br>
+                            Substituting:<br>
+                            |A ∪ B| = |A| + |B| - 2|A ∩ B| + |A ∩ B|<br>
+                            <strong>|A ∪ B| = |A| + |B| - |A ∩ B| ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">4</span>[AKTU 2020] Using Warshall's algorithm, find the transitive closure of R = {(1,2), (2,3), (3,1)} on A = {1,2,3}.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Warshall iterates k from 1 to n: if M[i,k]=1 and M[k,j]=1, set M[i,j]=1.</div>
+                        <div class="question-answer">
+                            <strong>Initial Matrix M⁰:</strong><br>
+<pre style="font-family: monospace;">
+    1 2 3
+  ┌───────┐
+1 │ 0 1 0 │
+2 │ 0 0 1 │
+3 │ 1 0 0 │
+  └───────┘
+</pre>
+                            <strong>k=1:</strong> Check paths through vertex 1<br>
+                            M[3,1]=1, M[1,2]=1 → M[3,2]=1<br><br>
+                            <strong>k=2:</strong> Check paths through vertex 2<br>
+                            M[1,2]=1, M[2,3]=1 → M[1,3]=1<br>
+                            M[3,2]=1, M[2,3]=1 → M[3,3]=1<br><br>
+                            <strong>k=3:</strong> Check paths through vertex 3<br>
+                            M[1,3]=1, M[3,1]=1 → M[1,1]=1<br>
+                            M[1,3]=1, M[3,2]=1 → M[1,2]=1 (already 1)<br>
+                            M[2,3]=1, M[3,1]=1 → M[2,1]=1<br>
+                            M[2,3]=1, M[3,2]=1 → M[2,2]=1<br><br>
+                            <strong>Final Transitive Closure:</strong><br>
+                            R⁺ = {(1,1), (1,2), (1,3), (2,1), (2,2), (2,3), (3,1), (3,2), (3,3)}<br>
+                            = A × A (all elements are related!)
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 2 QUESTIONS -->
+            <div class="chapter-content" id="unit2">
+                <div class="question-category">
+                    <h3><i class="fas fa-function"></i> Functions Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>If |A| = 4 and |B| = 3, how many functions exist from A to B?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Each element in A can map to any element in B independently.</div>
+                        <div class="question-answer">
+                            Number of functions = |B|^|A| = 3⁴ = <strong>81 functions</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">2</span>Let f(x) = 2x + 3 and g(x) = x². Find (g ∘ f)(x) and (f ∘ g)(x).</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">(g ∘ f)(x) = g(f(x)). Apply f first, then g.</div>
+                        <div class="question-answer">
+                            <strong>(g ∘ f)(x)</strong> = g(f(x)) = g(2x+3) = (2x+3)² = <strong>4x² + 12x + 9</strong><br><br>
+                            <strong>(f ∘ g)(x)</strong> = f(g(x)) = f(x²) = 2x² + 3 = <strong>2x² + 3</strong><br><br>
+                            Note: g ∘ f ≠ f ∘ g (composition not commutative)
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>Prove that f: ℝ → ℝ defined by f(x) = 3x - 7 is bijective and find f⁻¹(x).</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">For injective: f(a) = f(b) implies a = b. For surjective: solve y = 3x - 7 for x.</div>
+                        <div class="question-answer">
+                            <strong>Injective:</strong> f(a) = f(b) ⟹ 3a - 7 = 3b - 7 ⟹ a = b ✓<br><br>
+                            <strong>Surjective:</strong> For any y ∈ ℝ, x = (y+7)/3 gives f(x) = y ✓<br><br>
+                            <strong>f⁻¹(x)</strong> = (x + 7)/3
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">4</span>Prove that the composition of two bijective functions is bijective.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Show g ∘ f is injective and surjective separately, using that f and g are each bijective.</div>
+                        <div class="question-answer">
+                            Let f: A→B and g: B→C be bijective.<br><br>
+                            <strong>Injective:</strong> (g∘f)(a) = (g∘f)(b)<br>
+                            ⟹ g(f(a)) = g(f(b))<br>
+                            ⟹ f(a) = f(b) [g injective]<br>
+                            ⟹ a = b [f injective] ✓<br><br>
+                            <strong>Surjective:</strong> For c ∈ C,<br>
+                            ∃b ∈ B: g(b) = c [g surjective]<br>
+                            ∃a ∈ A: f(a) = b [f surjective]<br>
+                            So (g∘f)(a) = g(f(a)) = g(b) = c ✓
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-toggle-on"></i> Boolean Algebra Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>Simplify: F = AB + AB' + A'B</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use: X + X' = 1 and distributive law.</div>
+                        <div class="question-answer">
+                            F = AB + AB' + A'B<br>
+                            = A(B + B') + A'B<br>
+                            = A(1) + A'B<br>
+                            = A + A'B<br>
+                            = A + B (by absorption: X + X'Y = X + Y)<br>
+                            <strong>F = A + B</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">2</span>Use K-map to simplify: F(A,B,C) = Σm(0,1,2,5,6,7)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Draw 3-variable K-map, mark 1s at positions 0,1,2,5,6,7, group in powers of 2.</div>
+                        <div class="question-answer">
+                            K-map groups:<br>
+                            • m0, m1 → A'B'<br>
+                            • m5, m7 → AC<br>
+                            • m2, m6 → BC'<br>
+                            (Or alternative grouping possible)<br>
+                            <strong>F = A'B' + AC + BC'</strong><br>
+                            (Verify: Alternative F = A'B' + B'C' + AB)
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>Convert to POS form: F = A'B + AB' + AB</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">First simplify to SOP, find minterms not included, convert those to maxterms.</div>
+                        <div class="question-answer">
+                            F = A'B + AB' + AB<br>
+                            = A'B + A(B' + B)<br>
+                            = A'B + A<br>
+                            = A + B<br><br>
+                            SOP minterms: m1, m2, m3 (where F=1)<br>
+                            Missing: m0 (A'B')<br>
+                            POS: F = M0 = <strong>(A + B)</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">4</span>Use K-map to simplify: F(A,B,C,D) = Σm(0,1,2,4,5,6,8,9,12,13,14)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Draw a 4-variable K-map (4×4 grid). Use Gray code ordering. Group in powers of 2 (1,2,4,8).</div>
+                        <div class="question-answer">
+                            <strong>4-Variable K-map:</strong><br>
+                            Place 1s at positions 0,1,2,4,5,6,8,9,12,13,14<br><br>
+                            <strong>Groups identified:</strong><br>
+                            • Group 1: m0,m1,m4,m5,m8,m9,m12,m13 → C' (8-cell group)<br>
+                            • Group 2: m0,m2,m4,m6 → B'D' (4-cell group)<br><br>
+                            <strong>Simplified: F = C' + B'D'</strong><br><br>
+                            <em>Alternative groupings may give equivalent results.</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">5</span>Simplify using Boolean laws: F = (A + B)(A + B')(A' + B)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use X·X' = 0 and X + X' = 1. Work step by step.</div>
+                        <div class="question-answer">
+                            F = (A + B)(A + B')(A' + B)<br><br>
+                            <strong>Step 1:</strong> Multiply first two terms<br>
+                            (A + B)(A + B') = A + BB' = A + 0 = A<br><br>
+                            <strong>Step 2:</strong> Multiply result with third term<br>
+                            A(A' + B) = AA' + AB = 0 + AB = AB<br><br>
+                            <strong>F = AB</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-chart-line"></i> Growth of Functions Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>Arrange in increasing order of growth: n², 2ⁿ, n log n, n!, log n, n</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Compare limits: if lim(f/g) = 0, then f grows slower than g.</div>
+                        <div class="question-answer">
+                            <strong>Order (slowest to fastest growth):</strong><br><br>
+                            log n < n < n log n < n² < 2ⁿ < n!<br><br>
+                            <strong>Hierarchy:</strong><br>
+                            • Logarithmic: O(log n)<br>
+                            • Linear: O(n)<br>
+                            • Linearithmic: O(n log n)<br>
+                            • Polynomial: O(n²)<br>
+                            • Exponential: O(2ⁿ)<br>
+                            • Factorial: O(n!)
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">2</span>Prove that 3n² + 5n + 2 = O(n²)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Find constants c and n₀ such that f(n) ≤ c·g(n) for all n ≥ n₀.</div>
+                        <div class="question-answer">
+                            <strong>Need to show:</strong> 3n² + 5n + 2 ≤ c·n² for some c, n₀<br><br>
+                            For n ≥ 1:<br>
+                            • 5n ≤ 5n²<br>
+                            • 2 ≤ 2n²<br><br>
+                            So: 3n² + 5n + 2 ≤ 3n² + 5n² + 2n² = 10n²<br><br>
+                            <strong>With c = 10 and n₀ = 1:</strong><br>
+                            3n² + 5n + 2 ≤ 10n² for all n ≥ 1<br><br>
+                            <strong>Therefore, 3n² + 5n + 2 = O(n²) ✓</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>Is 2ⁿ⁺¹ = O(2ⁿ)? Justify.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Simplify 2ⁿ⁺¹ as 2·2ⁿ. Can you find a constant c?</div>
+                        <div class="question-answer">
+                            2ⁿ⁺¹ = 2 · 2ⁿ<br><br>
+                            <strong>Check if 2·2ⁿ ≤ c·2ⁿ for some c:</strong><br>
+                            Choose c = 2<br><br>
+                            2·2ⁿ ≤ 2·2ⁿ ✓ for all n ≥ 1<br><br>
+                            <strong>Yes, 2ⁿ⁺¹ = O(2ⁿ)</strong><br><br>
+                            <em>Note: Constant factors don't change Big-O complexity!</em>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-graduation-cap"></i> AKTU Exam Important Questions</h3>
+                    
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">1</span>[AKTU 2023] Simplify using K-map: F(A,B,C,D) = Σm(0,1,2,5,7,8,9,10,13,15)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Draw 4-variable K-map, place 1s in given minterms, group in powers of 2.</div>
+                        <div class="question-answer">
+                            <strong>4-Variable K-Map:</strong><br>
+<pre style="font-family: monospace; font-size: 11px;">
+        CD
+       00 01 11 10
+    ┌───┬───┬───┬───┐
+ 00 │ 1 │ 1 │   │ 1 │  ← m0,m1,m2
+AB  ├───┼───┼───┼───┤
+ 01 │   │ 1 │ 1 │   │  ← m5,m7
+    ├───┼───┼───┼───┤
+ 11 │   │ 1 │ 1 │   │  ← m13,m15
+    ├───┼───┼───┼───┤
+ 10 │ 1 │ 1 │   │ 1 │  ← m8,m9,m10
+    └───┴───┴───┴───┘
+</pre>
+                            <strong>Groups:</strong><br>
+                            • Group 1 (m0,m1,m8,m9): A'C'D + AC'D = <strong>C'D</strong> [vertical pair × 2]<br>
+                            • Actually, let's regroup:<br>
+                            • m0,m2,m8,m10: <strong>B'D'</strong> (4-cell corner quad)<br>
+                            • m1,m9: <strong>B'C'D</strong> (2-cell vertical)<br>
+                            • m5,m7,m13,m15: <strong>BD</strong> (4-cell quad)<br><br>
+                            <strong>F = B'D' + B'C'D + BD</strong><br>
+                            Or simplified: <strong>F = B'D' + BD + B'C'D</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">2</span>[AKTU 2022] Prove the following Boolean identity: (A + B)(A + C) = A + BC</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use distribution, then simplify using A + AB = A.</div>
+                        <div class="question-answer">
+                            <strong>Proof:</strong><br><br>
+                            <strong>LHS:</strong> (A + B)(A + C)<br><br>
+                            <strong>Step 1:</strong> Apply distribution<br>
+                            = A·A + A·C + B·A + B·C<br><br>
+                            <strong>Step 2:</strong> Apply A·A = A (Idempotent)<br>
+                            = A + AC + AB + BC<br><br>
+                            <strong>Step 3:</strong> Factor out A<br>
+                            = A(1 + C + B) + BC<br><br>
+                            <strong>Step 4:</strong> Apply 1 + X = 1<br>
+                            = A·1 + BC<br><br>
+                            <strong>Step 5:</strong> Apply A·1 = A<br>
+                            = A + BC<br><br>
+                            <strong>LHS = RHS ∎</strong><br><br>
+                            <em>This is the "Absorption Law" extended form.</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">3</span>[AKTU 2021] Define Big-O, Big-Ω, and Big-Θ notations. Prove that f(n) = 3n² + 2n + 1 = Θ(n²).</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">For Θ, prove both O(n²) AND Ω(n²) separately.</div>
+                        <div class="question-answer">
+                            <strong>Definitions:</strong><br><br>
+                            <strong>Big-O (Upper Bound):</strong><br>
+                            f(n) = O(g(n)) if ∃c>0, n₀ such that f(n) ≤ c·g(n) ∀n ≥ n₀<br><br>
+                            <strong>Big-Ω (Lower Bound):</strong><br>
+                            f(n) = Ω(g(n)) if ∃c>0, n₀ such that f(n) ≥ c·g(n) ∀n ≥ n₀<br><br>
+                            <strong>Big-Θ (Tight Bound):</strong><br>
+                            f(n) = Θ(g(n)) if f(n) = O(g(n)) AND f(n) = Ω(g(n))<br><br>
+                            <hr style="margin: 15px 0;"><br>
+                            <strong>Proof: 3n² + 2n + 1 = Θ(n²)</strong><br><br>
+                            <strong>Part 1: Show O(n²)</strong><br>
+                            For n ≥ 1: 2n ≤ 2n², 1 ≤ n²<br>
+                            So: 3n² + 2n + 1 ≤ 3n² + 2n² + n² = 6n²<br>
+                            With c₁ = 6, n₀ = 1: f(n) = O(n²) ✓<br><br>
+                            <strong>Part 2: Show Ω(n²)</strong><br>
+                            For n ≥ 1: 3n² + 2n + 1 ≥ 3n²<br>
+                            With c₂ = 3, n₀ = 1: f(n) = Ω(n²) ✓<br><br>
+                            <strong>Since f(n) = O(n²) and f(n) = Ω(n²):</strong><br>
+                            <strong>f(n) = Θ(n²) ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">4</span>[AKTU 2020] If f: A → B and g: B → C are both bijections, prove that g ∘ f is also a bijection.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Bijection = injective + surjective. Prove both properties for composition.</div>
+                        <div class="question-answer">
+                            <strong>Given:</strong> f: A → B and g: B → C are bijections.<br>
+                            <strong>To Prove:</strong> g ∘ f: A → C is a bijection.<br><br>
+                            <strong>Part 1: g ∘ f is injective (one-to-one)</strong><br>
+                            Let (g ∘ f)(a₁) = (g ∘ f)(a₂)<br>
+                            ⟹ g(f(a₁)) = g(f(a₂))<br>
+                            ⟹ f(a₁) = f(a₂) (since g is injective)<br>
+                            ⟹ a₁ = a₂ (since f is injective)<br>
+                            ∴ g ∘ f is injective ✓<br><br>
+                            <strong>Part 2: g ∘ f is surjective (onto)</strong><br>
+                            Let c ∈ C. We need a ∈ A such that (g ∘ f)(a) = c.<br>
+                            Since g is surjective, ∃b ∈ B with g(b) = c<br>
+                            Since f is surjective, ∃a ∈ A with f(a) = b<br>
+                            So (g ∘ f)(a) = g(f(a)) = g(b) = c ✓<br><br>
+                            <strong>Since g ∘ f is both injective and surjective:</strong><br>
+                            <strong>g ∘ f is a bijection ∎</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 3 QUESTIONS -->
+            <div class="chapter-content" id="unit3">
+                <div class="question-category">
+                    <h3><i class="fas fa-brain"></i> Propositional Logic Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>Construct a truth table for: (P → Q) ∧ (Q → R) → (P → R)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">This is the Hypothetical Syllogism. Build truth table with 8 rows (2³ combinations).</div>
+                        <div class="question-answer">
+                            This formula is a <strong>TAUTOLOGY</strong>!<br>
+                            All 8 rows evaluate to TRUE.<br><br>
+                            This proves: If P→Q and Q→R, then P→R<br>
+                            (Hypothetical Syllogism is valid)
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">2</span>Show that P → Q ≡ ¬P ∨ Q using truth tables.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Build a 4-row truth table for both expressions.</div>
+                        <div class="question-answer">
+                            <table style="margin: 10px 0; border-collapse: collapse;">
+                                <tr><th style="padding: 5px; border: 1px solid #ddd;">P</th><th style="padding: 5px; border: 1px solid #ddd;">Q</th><th style="padding: 5px; border: 1px solid #ddd;">P→Q</th><th style="padding: 5px; border: 1px solid #ddd;">¬P∨Q</th></tr>
+                                <tr><td style="padding: 5px; border: 1px solid #ddd;">T</td><td style="padding: 5px; border: 1px solid #ddd;">T</td><td style="padding: 5px; border: 1px solid #ddd;">T</td><td style="padding: 5px; border: 1px solid #ddd;">T</td></tr>
+                                <tr><td style="padding: 5px; border: 1px solid #ddd;">T</td><td style="padding: 5px; border: 1px solid #ddd;">F</td><td style="padding: 5px; border: 1px solid #ddd;">F</td><td style="padding: 5px; border: 1px solid #ddd;">F</td></tr>
+                                <tr><td style="padding: 5px; border: 1px solid #ddd;">F</td><td style="padding: 5px; border: 1px solid #ddd;">T</td><td style="padding: 5px; border: 1px solid #ddd;">T</td><td style="padding: 5px; border: 1px solid #ddd;">T</td></tr>
+                                <tr><td style="padding: 5px; border: 1px solid #ddd;">F</td><td style="padding: 5px; border: 1px solid #ddd;">F</td><td style="padding: 5px; border: 1px solid #ddd;">T</td><td style="padding: 5px; border: 1px solid #ddd;">T</td></tr>
+                            </table>
+                            Columns 3 and 4 are identical ⟹ <strong>P→Q ≡ ¬P∨Q</strong> ✓
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>Using inference rules, prove: P→Q, Q→R, P ⊢ R</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use Modus Ponens twice, or use Hypothetical Syllogism first.</div>
+                        <div class="question-answer">
+                            1. P→Q (premise)<br>
+                            2. Q→R (premise)<br>
+                            3. P (premise)<br>
+                            4. Q (Modus Ponens: 1, 3)<br>
+                            5. <strong>R</strong> (Modus Ponens: 2, 4) ✓
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">4</span>Prove by contradiction: √2 is irrational.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Assume √2 = p/q in lowest terms, square both sides, derive contradiction.</div>
+                        <div class="question-answer">
+                            Assume √2 = p/q where gcd(p,q) = 1<br>
+                            Then 2 = p²/q² ⟹ 2q² = p²<br>
+                            So p² is even ⟹ p is even<br>
+                            Let p = 2k, then 2q² = 4k²<br>
+                            So q² = 2k² ⟹ q is even<br>
+                            <strong>Contradiction:</strong> Both p,q even means gcd(p,q) ≥ 2<br>
+                            Therefore √2 is irrational ✓
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-code"></i> Predicate Logic Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>Express in predicate logic: "Every student who studies hard passes the exam."</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use predicates: S(x) = "x is a student", H(x) = "x studies hard", P(x) = "x passes"</div>
+                        <div class="question-answer">
+                            <strong>∀x [(S(x) ∧ H(x)) → P(x)]</strong><br><br>
+                            "For all x, if x is a student AND x studies hard, then x passes."
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">2</span>Negate: ∀x ∃y (P(x) → Q(x,y))</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Push negation inward: ¬∀ becomes ∃, ¬∃ becomes ∀, ¬(P→Q) = P ∧ ¬Q</div>
+                        <div class="question-answer">
+                            ¬[∀x ∃y (P(x) → Q(x,y))]<br>
+                            = ∃x ¬[∃y (P(x) → Q(x,y))]<br>
+                            = ∃x ∀y ¬(P(x) → Q(x,y))<br>
+                            = ∃x ∀y ¬(¬P(x) ∨ Q(x,y))<br>
+                            = <strong>∃x ∀y (P(x) ∧ ¬Q(x,y))</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">3</span>Prove using resolution: {P ∨ Q, ¬P ∨ R, ¬Q ∨ R} ⊢ R</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Resolution: from (A ∨ B) and (¬A ∨ C), derive (B ∨ C). Apply repeatedly.</div>
+                        <div class="question-answer">
+                            <strong>Given clauses:</strong><br>
+                            1. P ∨ Q<br>
+                            2. ¬P ∨ R<br>
+                            3. ¬Q ∨ R<br><br>
+                            <strong>Resolution steps:</strong><br>
+                            4. Resolve (1) and (2) on P: Q ∨ R<br>
+                            5. Resolve (4) and (3) on Q: R ∨ R = R<br><br>
+                            <strong>Therefore R is derived ✓</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-list-check"></i> Inference & Proof Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>Identify the inference rule: From (P → Q) and (Q → R), derive (P → R)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">This chains two implications together.</div>
+                        <div class="question-answer">
+                            This is <strong>Hypothetical Syllogism</strong><br><br>
+                            <strong>Form:</strong><br>
+                            P → Q<br>
+                            Q → R<br>
+                            ∴ P → R<br><br>
+                            <em>"If P then Q, and if Q then R, therefore if P then R"</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">2</span>Prove: P → Q, ¬Q ⊢ ¬P (derive ¬P using inference rules)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">This is Modus Tollens - denying the consequent.</div>
+                        <div class="question-answer">
+                            <strong>Proof:</strong><br>
+                            1. P → Q (Premise)<br>
+                            2. ¬Q (Premise)<br>
+                            3. ¬P (Modus Tollens: 1, 2) ✓<br><br>
+                            <strong>Modus Tollens:</strong><br>
+                            From P → Q and ¬Q, conclude ¬P<br><br>
+                            <em>Contrapositive: P → Q ≡ ¬Q → ¬P</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>Is this argument valid? "If it rains, the ground is wet. The ground is wet. Therefore, it rained."</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Let R = "it rains", W = "ground is wet". Check if (R→W, W) ⊢ R is valid.</div>
+                        <div class="question-answer">
+                            <strong>Symbolically:</strong><br>
+                            Premise 1: R → W<br>
+                            Premise 2: W<br>
+                            Conclusion: R<br><br>
+                            <strong>This is INVALID!</strong><br><br>
+                            This is the <strong>Fallacy of Affirming the Consequent</strong><br><br>
+                            <strong>Counterexample:</strong> Ground could be wet from a sprinkler (W true, R false), and R → W still holds.<br><br>
+                            <em>Valid form would be Modus Ponens: R→W, R ⊢ W</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">4</span>Prove by mathematical induction: 1 + 2 + 3 + ... + n = n(n+1)/2</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Base case: n=1. Inductive step: assume P(k), prove P(k+1).</div>
+                        <div class="question-answer">
+                            <strong>Base Case (n=1):</strong><br>
+                            LHS = 1<br>
+                            RHS = 1(1+1)/2 = 1 ✓<br><br>
+                            <strong>Inductive Hypothesis:</strong><br>
+                            Assume true for n = k:<br>
+                            1 + 2 + ... + k = k(k+1)/2<br><br>
+                            <strong>Inductive Step (prove for k+1):</strong><br>
+                            1 + 2 + ... + k + (k+1)<br>
+                            = k(k+1)/2 + (k+1) [by hypothesis]<br>
+                            = (k+1)[k/2 + 1]<br>
+                            = (k+1)(k+2)/2<br>
+                            = (k+1)((k+1)+1)/2 ✓<br><br>
+                            <strong>By PMI, true for all n ≥ 1 ✓</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">5</span>Convert to CNF (Conjunctive Normal Form): (P → Q) ∧ (Q → R)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">First convert implications: P→Q ≡ ¬P∨Q. Then it's already in CNF.</div>
+                        <div class="question-answer">
+                            <strong>Step 1:</strong> Eliminate implications<br>
+                            P → Q ≡ ¬P ∨ Q<br>
+                            Q → R ≡ ¬Q ∨ R<br><br>
+                            <strong>Step 2:</strong> Write in CNF<br>
+                            (¬P ∨ Q) ∧ (¬Q ∨ R)<br><br>
+                            <strong>CNF: (¬P ∨ Q) ∧ (¬Q ∨ R)</strong><br><br>
+                            <em>Already a conjunction of disjunctions (clauses)!</em>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-graduation-cap"></i> AKTU Exam Important Questions</h3>
+                    
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">1</span>[AKTU 2023] Prove by mathematical induction that n³ + 2n is divisible by 3 for all n ≥ 1.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">P(n): 3 | (n³ + 2n). Show P(1), then prove P(k) → P(k+1).</div>
+                        <div class="question-answer">
+                            <strong>Statement P(n):</strong> 3 divides (n³ + 2n)<br><br>
+                            <strong>Base Case (n = 1):</strong><br>
+                            n³ + 2n = 1 + 2 = 3<br>
+                            3 | 3 ✓<br><br>
+                            <strong>Inductive Hypothesis:</strong><br>
+                            Assume P(k) is true: 3 | (k³ + 2k)<br>
+                            i.e., k³ + 2k = 3m for some integer m<br><br>
+                            <strong>Inductive Step - prove P(k+1):</strong><br>
+                            (k+1)³ + 2(k+1)<br>
+                            = k³ + 3k² + 3k + 1 + 2k + 2<br>
+                            = (k³ + 2k) + 3k² + 3k + 3<br>
+                            = (k³ + 2k) + 3(k² + k + 1)<br>
+                            = 3m + 3(k² + k + 1) [by IH]<br>
+                            = 3(m + k² + k + 1)<br><br>
+                            This is divisible by 3 ✓<br><br>
+                            <strong>By PMI, n³ + 2n is divisible by 3 for all n ≥ 1 ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">2</span>[AKTU 2022] Test the validity of the argument using rules of inference: "If it is hot then I will go swimming. It is not the case that I will go swimming. Therefore, it is not hot."</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Let H = "It is hot", S = "I go swimming". Use Modus Tollens.</div>
+                        <div class="question-answer">
+                            <strong>Symbolize:</strong><br>
+                            H: "It is hot"<br>
+                            S: "I will go swimming"<br><br>
+                            <strong>Premises:</strong><br>
+                            1. H → S (If hot, then swimming)<br>
+                            2. ¬S (Not swimming)<br><br>
+                            <strong>Conclusion:</strong> ¬H (Not hot)<br><br>
+                            <strong>Proof:</strong><br>
+                            1. H → S (Premise)<br>
+                            2. ¬S (Premise)<br>
+                            3. ¬H (Modus Tollens: 1, 2)<br><br>
+                            <strong>The argument is VALID!</strong><br><br>
+                            <strong>Modus Tollens:</strong><br>
+                            From P → Q and ¬Q, conclude ¬P<br>
+                            (Contrapositive reasoning)
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">3</span>[AKTU 2021] Convert to Prenex Normal Form: ∀x P(x) → ∃y Q(y)</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">First convert → to ∨, then move quantifiers out using proper rules.</div>
+                        <div class="question-answer">
+                            <strong>Step 1:</strong> Eliminate implication<br>
+                            ∀x P(x) → ∃y Q(y)<br>
+                            ≡ ¬(∀x P(x)) ∨ ∃y Q(y)<br><br>
+                            <strong>Step 2:</strong> Push negation inside<br>
+                            ≡ ∃x ¬P(x) ∨ ∃y Q(y)<br><br>
+                            <strong>Step 3:</strong> Rename to avoid variable clash<br>
+                            (Already different: x and y)<br><br>
+                            <strong>Step 4:</strong> Move quantifiers to front<br>
+                            ≡ ∃x ∃y (¬P(x) ∨ Q(y))<br><br>
+                            <strong>Prenex Normal Form:</strong><br>
+                            <strong>∃x ∃y (¬P(x) ∨ Q(y))</strong><br><br>
+                            <em>Quantifier prefix: ∃x ∃y</em><br>
+                            <em>Matrix: ¬P(x) ∨ Q(y)</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">4</span>[AKTU 2020] Show that (P ∧ Q) → R ≡ P → (Q → R) using truth table or logical equivalences.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Convert both to disjunctive form and compare.</div>
+                        <div class="question-answer">
+                            <strong>Method: Using Logical Equivalences</strong><br><br>
+                            <strong>LHS:</strong> (P ∧ Q) → R<br>
+                            ≡ ¬(P ∧ Q) ∨ R [Implication]<br>
+                            ≡ (¬P ∨ ¬Q) ∨ R [De Morgan]<br>
+                            ≡ ¬P ∨ ¬Q ∨ R [Associativity]<br><br>
+                            <strong>RHS:</strong> P → (Q → R)<br>
+                            ≡ P → (¬Q ∨ R) [Implication for Q→R]<br>
+                            ≡ ¬P ∨ (¬Q ∨ R) [Implication for outer]<br>
+                            ≡ ¬P ∨ ¬Q ∨ R [Associativity]<br><br>
+                            <strong>LHS = RHS ∎</strong><br><br>
+                            <em>This is called "Exportation" or "Currying" law.</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 4 QUESTIONS -->
+            <div class="chapter-content" id="unit4">
+                <div class="question-category">
+                    <h3><i class="fas fa-cubes"></i> Groups Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>Prove that (ℤ₆, +₆) is a group. Is it cyclic?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Check 4 group properties. For cyclic, find if any element generates all of ℤ₆.</div>
+                        <div class="question-answer">
+                            <strong>Closure:</strong> a +₆ b ∈ {0,1,2,3,4,5} ✓<br>
+                            <strong>Associativity:</strong> Inherited from ℤ ✓<br>
+                            <strong>Identity:</strong> 0 (a +₆ 0 = a) ✓<br>
+                            <strong>Inverse:</strong> Inverse of a is (6-a) mod 6 ✓<br><br>
+                            <strong>Cyclic:</strong> Yes! Generator = 1<br>
+                            ⟨1⟩ = {1, 2, 3, 4, 5, 0} = ℤ₆
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">2</span>Find all subgroups of (ℤ₁₂, +₁₂).</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">By Lagrange, subgroup orders must divide 12. Subgroups are ⟨d⟩ for divisors d of 12.</div>
+                        <div class="question-answer">
+                            Divisors of 12: 1, 2, 3, 4, 6, 12<br><br>
+                            <strong>Subgroups:</strong><br>
+                            • {0} (order 1)<br>
+                            • {0, 6} (order 2)<br>
+                            • {0, 4, 8} (order 3)<br>
+                            • {0, 3, 6, 9} (order 4)<br>
+                            • {0, 2, 4, 6, 8, 10} (order 6)<br>
+                            • ℤ₁₂ (order 12)
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>In group G with |G| = 35, what are the possible orders of elements?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">By Lagrange, order of element divides |G|. Find divisors of 35.</div>
+                        <div class="question-answer">
+                            35 = 5 × 7<br>
+                            Divisors of 35: 1, 5, 7, 35<br><br>
+                            <strong>Possible orders:</strong> 1, 5, 7, 35<br><br>
+                            Note: Order 1 is only for identity element.
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">4</span>Prove that every group of prime order p is cyclic.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use Lagrange: order of element divides p. What divides a prime?</div>
+                        <div class="question-answer">
+                            Let |G| = p (prime) and a ∈ G, a ≠ e.<br>
+                            By Lagrange, |⟨a⟩| divides |G| = p.<br>
+                            Since p is prime, divisors are 1 and p.<br>
+                            Since a ≠ e, |⟨a⟩| ≠ 1.<br>
+                            Therefore |⟨a⟩| = p = |G|.<br>
+                            So ⟨a⟩ = G, meaning <strong>G is cyclic</strong> ✓
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-ring"></i> Rings & Fields Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>Is (ℤ₆, +, ×) an integral domain? Why or why not?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Check for zero divisors: a × b = 0 where both a,b ≠ 0.</div>
+                        <div class="question-answer">
+                            <strong>No, ℤ₆ is NOT an integral domain.</strong><br><br>
+                            Zero divisors exist:<br>
+                            2 × 3 = 6 ≡ 0 (mod 6)<br>
+                            But 2 ≠ 0 and 3 ≠ 0<br><br>
+                            Integral domains have no zero divisors.
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">2</span>Prove that ℤₚ is a field when p is prime.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Need to show every non-zero element has multiplicative inverse. Use gcd(a,p) = 1 when a ≢ 0.</div>
+                        <div class="question-answer">
+                            ℤₚ is a commutative ring with unity (1).<br><br>
+                            For field: need multiplicative inverses.<br><br>
+                            For a ∈ ℤₚ, a ≠ 0:<br>
+                            Since p is prime, gcd(a, p) = 1.<br>
+                            By Bezout: ∃x, y: ax + py = 1<br>
+                            So ax ≡ 1 (mod p)<br>
+                            Thus x is multiplicative inverse of a ✓<br><br>
+                            <strong>ℤₚ is a field when p is prime.</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-diagram-project"></i> Cosets & Homomorphisms Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>In G = (ℤ₁₂, +), let H = {0, 4, 8}. Find all left cosets of H.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Left coset: a + H = {a + h : h ∈ H}. Find distinct cosets.</div>
+                        <div class="question-answer">
+                            H = {0, 4, 8}<br><br>
+                            <strong>Left cosets a + H:</strong><br>
+                            • 0 + H = {0, 4, 8}<br>
+                            • 1 + H = {1, 5, 9}<br>
+                            • 2 + H = {2, 6, 10}<br>
+                            • 3 + H = {3, 7, 11}<br><br>
+                            <strong>4 distinct cosets</strong> (as expected: |G|/|H| = 12/3 = 4)<br><br>
+                            Note: These cosets partition ℤ₁₂!
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">2</span>Is f: (ℤ, +) → (ℤ, +) defined by f(x) = 2x a group homomorphism? Is it isomorphism?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Check f(a + b) = f(a) + f(b). For isomorphism, check bijection.</div>
+                        <div class="question-answer">
+                            <strong>Homomorphism check:</strong><br>
+                            f(a + b) = 2(a + b) = 2a + 2b = f(a) + f(b) ✓<br><br>
+                            <strong>Yes, it's a homomorphism!</strong><br><br>
+                            <strong>Isomorphism check:</strong><br>
+                            • Injective: f(a) = f(b) ⟹ 2a = 2b ⟹ a = b ✓<br>
+                            • Surjective: f(ℤ) = 2ℤ (even integers) ≠ ℤ ✗<br><br>
+                            <strong>Not an isomorphism</strong> (not onto).<br>
+                            It's a <em>monomorphism</em> (injective homomorphism).
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">3</span>For homomorphism f: G → H, prove that Kernel of f is a subgroup of G.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Ker(f) = {g ∈ G : f(g) = eH}. Check closure, identity, inverse.</div>
+                        <div class="question-answer">
+                            <strong>Let K = Ker(f) = {g ∈ G : f(g) = eH}</strong><br><br>
+                            <strong>1. Identity:</strong><br>
+                            f(eG) = eH (homomorphism property)<br>
+                            So eG ∈ K ✓<br><br>
+                            <strong>2. Closure:</strong><br>
+                            Let a, b ∈ K, so f(a) = f(b) = eH<br>
+                            f(ab) = f(a)f(b) = eH · eH = eH<br>
+                            So ab ∈ K ✓<br><br>
+                            <strong>3. Inverse:</strong><br>
+                            Let a ∈ K, so f(a) = eH<br>
+                            f(a⁻¹) = [f(a)]⁻¹ = eH⁻¹ = eH<br>
+                            So a⁻¹ ∈ K ✓<br><br>
+                            <strong>Therefore Ker(f) is a subgroup of G ✓</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">4</span>State and explain Lagrange's Theorem.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Relates order of subgroup to order of group.</div>
+                        <div class="question-answer">
+                            <strong>Lagrange's Theorem:</strong><br>
+                            If H is a subgroup of finite group G, then |H| divides |G|.<br><br>
+                            <strong>More precisely:</strong><br>
+                            |G| = |H| × [G:H]<br>
+                            where [G:H] = number of distinct cosets (index)<br><br>
+                            <strong>Important Consequences:</strong><br>
+                            1. Order of any element divides |G|<br>
+                            2. aᴵᴳᴵ = e for all a ∈ G<br>
+                            3. Groups of prime order have no proper subgroups<br>
+                            4. Groups of prime order are cyclic
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">5</span>Find the index [S₃ : A₃] where S₃ is the symmetric group and A₃ is the alternating group.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">|S₃| = 3! = 6, A₃ has even permutations only. Use Lagrange.</div>
+                        <div class="question-answer">
+                            <strong>S₃</strong> = all permutations of {1,2,3}<br>
+                            |S₃| = 3! = 6<br><br>
+                            <strong>A₃</strong> = even permutations (alternating group)<br>
+                            A₃ = {e, (123), (132)}<br>
+                            |A₃| = 3<br><br>
+                            <strong>Index [S₃ : A₃] = |S₃| / |A₃| = 6/3 = 2</strong><br><br>
+                            <em>The two cosets are A₃ (even) and the set of odd permutations.</em>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-graduation-cap"></i> AKTU Exam Important Questions</h3>
+                    
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">1</span>[AKTU 2023] Prove that every group of prime order p is cyclic.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use Lagrange's theorem: order of element divides |G|. What divides prime?</div>
+                        <div class="question-answer">
+                            <strong>Proof:</strong><br><br>
+                            Let G be a group with |G| = p (prime).<br>
+                            Let a ∈ G, a ≠ e (identity).<br><br>
+                            <strong>Step 1:</strong> Consider subgroup ⟨a⟩ generated by a.<br>
+                            |⟨a⟩| = order of a = o(a)<br><br>
+                            <strong>Step 2:</strong> By Lagrange's Theorem,<br>
+                            |⟨a⟩| divides |G| = p<br><br>
+                            <strong>Step 3:</strong> Since p is prime, its only divisors are 1 and p.<br>
+                            So o(a) = 1 or o(a) = p<br><br>
+                            <strong>Step 4:</strong> Since a ≠ e, we have o(a) ≠ 1.<br>
+                            Therefore o(a) = p.<br><br>
+                            <strong>Step 5:</strong> |⟨a⟩| = p = |G|<br>
+                            So ⟨a⟩ = G<br><br>
+                            <strong>G is generated by a, so G is cyclic! ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">2</span>[AKTU 2022] Show that (ℤ, +) and (2ℤ, +) are isomorphic groups where 2ℤ = {even integers}.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Define f: ℤ → 2ℤ by f(n) = 2n. Check homomorphism and bijection.</div>
+                        <div class="question-answer">
+                            <strong>Define:</strong> f: ℤ → 2ℤ by f(n) = 2n<br><br>
+                            <strong>1. Homomorphism:</strong><br>
+                            f(a + b) = 2(a + b) = 2a + 2b = f(a) + f(b) ✓<br><br>
+                            <strong>2. Injective (one-to-one):</strong><br>
+                            f(a) = f(b) ⟹ 2a = 2b ⟹ a = b ✓<br><br>
+                            <strong>3. Surjective (onto):</strong><br>
+                            For any 2k ∈ 2ℤ, ∃k ∈ ℤ with f(k) = 2k ✓<br><br>
+                            <strong>Since f is a bijective homomorphism:</strong><br>
+                            <strong>(ℤ, +) ≅ (2ℤ, +) ∎</strong><br><br>
+                            <em>Note: Both are infinite cyclic groups!</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">3</span>[AKTU 2021] Show that (ℤₙ, +, ×) is a ring. Under what condition is it an integral domain?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Check ring axioms. Integral domain needs no zero divisors.</div>
+                        <div class="question-answer">
+                            <strong>Ring Axioms for (ℤₙ, +, ×):</strong><br><br>
+                            <strong>1. (ℤₙ, +) is abelian group:</strong><br>
+                            • Closure: a +ₙ b ∈ ℤₙ ✓<br>
+                            • Associative: (a+b)+c = a+(b+c) mod n ✓<br>
+                            • Identity: 0 ✓<br>
+                            • Inverse: -a ≡ n-a (mod n) ✓<br>
+                            • Commutative: a+b = b+a ✓<br><br>
+                            <strong>2. (ℤₙ, ×) is monoid:</strong><br>
+                            • Closure: a ×ₙ b ∈ ℤₙ ✓<br>
+                            • Associative ✓<br>
+                            • Identity: 1 ✓<br><br>
+                            <strong>3. Distribution:</strong><br>
+                            a(b+c) = ab + ac (mod n) ✓<br><br>
+                            <strong>(ℤₙ, +, ×) is a commutative ring with unity!</strong><br><br>
+                            <hr style="margin: 15px 0;"><br>
+                            <strong>Integral Domain Condition:</strong><br>
+                            ℤₙ is an integral domain ⟺ n is PRIME<br><br>
+                            <strong>Why?</strong><br>
+                            If n = ab (composite), then a·b ≡ 0 (mod n)<br>
+                            So a and b are zero divisors.<br><br>
+                            If n = p (prime), no zero divisors exist.<br>
+                            (In fact, ℤₚ is a field!)
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">4</span>[AKTU 2020] Find all left cosets of H = {0, 3} in (ℤ₆, +).</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Left coset a + H = {a + h : h ∈ H}. Find all distinct cosets.</div>
+                        <div class="question-answer">
+                            <strong>H = {0, 3}</strong>, G = ℤ₆ = {0, 1, 2, 3, 4, 5}<br><br>
+                            <strong>Left cosets a + H:</strong><br><br>
+                            0 + H = {0+0, 0+3} = {0, 3} = H<br>
+                            1 + H = {1+0, 1+3} = {1, 4}<br>
+                            2 + H = {2+0, 2+3} = {2, 5}<br>
+                            3 + H = {3+0, 3+3} = {3, 0} = H (same as 0+H)<br>
+                            4 + H = {4+0, 4+3} = {4, 1} (same as 1+H)<br>
+                            5 + H = {5+0, 5+3} = {5, 2} (same as 2+H)<br><br>
+                            <strong>Distinct Cosets:</strong><br>
+                            • H = {0, 3}<br>
+                            • 1 + H = {1, 4}<br>
+                            • 2 + H = {2, 5}<br><br>
+                            <strong>Index [G:H] = |G|/|H| = 6/2 = 3 cosets ✓</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UNIT 5 QUESTIONS -->
+            <div class="chapter-content" id="unit5">
+                <div class="question-category">
+                    <h3><i class="fas fa-project-diagram"></i> Graph Theory Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>A graph has 6 vertices with degrees 2, 2, 3, 3, 4, 4. How many edges does it have?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use Handshaking Theorem: ∑deg(v) = 2|E|</div>
+                        <div class="question-answer">
+                            ∑deg(v) = 2 + 2 + 3 + 3 + 4 + 4 = 18<br>
+                            2|E| = 18<br>
+                            <strong>|E| = 9 edges</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">2</span>Does a simple graph with vertices of degrees {3, 3, 3, 3, 3} exist?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Check if degree sum is even. Also check if max degree < n.</div>
+                        <div class="question-answer">
+                            ∑deg(v) = 3 × 5 = 15 (ODD)<br><br>
+                            By Handshaking Theorem, sum of degrees must be even.<br>
+                            <strong>No such graph exists!</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>Does a graph with vertices of degrees {1, 2, 3, 4, 4} have an Euler path? Euler circuit?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Count odd-degree vertices. Euler circuit needs 0 odd, Euler path needs 0 or 2 odd.</div>
+                        <div class="question-answer">
+                            Odd degrees: 1, 3 → <strong>2 odd vertices</strong><br>
+                            Even degrees: 2, 4, 4 → 3 even vertices<br><br>
+                            <strong>Euler Circuit:</strong> No (need all even)<br>
+                            <strong>Euler Path:</strong> Yes! (exactly 2 odd vertices)<br>
+                            Path starts at degree-1 vertex, ends at degree-3 vertex.
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">4</span>Is K₃,₃ planar? Prove using Euler's formula corollary.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">K₃,₃ is bipartite (no triangles). Use e ≤ 2v - 4 for bipartite planar graphs.</div>
+                        <div class="question-answer">
+                            K₃,₃: v = 6, e = 9<br><br>
+                            For bipartite planar graph: e ≤ 2v - 4<br>
+                            Check: 9 ≤ 2(6) - 4 = 8?<br>
+                            9 ≤ 8 is <strong>FALSE</strong><br><br>
+                            <strong>K₃,₃ is NOT planar</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">5</span>A connected planar graph has 8 vertices and 12 edges. How many faces does it have?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use Euler's formula: v - e + f = 2</div>
+                        <div class="question-answer">
+                            v - e + f = 2<br>
+                            8 - 12 + f = 2<br>
+                            f = 2 + 12 - 8<br>
+                            <strong>f = 6 faces</strong> (including outer infinite face)
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">6</span>A tree has 7 vertices. How many edges? If we add one edge, how many cycles are created?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Tree with n vertices has n-1 edges. Adding an edge to a tree creates exactly one cycle.</div>
+                        <div class="question-answer">
+                            <strong>Edges in tree:</strong> n - 1 = 7 - 1 = <strong>6 edges</strong><br><br>
+                            <strong>Adding one edge:</strong> Creates exactly <strong>1 cycle</strong><br><br>
+                            (Adding any edge between existing vertices in a tree creates a unique cycle along the path between those vertices plus the new edge)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-calculator"></i> Combinatorics Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>How many ways can 5 people sit in a row? In a circle?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Row: n!. Circle: (n-1)! since rotations are same arrangement.</div>
+                        <div class="question-answer">
+                            <strong>In a row:</strong> 5! = 120 ways<br><br>
+                            <strong>In a circle:</strong> (5-1)! = 4! = 24 ways<br>
+                            (Circular permutations: fix one person, arrange others)
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">2</span>In how many ways can a committee of 3 be chosen from 10 people?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Order doesn't matter → Combination C(n,r)</div>
+                        <div class="question-answer">
+                            C(10, 3) = 10!/(3! × 7!)<br>
+                            = (10 × 9 × 8)/(3 × 2 × 1)<br>
+                            = 720/6<br>
+                            = <strong>120 ways</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>How many arrangements of MISSISSIPPI are there?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Permutation with repetition: n!/(n₁!n₂!...nₖ!) where nᵢ is count of each repeated item.</div>
+                        <div class="question-answer">
+                            MISSISSIPPI: 11 letters<br>
+                            M: 1, I: 4, S: 4, P: 2<br><br>
+                            Arrangements = 11!/(1! × 4! × 4! × 2!)<br>
+                            = 39916800/(1 × 24 × 24 × 2)<br>
+                            = 39916800/1152<br>
+                            = <strong>34,650 arrangements</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">4</span>Among 100 students, at least how many share the same birth month?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Pigeonhole Principle: ⌈n/k⌉ items in at least one container.</div>
+                        <div class="question-answer">
+                            n = 100 students, k = 12 months<br><br>
+                            By Generalized Pigeonhole:<br>
+                            At least ⌈100/12⌉ = ⌈8.33⌉ = <strong>9 students</strong><br><br>
+                            share the same birth month.
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">5</span>How many integers from 1 to 1000 are divisible by 3, 5, or 7?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use Inclusion-Exclusion with |A∪B∪C| = |A|+|B|+|C| - |A∩B| - |B∩C| - |A∩C| + |A∩B∩C|</div>
+                        <div class="question-answer">
+                            |A| = ⌊1000/3⌋ = 333 (div by 3)<br>
+                            |B| = ⌊1000/5⌋ = 200 (div by 5)<br>
+                            |C| = ⌊1000/7⌋ = 142 (div by 7)<br>
+                            |A∩B| = ⌊1000/15⌋ = 66 (div by 15)<br>
+                            |B∩C| = ⌊1000/35⌋ = 28 (div by 35)<br>
+                            |A∩C| = ⌊1000/21⌋ = 47 (div by 21)<br>
+                            |A∩B∩C| = ⌊1000/105⌋ = 9 (div by 105)<br><br>
+                            |A∪B∪C| = 333 + 200 + 142 - 66 - 28 - 47 + 9<br>
+                            = <strong>543</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-route"></i> Graph Properties & Isomorphism Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>What is the chromatic number of K₅ (complete graph on 5 vertices)?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">In complete graph, every vertex is adjacent to every other vertex.</div>
+                        <div class="question-answer">
+                            In K₅, every vertex is adjacent to all other 4 vertices.<br><br>
+                            No two vertices can share the same color.<br><br>
+                            <strong>χ(K₅) = 5</strong><br><br>
+                            <em>General formula: χ(Kₙ) = n</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">2</span>Find the chromatic number of K₃,₃ (complete bipartite graph).</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Bipartite graphs have vertices split into two sets with edges only between sets.</div>
+                        <div class="question-answer">
+                            K₃,₃ is bipartite: sets A and B, each with 3 vertices.<br><br>
+                            Edges only go between A and B, never within.<br><br>
+                            Color all of A with color 1<br>
+                            Color all of B with color 2<br><br>
+                            <strong>χ(K₃,₃) = 2</strong><br><br>
+                            <em>All bipartite graphs have chromatic number 2!</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">3</span>Graph G₁ has degree sequence {3,3,2,2} and G₂ has {3,2,2,1}. Can they be isomorphic?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Isomorphic graphs must have identical degree sequences.</div>
+                        <div class="question-answer">
+                            <strong>Degree sequences:</strong><br>
+                            G₁: {3, 3, 2, 2} → sum = 10<br>
+                            G₂: {3, 2, 2, 1} → sum = 8<br><br>
+                            Degree sequences are different!<br><br>
+                            <strong>No, they cannot be isomorphic.</strong><br><br>
+                            <em>Isomorphic graphs must have same degree sequence (sorted).</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">4</span>Does K₅ have a Hamiltonian circuit? Does it have an Euler circuit?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">K₅ is complete graph. What are degrees of all vertices?</div>
+                        <div class="question-answer">
+                            K₅ = complete graph on 5 vertices<br>
+                            Each vertex has degree 4 (even)<br><br>
+                            <strong>Hamiltonian Circuit:</strong> Yes ✓<br>
+                            Path: 1 → 2 → 3 → 4 → 5 → 1<br>
+                            (Visits each vertex exactly once)<br><br>
+                            <strong>Euler Circuit:</strong> Yes ✓<br>
+                            All vertices have even degree (4).<br>
+                            (Traverses each edge exactly once)<br><br>
+                            <em>Kₙ for n ≥ 3 always has both types of circuits!</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">5</span>What is the minimum number of edges in a connected graph with n vertices?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Think about the minimum connected structure - a tree.</div>
+                        <div class="question-answer">
+                            The minimum connected graph is a <strong>tree</strong>.<br><br>
+                            A tree with n vertices has exactly <strong>n - 1 edges</strong>.<br><br>
+                            <strong>Answer: n - 1 edges</strong><br><br>
+                            <em>Properties of trees:</em><br>
+                            • Connected with no cycles<br>
+                            • Removing any edge disconnects it<br>
+                            • Adding any edge creates exactly one cycle
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-shapes"></i> Recurrence Relations Questions</h3>
+                    
+                    <div class="question-card">
+                        <p class="question-text"><span class="question-number">1</span>Solve: aₙ = 2aₙ₋₁ with a₀ = 3</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">This is a first-order linear recurrence. Find the pattern: a₁, a₂, a₃...</div>
+                        <div class="question-answer">
+                            a₀ = 3<br>
+                            a₁ = 2·a₀ = 2·3 = 6<br>
+                            a₂ = 2·a₁ = 2·6 = 12<br>
+                            a₃ = 2·a₂ = 2·12 = 24<br><br>
+                            Pattern: aₙ = 3 · 2ⁿ<br><br>
+                            <strong>Solution: aₙ = 3 · 2ⁿ</strong><br><br>
+                            <em>Verification: a₃ = 3 · 2³ = 24 ✓</em>
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">2</span>Find the characteristic equation for: aₙ = 5aₙ₋₁ - 6aₙ₋₂</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Replace aₙ with rⁿ and divide by rⁿ⁻².</div>
+                        <div class="question-answer">
+                            Let aₙ = rⁿ be a solution.<br><br>
+                            rⁿ = 5rⁿ⁻¹ - 6rⁿ⁻²<br><br>
+                            Divide by rⁿ⁻²:<br>
+                            r² = 5r - 6<br><br>
+                            <strong>Characteristic equation: r² - 5r + 6 = 0</strong><br><br>
+                            Roots: (r - 2)(r - 3) = 0<br>
+                            r = 2, r = 3<br><br>
+                            General solution: aₙ = A·2ⁿ + B·3ⁿ
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">3</span>Solve the recurrence: aₙ = 3aₙ₋₁ - 2aₙ₋₂ with a₀ = 1, a₁ = 3</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Find characteristic equation, solve for roots, use initial conditions to find constants.</div>
+                        <div class="question-answer">
+                            <strong>Step 1: Characteristic equation</strong><br>
+                            r² - 3r + 2 = 0<br>
+                            (r - 1)(r - 2) = 0<br>
+                            Roots: r = 1, r = 2<br><br>
+                            <strong>Step 2: General solution</strong><br>
+                            aₙ = A·1ⁿ + B·2ⁿ = A + B·2ⁿ<br><br>
+                            <strong>Step 3: Apply initial conditions</strong><br>
+                            a₀ = 1: A + B = 1<br>
+                            a₁ = 3: A + 2B = 3<br><br>
+                            Solving: B = 2, A = -1<br><br>
+                            <strong>Solution: aₙ = 2ⁿ⁺¹ - 1</strong><br><br>
+                            <em>Verify: a₂ = 2³ - 1 = 7<br>
+                            Check: 3(3) - 2(1) = 7 ✓</em>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-category">
+                    <h3><i class="fas fa-graduation-cap"></i> AKTU Exam Important Questions</h3>
+                    
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">1</span>[AKTU 2023] Prove Euler's formula for connected planar graphs: v - e + f = 2</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Use induction on number of edges. Start with tree (no cycles).</div>
+                        <div class="question-answer">
+                            <strong>Proof by Induction on edges:</strong><br><br>
+                            <strong>Base Case:</strong> Tree with n vertices<br>
+                            v = n, e = n-1, f = 1 (outer face only)<br>
+                            v - e + f = n - (n-1) + 1 = 2 ✓<br><br>
+                            <strong>Inductive Step:</strong><br>
+                            Assume true for graph G with e edges.<br>
+                            Add one edge to create G' with e+1 edges.<br><br>
+                            Case 1: New edge connects existing vertices<br>
+                            • This creates a new cycle → new face<br>
+                            • v' = v, e' = e+1, f' = f+1<br>
+                            • v' - e' + f' = v - (e+1) + (f+1) = v - e + f = 2 ✓<br><br>
+                            Case 2: New edge connects to new vertex<br>
+                            • v' = v+1, e' = e+1, f' = f<br>
+                            • v' - e' + f' = (v+1) - (e+1) + f = v - e + f = 2 ✓<br><br>
+                            <strong>By induction, v - e + f = 2 for all connected planar graphs ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">2</span>[AKTU 2022] Prove using Euler's formula that K₅ is non-planar.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">For planar: e ≤ 3v - 6. Check if K₅ satisfies this.</div>
+                        <div class="question-answer">
+                            <strong>Proof by Contradiction:</strong><br><br>
+                            <strong>K₅ Properties:</strong><br>
+                            • v = 5 vertices<br>
+                            • e = C(5,2) = 10 edges<br><br>
+                            <strong>Assume K₅ is planar.</strong><br><br>
+                            <strong>Corollary of Euler's Formula:</strong><br>
+                            For simple, connected planar graph with v ≥ 3:<br>
+                            <strong>e ≤ 3v - 6</strong><br><br>
+                            <strong>Check for K₅:</strong><br>
+                            e ≤ 3v - 6<br>
+                            10 ≤ 3(5) - 6<br>
+                            10 ≤ 15 - 6<br>
+                            10 ≤ 9 ✗ FALSE!<br><br>
+                            <strong>Contradiction!</strong><br><br>
+                            <strong>Therefore, K₅ is NOT planar ∎</strong>
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">3</span>[AKTU 2021] Using Inclusion-Exclusion, find the number of onto functions from set A = {1,2,3} to set B = {a,b}.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Onto functions = Total functions - (functions missing a) - (functions missing b) + ...</div>
+                        <div class="question-answer">
+                            <strong>Given:</strong> |A| = 3, |B| = 2<br><br>
+                            <strong>Method 1: Inclusion-Exclusion</strong><br><br>
+                            Let Aᵢ = functions that do NOT map to element i.<br><br>
+                            |Aₐ| = 1³ = 1 (all map to b only)<br>
+                            |Aᵦ| = 1³ = 1 (all map to a only)<br>
+                            |Aₐ ∩ Aᵦ| = 0 (can't avoid both)<br><br>
+                            Onto = Total - |Aₐ ∪ Aᵦ|<br>
+                            = 2³ - (|Aₐ| + |Aᵦ| - |Aₐ ∩ Aᵦ|)<br>
+                            = 8 - (1 + 1 - 0)<br>
+                            = 8 - 2<br>
+                            = <strong>6 onto functions</strong><br><br>
+                            <strong>Verification:</strong><br>
+                            Each onto function: 2 elements go to one value, 1 to other.<br>
+                            Choose which element is alone: C(3,1) = 3<br>
+                            Choose which target it maps to: 2<br>
+                            Total = 3 × 2 = 6 ✓
+                        </div>
+                    </div>
+
+                    <div class="question-card hard">
+                        <p class="question-text"><span class="question-number">4</span>[AKTU 2020] Solve the recurrence relation: aₙ = 4aₙ₋₁ - 4aₙ₋₂ with a₀ = 1, a₁ = 4.</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">Characteristic equation has repeated root. Use form aₙ = (A + Bn)rⁿ.</div>
+                        <div class="question-answer">
+                            <strong>Step 1: Characteristic Equation</strong><br>
+                            r² - 4r + 4 = 0<br>
+                            (r - 2)² = 0<br>
+                            r = 2 (repeated root!)<br><br>
+                            <strong>Step 2: General Solution (repeated root)</strong><br>
+                            When root r is repeated:<br>
+                            aₙ = (A + Bn) · rⁿ = (A + Bn) · 2ⁿ<br><br>
+                            <strong>Step 3: Apply Initial Conditions</strong><br>
+                            a₀ = 1: (A + B·0) · 2⁰ = A = 1<br>
+                            So A = 1<br><br>
+                            a₁ = 4: (A + B·1) · 2¹ = (1 + B) · 2 = 4<br>
+                            1 + B = 2<br>
+                            B = 1<br><br>
+                            <strong>Solution: aₙ = (1 + n) · 2ⁿ = (n+1) · 2ⁿ</strong><br><br>
+                            <strong>Verification:</strong><br>
+                            a₀ = 1·1 = 1 ✓<br>
+                            a₁ = 2·2 = 4 ✓<br>
+                            a₂ = 3·4 = 12<br>
+                            Check: 4(4) - 4(1) = 16-4 = 12 ✓
+                        </div>
+                    </div>
+
+                    <div class="question-card medium">
+                        <p class="question-text"><span class="question-number">5</span>[AKTU 2019] A class has 25 students. At least how many must share the same first letter of their surname?</p>
+                        <div class="btn-group">
+                            <button class="hint-btn" onclick="toggleHint(this)">Show Hint</button>
+                            <button class="answer-btn" onclick="toggleAnswer(this)">Show Answer</button>
+                        </div>
+                        <div class="question-hint">26 letters in alphabet. Use generalized pigeonhole: ⌈n/k⌉.</div>
+                        <div class="question-answer">
+                            <strong>Pigeonhole Principle:</strong><br><br>
+                            n = 25 students (pigeons)<br>
+                            k = 26 letters (holes)<br><br>
+                            <strong>Generalized Pigeonhole:</strong><br>
+                            At least ⌈n/k⌉ items in some hole.<br><br>
+                            ⌈25/26⌉ = ⌈0.96⌉ = 1<br><br>
+                            <strong>Wait - this just says at least 1!</strong><br><br>
+                            But since 25 students and 26 letters, it's possible all have different letters.<br><br>
+                            <strong>Answer: At least 1 student must share.</strong><br><br>
+                            <em>Better question: If 27 students, then ⌈27/26⌉ = 2 must share!</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="units/unit1.html">Unit I</a></li>
+                        <li><a href="units/unit2.html">Unit II</a></li>
+                        <li><a href="units/unit3.html">Unit III</a></li>
+                        <li><a href="units/unit4.html">Unit IV</a></li>
+                        <li><a href="units/unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function showChapter(chapterId) {
+            // Hide all chapters
+            document.querySelectorAll('.chapter-content').forEach(ch => {
+                ch.classList.remove('active');
+            });
+            // Remove active from all buttons
+            document.querySelectorAll('.chapter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected chapter
+            document.getElementById(chapterId).classList.add('active');
+            // Add active to clicked button
+            event.target.classList.add('active');
+        }
+
+        function toggleHint(btn) {
+            const hint = btn.closest('.question-card').querySelector('.question-hint');
+            hint.classList.toggle('show');
+            btn.textContent = hint.classList.contains('show') ? 'Hide Hint' : 'Show Hint';
+        }
+
+        function toggleAnswer(btn) {
+            const answer = btn.closest('.question-card').querySelector('.question-answer');
+            answer.classList.toggle('show');
+            btn.textContent = answer.classList.contains('show') ? 'Hide Answer' : 'Show Answer';
+        }
+    </script>
+</body>
+</html>

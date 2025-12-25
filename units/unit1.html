@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit I - Set Theory & Relations | DSTL Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .diagram-box { background: #f0f4ff; border: 2px solid #6366f1; border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
+        .diagram-box pre { font-family: monospace; font-size: 14px; line-height: 1.4; }
+        .venn-diagram { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+        .venn-diagram svg { max-width: 200px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="unit1.html" class="active">Unit I</a></li>
+                <li><a href="unit2.html">Unit II</a></li>
+                <li><a href="unit3.html">Unit III</a></li>
+                <li><a href="unit4.html">Unit IV</a></li>
+                <li><a href="unit5.html">Unit V</a></li>
+                <li><a href="../theory.html">Theory</a></li>
+                <li><a href="../questions.html">Questions</a></li>
+                <li><a href="../previousyear.html">PYQ</a></li>
+                <li><a href="../formulas.html">Formulas</a></li>
+                <li><a href="../theorems.html">Theorems</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-layer-group"></i> Unit I: Set Theory & Relations</h1>
+                <p>Complete guide to Sets, Relations, POSET, Lattices & Hasse Diagrams</p>
+            </div>
+        </header>
+
+        <section class="unit-content">
+            <div class="container">
+                <div class="page-layout">
+                    <aside class="sidebar">
+                        <h3>Topics</h3>
+                        <nav class="sidebar-nav">
+                            <a href="#set-theory">Set Theory</a>
+                            <a href="#set-operations">Set Operations</a>
+                            <a href="#relations">Relations</a>
+                            <a href="#equivalence">Equivalence Relations</a>
+                            <a href="#poset">POSET</a>
+                            <a href="#hasse">Hasse Diagrams</a>
+                            <a href="#lattices">Lattices</a>
+                        </nav>
+                    </aside>
+
+                    <main class="main-content">
+                        <!-- SET THEORY -->
+                        <div class="topic-section" id="set-theory">
+                            <h2><i class="fas fa-object-group"></i> Set Theory</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Set</h4>
+                                <p>A <strong>set</strong> is a well-defined collection of distinct objects called <strong>elements</strong> or <strong>members</strong>. "Well-defined" means we can determine if an object belongs to the set or not.</p>
+                            </div>
+
+                            <h3>Set Notation Methods</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Method</th><th>Example</th><th>Description</th></tr>
+                                    <tr><td>Roster/Tabular</td><td>A = {1, 2, 3, 4, 5}</td><td>List all elements</td></tr>
+                                    <tr><td>Set-Builder</td><td>A = {x | x ∈ ℤ, 1 ≤ x ≤ 5}</td><td>Define by property</td></tr>
+                                    <tr><td>Semantic</td><td>A = Set of first 5 natural numbers</td><td>Verbal description</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Important Number Sets</h3>
+                            <div class="formula-box">
+                                <strong>ℕ</strong> = Natural Numbers = {1, 2, 3, ...} or {0, 1, 2, ...}<br>
+                                <strong>ℤ</strong> = Integers = {..., -2, -1, 0, 1, 2, ...}<br>
+                                <strong>ℤ⁺</strong> = Positive Integers = {1, 2, 3, ...}<br>
+                                <strong>ℚ</strong> = Rational Numbers = {p/q | p, q ∈ ℤ, q ≠ 0}<br>
+                                <strong>ℝ</strong> = Real Numbers (all points on number line)<br>
+                                <strong>ℂ</strong> = Complex Numbers = {a + bi | a, b ∈ ℝ}
+                            </div>
+
+                            <h3>Types of Sets</h3>
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>Empty Set (∅ or {})</h4>
+                                    <p>Contains no elements.<br>Example: {x | x² = -1, x ∈ ℝ}</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Singleton Set</h4>
+                                    <p>Contains exactly one element.<br>Example: {7}, {∅}</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Finite Set</h4>
+                                    <p>Has countable, limited elements.<br>|A| = n (cardinality)</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Infinite Set</h4>
+                                    <p>Elements cannot be counted.<br>Example: ℕ, ℤ, ℝ</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Universal Set (U)</h4>
+                                    <p>Contains all elements under consideration in a context.</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Power Set P(A)</h4>
+                                    <p>Set of ALL subsets of A.<br>|P(A)| = 2^|A|</p>
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Power Set</h4>
+                                <p>Find the power set of A = {1, 2, 3}</p>
+                                <div class="solution">
+                                    <strong>Solution:</strong> |A| = 3, so |P(A)| = 2³ = 8 subsets<br><br>
+                                    P(A) = {∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}}
+                                </div>
+                            </div>
+
+                            <h3>Subset Relations</h3>
+                            <div class="definition-box">
+                                <h4>Definitions</h4>
+                                <p><strong>Subset (A ⊆ B):</strong> Every element of A is in B. (A can equal B)<br>
+                                <strong>Proper Subset (A ⊂ B):</strong> A ⊆ B and A ≠ B<br>
+                                <strong>Superset (A ⊇ B):</strong> B is a subset of A</p>
+                            </div>
+
+                            <div class="info-box note">
+                                <h4><i class="fas fa-star"></i> Key Facts</h4>
+                                <p>• Empty set ∅ is subset of every set<br>
+                                • Every set is subset of itself<br>
+                                • A = B ⟺ (A ⊆ B and B ⊆ A)</p>
+                            </div>
+                        </div>
+
+                        <!-- SET OPERATIONS -->
+                        <div class="topic-section" id="set-operations">
+                            <h2><i class="fas fa-cogs"></i> Set Operations</h2>
+
+                            <h3>Venn Diagrams</h3>
+                            <div class="diagram-box">
+                                <p><strong>Visual Representation of Set Operations</strong></p>
+                                <pre>
+    UNION (A ∪ B)          INTERSECTION (A ∩ B)       DIFFERENCE (A - B)
+    ┌─────────────┐        ┌─────────────┐            ┌─────────────┐
+    │  ┌───┬───┐  │        │  ┌───┬───┐  │            │  ┌───┬───┐  │
+    │  │███│███│  │        │  │   │███│  │            │  │███│   │  │
+    │  │███│███│  │        │  │   │███│  │            │  │███│   │  │
+    │  └───┴───┘  │        │  └───┴───┘  │            │  └───┴───┘  │
+    │    A   B    │        │    A   B    │            │    A   B    │
+    └─────────────┘        └─────────────┘            └─────────────┘
+    All of A or B          Only common part           A without B
+                                </pre>
+                            </div>
+
+                            <h3>Operations Table</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Operation</th><th>Symbol</th><th>Definition</th><th>Example (A={1,2,3}, B={2,3,4})</th></tr>
+                                    <tr><td>Union</td><td>A ∪ B</td><td>{x | x ∈ A OR x ∈ B}</td><td>{1, 2, 3, 4}</td></tr>
+                                    <tr><td>Intersection</td><td>A ∩ B</td><td>{x | x ∈ A AND x ∈ B}</td><td>{2, 3}</td></tr>
+                                    <tr><td>Difference</td><td>A - B</td><td>{x | x ∈ A AND x ∉ B}</td><td>{1}</td></tr>
+                                    <tr><td>Symmetric Diff</td><td>A ⊕ B</td><td>(A - B) ∪ (B - A)</td><td>{1, 4}</td></tr>
+                                    <tr><td>Complement</td><td>A' or Ā</td><td>{x | x ∈ U AND x ∉ A}</td><td>U - A</td></tr>
+                                    <tr><td>Cartesian Product</td><td>A × B</td><td>{(a,b) | a ∈ A, b ∈ B}</td><td>9 ordered pairs</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Algebraic Laws of Sets</h3>
+                            <div class="formula-box">
+                                <strong>Identity Laws:</strong> A ∪ ∅ = A, A ∩ U = A<br>
+                                <strong>Domination:</strong> A ∪ U = U, A ∩ ∅ = ∅<br>
+                                <strong>Idempotent:</strong> A ∪ A = A, A ∩ A = A<br>
+                                <strong>Complement:</strong> A ∪ A' = U, A ∩ A' = ∅, (A')' = A<br>
+                                <strong>Commutative:</strong> A ∪ B = B ∪ A, A ∩ B = B ∩ A<br>
+                                <strong>Associative:</strong> (A ∪ B) ∪ C = A ∪ (B ∪ C)<br>
+                                <strong>Distributive:</strong> A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)<br>
+                                <strong>De Morgan's:</strong> (A ∪ B)' = A' ∩ B', (A ∩ B)' = A' ∪ B'
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Prove De Morgan's Law</h4>
+                                <p>Prove (A ∪ B)' = A' ∩ B'</p>
+                                <div class="solution">
+                                    <strong>Proof:</strong><br>
+                                    Let x ∈ (A ∪ B)'<br>
+                                    ⟹ x ∉ (A ∪ B)<br>
+                                    ⟹ x ∉ A AND x ∉ B<br>
+                                    ⟹ x ∈ A' AND x ∈ B'<br>
+                                    ⟹ x ∈ A' ∩ B'<br>
+                                    Similarly prove reverse. Hence (A ∪ B)' = A' ∩ B' ∎
+                                </div>
+                            </div>
+
+                            <h3>Cartesian Product</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>A × B = {(a, b) | a ∈ A and b ∈ B}<br>
+                                |A × B| = |A| × |B|</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>A = {1, 2}, B = {a, b, c}. Find A × B.</p>
+                                <div class="solution">
+                                    A × B = {(1,a), (1,b), (1,c), (2,a), (2,b), (2,c)}<br>
+                                    |A × B| = 2 × 3 = 6
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RELATIONS -->
+                        <div class="topic-section" id="relations">
+                            <h2><i class="fas fa-arrows-alt-h"></i> Relations</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Relation</h4>
+                                <p>A <strong>relation R</strong> from set A to set B is a subset of A × B.<br>
+                                R ⊆ A × B. If (a, b) ∈ R, we write <strong>aRb</strong>.<br>
+                                A relation on set A means R ⊆ A × A.</p>
+                            </div>
+
+                            <h3>Representing Relations</h3>
+                            <div class="diagram-box">
+                                <p><strong>Matrix Representation</strong> (for R on {1,2,3} where R = {(1,1), (1,2), (2,3)})</p>
+                                <pre>
+        1   2   3
+    ┌───────────────┐
+  1 │  1   1   0   │
+  2 │  0   0   1   │
+  3 │  0   0   0   │
+    └───────────────┘
+    M[i][j] = 1 if (i,j) ∈ R
+                                </pre>
+                            </div>
+
+                            <h3>Properties of Relations</h3>
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>Reflexive</h4>
+                                    <p>∀a ∈ A: (a, a) ∈ R<br><em>Matrix: All diagonal = 1</em><br>Example: ≤, =, divides</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Irreflexive</h4>
+                                    <p>∀a ∈ A: (a, a) ∉ R<br><em>Matrix: All diagonal = 0</em><br>Example: <, ≠, ></p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Symmetric</h4>
+                                    <p>If (a,b) ∈ R ⟹ (b,a) ∈ R<br><em>Matrix: M = Mᵀ</em><br>Example: =, ≠, sibling</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Antisymmetric</h4>
+                                    <p>If (a,b) ∈ R and (b,a) ∈ R ⟹ a = b<br>Example: ≤, ≥, ⊆, divides</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Asymmetric</h4>
+                                    <p>If (a,b) ∈ R ⟹ (b,a) ∉ R<br>Irreflexive + Antisymmetric<br>Example: <, ></p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Transitive</h4>
+                                    <p>If (a,b) ∈ R and (b,c) ∈ R ⟹ (a,c) ∈ R<br>Example: <, ≤, =, divides</p>
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Identify Properties</h4>
+                                <p>R = {(1,1), (2,2), (3,3), (1,2), (2,1)} on A = {1, 2, 3}</p>
+                                <div class="solution">
+                                    <strong>Reflexive?</strong> Yes - (1,1), (2,2), (3,3) all present ✓<br>
+                                    <strong>Symmetric?</strong> Yes - (1,2) and (2,1) both present ✓<br>
+                                    <strong>Antisymmetric?</strong> No - (1,2) and (2,1) present but 1 ≠ 2 ✗<br>
+                                    <strong>Transitive?</strong> Check: (1,2) and (2,1) ⟹ need (1,1) ✓ present. Yes ✓
+                                </div>
+                            </div>
+
+                            <h3>Closures of Relations</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Closure</th><th>Operation</th><th>Result</th></tr>
+                                    <tr><td>Reflexive Closure</td><td>r(R) = R ∪ Δ</td><td>Add (a,a) for all a</td></tr>
+                                    <tr><td>Symmetric Closure</td><td>s(R) = R ∪ R⁻¹</td><td>Add (b,a) for each (a,b)</td></tr>
+                                    <tr><td>Transitive Closure</td><td>t(R) = R ∪ R² ∪ R³ ∪ ...</td><td>Warshall's Algorithm</td></tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- EQUIVALENCE RELATIONS -->
+                        <div class="topic-section" id="equivalence">
+                            <h2><i class="fas fa-equals"></i> Equivalence Relations</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>A relation R on set A is an <strong>equivalence relation</strong> if it is:<br>
+                                <strong>1. Reflexive</strong> - aRa for all a<br>
+                                <strong>2. Symmetric</strong> - aRb ⟹ bRa<br>
+                                <strong>3. Transitive</strong> - aRb and bRc ⟹ aRc</p>
+                            </div>
+
+                            <h3>Equivalence Class</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>For element a, the <strong>equivalence class</strong> [a] = {x ∈ A | xRa}<br>
+                                All elements related to a form its equivalence class.</p>
+                            </div>
+
+                            <div class="info-box note">
+                                <h4><i class="fas fa-star"></i> Partition Property</h4>
+                                <p>Equivalence classes <strong>partition</strong> the set A into disjoint subsets where:<br>
+                                • Every element belongs to exactly one class<br>
+                                • Union of all classes = A<br>
+                                • Different classes are disjoint</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Congruence Modulo 3</h4>
+                                <p>On ℤ, define aRb ⟺ a ≡ b (mod 3). Find equivalence classes.</p>
+                                <div class="solution">
+                                    <strong>Verify equivalence relation:</strong><br>
+                                    Reflexive: a - a = 0 = 3(0) ✓<br>
+                                    Symmetric: 3|(a-b) ⟹ 3|(b-a) ✓<br>
+                                    Transitive: 3|(a-b) and 3|(b-c) ⟹ 3|[(a-b)+(b-c)] = 3|(a-c) ✓<br><br>
+                                    <strong>Equivalence Classes:</strong><br>
+                                    [0] = {..., -6, -3, 0, 3, 6, ...} (multiples of 3)<br>
+                                    [1] = {..., -5, -2, 1, 4, 7, ...} (remainder 1)<br>
+                                    [2] = {..., -4, -1, 2, 5, 8, ...} (remainder 2)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- POSET -->
+                        <div class="topic-section" id="poset">
+                            <h2><i class="fas fa-sort-amount-up"></i> Partial Order & POSET</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Partial Order</h4>
+                                <p>A relation R on set A is a <strong>partial order</strong> if it is:<br>
+                                <strong>1. Reflexive</strong> - aRa<br>
+                                <strong>2. Antisymmetric</strong> - aRb and bRa ⟹ a = b<br>
+                                <strong>3. Transitive</strong> - aRb and bRc ⟹ aRc</p>
+                            </div>
+
+                            <div class="definition-box">
+                                <h4>Definition: POSET</h4>
+                                <p>A <strong>POSET</strong> (Partially Ordered Set) is a pair (A, ≤) where ≤ is a partial order on A.</p>
+                            </div>
+
+                            <h3>Key Terminology</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Term</th><th>Symbol</th><th>Definition</th></tr>
+                                    <tr><td>Comparable</td><td>a ~ b</td><td>a ≤ b OR b ≤ a</td></tr>
+                                    <tr><td>Incomparable</td><td>a ∥ b</td><td>Neither a ≤ b nor b ≤ a</td></tr>
+                                    <tr><td>Minimal</td><td>-</td><td>No element x with x < a</td></tr>
+                                    <tr><td>Maximal</td><td>-</td><td>No element x with a < x</td></tr>
+                                    <tr><td>Least/Minimum</td><td>0</td><td>a ≤ x for ALL x</td></tr>
+                                    <tr><td>Greatest/Maximum</td><td>1</td><td>x ≤ a for ALL x</td></tr>
+                                    <tr><td>Upper Bound of S</td><td>-</td><td>x ≥ s for all s ∈ S</td></tr>
+                                    <tr><td>Lower Bound of S</td><td>-</td><td>x ≤ s for all s ∈ S</td></tr>
+                                    <tr><td>LUB/Supremum</td><td>sup(S)</td><td>Least upper bound</td></tr>
+                                    <tr><td>GLB/Infimum</td><td>inf(S)</td><td>Greatest lower bound</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="info-box tip">
+                                <h4><i class="fas fa-lightbulb"></i> Minimal vs Minimum</h4>
+                                <p><strong>Minimal:</strong> No element below it (can have multiple)<br>
+                                <strong>Minimum:</strong> Below ALL elements (unique if exists)<br>
+                                Minimum is always minimal, but not vice versa!</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Divisibility POSET</h4>
+                                <p>Consider ({1,2,3,4,6,12}, |) where | means "divides"</p>
+                                <div class="solution">
+                                    <strong>Verify partial order:</strong><br>
+                                    Reflexive: a | a ✓<br>
+                                    Antisymmetric: a | b and b | a ⟹ a = b ✓<br>
+                                    Transitive: a | b and b | c ⟹ a | c ✓<br><br>
+                                    <strong>Elements:</strong><br>
+                                    • Minimal = Minimum = 1<br>
+                                    • Maximal = Maximum = 12<br>
+                                    • LUB{2,3} = 6, GLB{4,6} = 2
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HASSE DIAGRAMS -->
+                        <div class="topic-section" id="hasse">
+                            <h2><i class="fas fa-project-diagram"></i> Hasse Diagrams</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>A <strong>Hasse Diagram</strong> is a visual representation of a POSET where:<br>
+                                • Elements are vertices<br>
+                                • Greater elements are drawn higher<br>
+                                • Lines connect only covering pairs (no reflexive/transitive edges)</p>
+                            </div>
+
+                            <h3>Covering Relation</h3>
+                            <div class="info-box note">
+                                <h4><i class="fas fa-info-circle"></i> Definition</h4>
+                                <p><strong>a covers b</strong> (or b is covered by a) if b < a and there is NO c such that b < c < a.</p>
+                            </div>
+
+                            <h3>Example Hasse Diagrams</h3>
+                            <div class="diagram-box" style="text-align: center; padding: 20px;">
+                                <img src="../images/hasse-diagrams.png" alt="Hasse Diagram Examples - Divisors of 12, Power Set, Total Order, Non-linear POSET" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            </div>
+
+                            <h3>Steps to Draw Hasse Diagram</h3>
+                            <ol>
+                                <li>List all elements of the POSET</li>
+                                <li>Find the minimal elements (place at bottom)</li>
+                                <li>Find covering relations</li>
+                                <li>Draw edges for covering relations only</li>
+                                <li>Place greater elements higher (no arrows needed)</li>
+                            </ol>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Power Set</h4>
+                                <p>Draw Hasse diagram for (P({1,2,3}), ⊆)</p>
+                                <div class="solution">
+                                    P({1,2,3}) = {∅, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}}<br><br>
+                                    <strong>Structure:</strong><br>
+                                    Level 0: ∅ (minimum)<br>
+                                    Level 1: {1}, {2}, {3}<br>
+                                    Level 2: {1,2}, {1,3}, {2,3}<br>
+                                    Level 3: {1,2,3} (maximum)<br><br>
+                                    Connect each set to sets with one more element.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LATTICES -->
+                        <div class="topic-section" id="lattices">
+                            <h2><i class="fas fa-th"></i> Lattices</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Lattice</h4>
+                                <p>A POSET (L, ≤) is a <strong>lattice</strong> if every pair of elements has:<br>
+                                • <strong>LUB (join):</strong> a ∨ b = sup{a, b}<br>
+                                • <strong>GLB (meet):</strong> a ∧ b = inf{a, b}</p>
+                            </div>
+
+                            <h3>Types of Lattices</h3>
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>Bounded Lattice</h4>
+                                    <p>Has both 0 (least) and 1 (greatest) elements.</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Complemented Lattice</h4>
+                                    <p>Bounded lattice where every element a has complement a' with a ∨ a' = 1, a ∧ a' = 0</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Distributive Lattice</h4>
+                                    <p>a ∧ (b ∨ c) = (a ∧ b) ∨ (a ∧ c)<br>a ∨ (b ∧ c) = (a ∨ b) ∧ (a ∨ c)</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Boolean Lattice</h4>
+                                    <p>Complemented + Distributive<br>Example: (P(S), ⊆)</p>
+                                </div>
+                            </div>
+
+                            <h3>Lattice Properties (Algebraic)</h3>
+                            <div class="formula-box">
+                                <strong>Idempotent:</strong> a ∨ a = a, a ∧ a = a<br>
+                                <strong>Commutative:</strong> a ∨ b = b ∨ a, a ∧ b = b ∧ a<br>
+                                <strong>Associative:</strong> (a ∨ b) ∨ c = a ∨ (b ∨ c)<br>
+                                <strong>Absorption:</strong> a ∨ (a ∧ b) = a, a ∧ (a ∨ b) = a
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Divisibility Lattice</h4>
+                                <p>Show ({1,2,3,6}, |) is a lattice and find 2 ∨ 3 and 2 ∧ 3.</p>
+                                <div class="solution">
+                                    For any a, b in this set:<br>
+                                    • a ∨ b = LCM(a, b)<br>
+                                    • a ∧ b = GCD(a, b)<br><br>
+                                    2 ∨ 3 = LCM(2, 3) = 6<br>
+                                    2 ∧ 3 = GCD(2, 3) = 1<br><br>
+                                    Since every pair has both LCM and GCD in the set, it's a lattice ✓
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="unit-navigation">
+                            <a href="../index.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Home</a>
+                            <a href="unit2.html" class="nav-btn next">Unit II: Functions <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section">
+            <div class="container">
+                <h2 class="section-title">Test Your Knowledge</h2>
+                <div class="quiz-container" id="quiz-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="unit1.html">Unit I</a></li>
+                        <li><a href="unit2.html">Unit II</a></li>
+                        <li><a href="unit3.html">Unit III</a></li>
+                        <li><a href="unit4.html">Unit IV</a></li>
+                        <li><a href="unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        const unit1Questions = [
+            { question: "What is the power set of {a, b}?", options: ["{{a}, {b}}", "{∅, {a}, {b}, {a,b}}", "{a, b}", "{{a,b}}"], correct: 1, explanation: "Power set contains all subsets including ∅ and the set itself." },
+            { question: "If |A| = 4, what is |P(A)|?", options: ["4", "8", "16", "32"], correct: 2, explanation: "|P(A)| = 2^n = 2^4 = 16" },
+            { question: "A ⊕ B (symmetric difference) equals:", options: ["A ∪ B", "A ∩ B", "(A-B) ∪ (B-A)", "A × B"], correct: 2, explanation: "Symmetric difference contains elements in exactly one set." },
+            { question: "De Morgan's Law states (A ∪ B)' = ?", options: ["A' ∪ B'", "A' ∩ B'", "A ∩ B", "(A ∩ B)'"], correct: 1, explanation: "Complement of union = intersection of complements." },
+            { question: "For equivalence relation, which is NOT required?", options: ["Reflexive", "Symmetric", "Antisymmetric", "Transitive"], correct: 2, explanation: "Equivalence needs reflexive, symmetric, transitive. Antisymmetric is for partial orders." },
+            { question: "A POSET requires which properties?", options: ["Reflexive, Symmetric, Transitive", "Reflexive, Antisymmetric, Transitive", "Irreflexive, Asymmetric", "Symmetric, Transitive"], correct: 1, explanation: "POSET = Reflexive + Antisymmetric + Transitive" },
+            { question: "In Hasse diagram, why omit transitive edges?", options: ["They don't exist", "To keep diagram simple", "They are always false", "Not applicable"], correct: 1, explanation: "Transitive relations can be inferred from the covering relations shown." },
+            { question: "Minimal element means:", options: ["Smallest value", "No element below it", "Below all elements", "Largest element"], correct: 1, explanation: "Minimal: no x such that x < a. Different from minimum (below ALL)." },
+            { question: "A lattice requires every pair to have:", options: ["Only LUB", "Only GLB", "Both LUB and GLB", "Neither"], correct: 2, explanation: "Lattice = every pair has both join (LUB) and meet (GLB)." },
+            { question: "Boolean lattice is:", options: ["Only complemented", "Only distributive", "Complemented + Distributive", "Neither"], correct: 2, explanation: "Boolean lattice = bounded + complemented + distributive." },
+            { question: "If A = {1,2} and B = {a,b}, |A × B| = ?", options: ["2", "4", "6", "8"], correct: 1, explanation: "|A × B| = |A| × |B| = 2 × 2 = 4" },
+            { question: "∅ is a subset of:", options: ["Only ∅", "Every set", "No set", "Only universal set"], correct: 1, explanation: "Empty set is subset of every set." },
+            { question: "Reflexive closure of R adds:", options: ["(a,b) for all pairs", "(a,a) for all a", "Nothing", "Inverse pairs"], correct: 1, explanation: "Reflexive closure adds all self-loops (a,a)." },
+            { question: "In ({1,2,3,6}, |), what is 2 ∨ 3?", options: ["1", "2", "3", "6"], correct: 3, explanation: "In divisibility lattice, a ∨ b = LCM(a,b) = 6" },
+            { question: "Absorption law: a ∨ (a ∧ b) = ?", options: ["a", "b", "a ∧ b", "a ∨ b"], correct: 0, explanation: "Absorption: a ∨ (a ∧ b) = a and a ∧ (a ∨ b) = a" },
+            { question: "Equivalence classes always:", options: ["Overlap", "Partition the set", "Are empty", "Are infinite"], correct: 1, explanation: "Equivalence classes form a partition - disjoint and cover entire set." },
+            { question: "If R is symmetric, its matrix M satisfies:", options: ["M = 0", "M = I", "M = Mᵀ", "M diagonal"], correct: 2, explanation: "Symmetric relation: M[i][j] = M[j][i], so M = Mᵀ" },
+            { question: "Antisymmetric relation allows:", options: ["aRb and bRa always", "aRb and bRa only if a=b", "Never aRb", "Only self-loops"], correct: 1, explanation: "Antisymmetric: aRb and bRa implies a = b" },
+            { question: "Complement of A in set theory means:", options: ["A itself", "Empty set", "U - A", "A × A"], correct: 2, explanation: "A' = {x ∈ U | x ∉ A} = U - A" },
+            { question: "(P(S), ⊆) is always a:", options: ["Total order", "Boolean lattice", "Group", "Ring"], correct: 1, explanation: "Power set with subset relation is always a Boolean lattice." }
+        ];
+        const quiz = new QuizManager('quiz-container', unit1Questions);
+    </script>
+</body>
+</html>

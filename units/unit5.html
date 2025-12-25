@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit V - Graphs & Combinatorics | DSTL Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .diagram-box { 
+            background: #f0f4ff; 
+            border: 2px solid #6366f1; 
+            border-radius: 12px; 
+            padding: 20px; 
+            margin: 20px 0; 
+            text-align: center; 
+        }
+        .diagram-box h4 {
+            color: #6366f1;
+            margin-bottom: 15px;
+        }
+        .image-placeholder {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border: 3px dashed #6366f1;
+            border-radius: 12px;
+            padding: 40px 20px;
+            margin: 15px auto;
+            text-align: center;
+            color: #4338ca;
+            max-width: 500px;
+        }
+        .image-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.7;
+            display: block;
+        }
+        .image-placeholder p {
+            font-weight: 600;
+            margin: 5px 0;
+        }
+        .image-placeholder small {
+            color: #6366f1;
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 10px;
+        }
+        .diagram-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="unit1.html">Unit I</a></li>
+                <li><a href="unit2.html">Unit II</a></li>
+                <li><a href="unit3.html">Unit III</a></li>
+                <li><a href="unit4.html">Unit IV</a></li>
+                <li><a href="unit5.html" class="active">Unit V</a></li>
+                <li><a href="../theory.html">Theory</a></li>
+                <li><a href="../questions.html">Questions</a></li>
+                <li><a href="../previousyear.html">PYQ</a></li>
+                <li><a href="../formulas.html">Formulas</a></li>
+                <li><a href="../theorems.html">Theorems</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-project-diagram"></i> Unit V: Graphs & Combinatorics</h1>
+                <p>Complete guide to Graph Theory, Paths, Planar Graphs & Combinatorics</p>
+            </div>
+        </header>
+
+        <section class="unit-content">
+            <div class="container">
+                <div class="page-layout">
+                    <aside class="sidebar">
+                        <h3>Topics</h3>
+                        <nav class="sidebar-nav">
+                            <a href="#basics">Graph Basics</a>
+                            <a href="#types">Graph Types</a>
+                            <a href="#multigraphs">Multigraphs</a>
+                            <a href="#representation">Representation</a>
+                            <a href="#bipartite">Bipartite Graphs</a>
+                            <a href="#paths">Euler & Hamiltonian Paths</a>
+                            <a href="#planar">Planar Graphs</a>
+                            <a href="#isomorphism">Isomorphism & Homeomorphism</a>
+                            <a href="#coloring">Graph Coloring</a>
+                            <a href="#combinatorics">Combinatorics</a>
+                        </nav>
+                    </aside>
+
+                    <main class="main-content">
+                        <!-- GRAPH BASICS -->
+                        <div class="topic-section" id="basics">
+                            <h2><i class="fas fa-circle-nodes"></i> Graph Basics</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Graph</h4>
+                                <p>A <strong>graph</strong> G = (V, E) consists of:<br>
+                                <strong>V:</strong> Non-empty set of vertices (nodes)<br>
+                                <strong>E:</strong> Set of edges (connections between vertices)</p>
+                            </div>
+
+                            <h3>Basic Terminology</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Term</th><th>Definition</th></tr>
+                                    <tr><td>Adjacent</td><td>Two vertices connected by an edge</td></tr>
+                                    <tr><td>Incident</td><td>Edge is incident to its endpoints</td></tr>
+                                    <tr><td>Degree deg(v)</td><td>Number of edges incident to v</td></tr>
+                                    <tr><td>Isolated vertex</td><td>Vertex with degree 0</td></tr>
+                                    <tr><td>Pendant/Leaf</td><td>Vertex with degree 1</td></tr>
+                                    <tr><td>Loop</td><td>Edge connecting vertex to itself</td></tr>
+                                    <tr><td>Multiple edges</td><td>More than one edge between same vertices</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Handshaking Theorem</h3>
+                            <div class="formula-box">
+                                <strong>∑ deg(v) = 2|E|</strong><br><br>
+                                Sum of all degrees = twice the number of edges<br>
+                                Corollary: Number of odd-degree vertices is EVEN
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>Graph has 5 vertices with degrees 2, 3, 3, 4, 4. Find |E|.</p>
+                                <div class="solution">
+                                    ∑ deg(v) = 2 + 3 + 3 + 4 + 4 = 16<br>
+                                    2|E| = 16<br>
+                                    <strong>|E| = 8 edges</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GRAPH TYPES -->
+                        <div class="topic-section" id="types">
+                            <h2><i class="fas fa-shapes"></i> Types of Graphs</h2>
+                            
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>Simple Graph</h4>
+                                    <p>No loops, no multiple edges</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Multigraph</h4>
+                                    <p>Multiple edges allowed, no loops</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Pseudograph</h4>
+                                    <p>Loops and multiple edges allowed</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Directed Graph</h4>
+                                    <p>Edges have direction (arcs)</p>
+                                </div>
+                            </div>
+
+                            <h3>Special Graphs</h3>
+                            
+                            <div class="diagram-box">
+                                <h4>Complete Graphs</h4>
+                                <img src="../images/graph1.png" alt="Complete graphs K3, K4, K5 - every vertex connected to every other">
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Cycle Graphs (Cₙ)</h4>
+                                <img src="../images/graph2.png" alt="Cycle graphs C3, C4, C5, C6 - n vertices in a cycle, each degree = 2">
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Path Graphs (Pₙ)</h4>
+                                <img src="../images/graph3.png" alt="Path graphs P3, P4, P5 - n vertices connected linearly">
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Complete Bipartite Graphs (Kₘ,ₙ)</h4>
+                                <img src="../images/graph4.png" alt="Complete bipartite graphs K2,2, K2,3, K3,3">
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Wheel Graphs (Wₙ)</h4>
+                                <img src="../images/graph5.png" alt="Wheel graphs W4, W5, W6 - cycle with central hub">
+                            </div>
+
+                            <h3>Special Graph Formulas</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Graph</th><th>Vertices</th><th>Edges</th><th>Degree</th></tr>
+                                    <tr><td>Complete Kₙ</td><td>n</td><td>n(n-1)/2</td><td>n-1 (each)</td></tr>
+                                    <tr><td>Cycle Cₙ</td><td>n</td><td>n</td><td>2 (each)</td></tr>
+                                    <tr><td>Path Pₙ</td><td>n</td><td>n-1</td><td>2 (internal), 1 (ends)</td></tr>
+                                    <tr><td>Complete Bipartite Kₘ,ₙ</td><td>m+n</td><td>m×n</td><td>n or m</td></tr>
+                                    <tr><td>Wheel Wₙ</td><td>n+1</td><td>2n</td><td>3 (rim), n (hub)</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>How many edges in K₇?</p>
+                                <div class="solution">
+                                    |E| = n(n-1)/2 = 7(6)/2 = <strong>21 edges</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- MULTIGRAPHS -->
+                        <div class="topic-section" id="multigraphs">
+                            <h2><i class="fas fa-layer-group"></i> Multigraphs</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Multigraph</h4>
+                                <p>A <strong>multigraph</strong> is a graph that allows <strong>multiple edges</strong> (parallel edges) between the same pair of vertices, but typically no loops.</p>
+                                <p>A <strong>pseudograph</strong> allows both multiple edges AND loops.</p>
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Simple Graph vs Multigraph vs Pseudograph</h4>
+                                <img src="../images/graph8.png" alt="Comparison of simple graph, multigraph, and pseudograph">
+                            </div>
+
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Type</th><th>Loops Allowed</th><th>Multiple Edges Allowed</th></tr>
+                                    <tr><td>Simple Graph</td><td>No</td><td>No</td></tr>
+                                    <tr><td>Multigraph</td><td>No</td><td>Yes</td></tr>
+                                    <tr><td>Pseudograph</td><td>Yes</td><td>Yes</td></tr>
+                                    <tr><td>Directed Graph</td><td>Yes (self-loops)</td><td>Yes</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="info-box">
+                                <h4><i class="fas fa-lightbulb"></i> Degree in Multigraphs</h4>
+                                <p>In multigraphs, degree counts each edge separately. If two parallel edges connect u and v, each contributes 1 to deg(u) and deg(v).<br>
+                                <strong>Note:</strong> A loop at vertex v contributes 2 to deg(v).</p>
+                            </div>
+                        </div>
+
+                        <!-- REPRESENTATION -->
+                        <div class="topic-section" id="representation">
+                            <h2><i class="fas fa-table"></i> Graph Representation</h2>
+                            
+                            <h3>Adjacency Matrix</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>n×n matrix A where A[i][j] = 1 if edge (i,j) exists, else 0.<br>
+                                Symmetric for undirected graphs.</p>
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Adjacency Matrix Example</h4>
+                                <img src="../images/graph6.png" alt="Graph with its corresponding adjacency matrix">
+                            </div>
+
+                            <h3>Adjacency List</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>For each vertex, store list of adjacent vertices.<br>
+                                Space efficient for sparse graphs.</p>
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Adjacency List Example</h4>
+                                <img src="../images/graph7.png" alt="Graph with adjacency list representation">
+                            </div>
+
+                            <h3>Comparison</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Aspect</th><th>Adjacency Matrix</th><th>Adjacency List</th></tr>
+                                    <tr><td>Space</td><td>O(n²)</td><td>O(n + e)</td></tr>
+                                    <tr><td>Check edge</td><td>O(1)</td><td>O(degree)</td></tr>
+                                    <tr><td>Find neighbors</td><td>O(n)</td><td>O(degree)</td></tr>
+                                    <tr><td>Best for</td><td>Dense graphs</td><td>Sparse graphs</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Incidence Matrix</h3>
+                            <p>n×e matrix where rows are vertices, columns are edges. Entry is 1 if vertex is endpoint of edge.</p>
+                        </div>
+
+                        <!-- BIPARTITE GRAPHS -->
+                        <div class="topic-section" id="bipartite">
+                            <h2><i class="fas fa-columns"></i> Bipartite Graphs</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>A graph G = (V, E) is <strong>bipartite</strong> if its vertex set V can be partitioned into two disjoint sets V₁ and V₂ such that every edge connects a vertex in V₁ to a vertex in V₂.</p>
+                                <p>In other words: No edges exist within V₁ or within V₂.</p>
+                            </div>
+
+                            <div class="formula-box">
+                                <strong>Theorem:</strong> A graph is bipartite if and only if it contains NO odd-length cycles.
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Bipartite Graph Example</h4>
+                                <img src="../images/graph9.png" alt="Bipartite graph with two vertex sets">
+                            </div>
+
+                            <h3>Complete Bipartite Graph Kₘ,ₙ</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>A <strong>complete bipartite graph Kₘ,ₙ</strong> has vertex sets of sizes m and n, with EVERY vertex in one set connected to EVERY vertex in the other set.</p>
+                                <p><strong>Total Edges:</strong> m × n</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>How many edges in K₄,₅?</p>
+                                <div class="solution">
+                                    |E| = m × n = 4 × 5 = <strong>20 edges</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PATHS & CIRCUITS -->
+                        <div class="topic-section" id="paths">
+                            <h2><i class="fas fa-route"></i> Paths & Circuits</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definitions</h4>
+                                <p><strong>Walk:</strong> Sequence of vertices with edges between consecutive pairs<br>
+                                <strong>Trail:</strong> Walk with no repeated edges<br>
+                                <strong>Path:</strong> Walk with no repeated vertices<br>
+                                <strong>Circuit:</strong> Closed trail (starts and ends at same vertex)<br>
+                                <strong>Cycle:</strong> Circuit with no repeated vertices (except start=end)</p>
+                            </div>
+
+                            <h3>Euler Paths & Circuits</h3>
+                            <div class="definition-box">
+                                <h4>Definitions</h4>
+                                <p><strong>Euler Path:</strong> Visits every EDGE exactly once<br>
+                                <strong>Euler Circuit:</strong> Euler path that returns to start</p>
+                            </div>
+
+                            <div class="formula-box">
+                                <strong>Euler Circuit exists ⟺ All vertices have EVEN degree</strong><br><br>
+                                <strong>Euler Path exists ⟺ Exactly 0 or 2 vertices have ODD degree</strong><br>
+                                (If 2 odd vertices: path starts at one, ends at other)
+                            </div>
+
+                            <h3>Hamiltonian Paths & Cycles</h3>
+                            <div class="definition-box">
+                                <h4>Definitions</h4>
+                                <p><strong>Hamiltonian Path:</strong> Visits every VERTEX exactly once<br>
+                                <strong>Hamiltonian Cycle:</strong> Hamiltonian path that returns to start</p>
+                            </div>
+
+                            <div class="info-box warning">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Important</h4>
+                                <p>No simple test for Hamiltonian paths/cycles (NP-complete problem)!</p>
+                            </div>
+
+                            <h3>Dirac's & Ore's Theorems</h3>
+                            <div class="formula-box">
+                                <strong>Dirac:</strong> If n ≥ 3 and deg(v) ≥ n/2 for all v, then Hamiltonian cycle exists.<br><br>
+                                <strong>Ore:</strong> If n ≥ 3 and deg(u) + deg(v) ≥ n for all non-adjacent u,v, then Hamiltonian cycle exists.
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Euler</h4>
+                                <p>Does graph with degrees {2, 2, 2, 4, 4} have Euler circuit?</p>
+                                <div class="solution">
+                                    All degrees are even (2, 2, 2, 4, 4) ✓<br>
+                                    <strong>Yes, Euler circuit exists!</strong>
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Königsberg Bridges</h4>
+                                <p>Classic problem: 4 land masses, 7 bridges. Degrees: 3, 3, 3, 5.</p>
+                                <div class="solution">
+                                    All 4 vertices have ODD degree.<br>
+                                    For Euler path, need 0 or 2 odd vertices.<br>
+                                    <strong>No Euler path exists!</strong>
+                                </div>
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Euler Path & Circuit Examples</h4>
+                                <img src="../images/graph15.png" alt="Examples of graphs with Euler circuit, Euler path only, and neither">
+                            </div>
+                        </div>
+
+                        <!-- PLANAR GRAPHS -->
+                        <div class="topic-section" id="planar">
+                            <h2><i class="fas fa-draw-polygon"></i> Planar Graphs</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>A graph is <strong>planar</strong> if it can be drawn in a plane without edge crossings.</p>
+                            </div>
+
+                            <h3>Euler's Formula</h3>
+                            <div class="formula-box">
+                                For connected planar graph:<br><br>
+                                <strong>v - e + f = 2</strong><br><br>
+                                v = vertices, e = edges, f = faces (including outer/infinite face)
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>K₄ has 4 vertices, 6 edges. Find faces if planar.</p>
+                                <div class="solution">
+                                    v - e + f = 2<br>
+                                    4 - 6 + f = 2<br>
+                                    <strong>f = 4 faces</strong>
+                                </div>
+                            </div>
+
+                            <h3>Corollaries of Euler's Formula</h3>
+                            <div class="formula-box">
+                                For simple, connected planar graph with v ≥ 3:<br><br>
+                                <strong>e ≤ 3v - 6</strong> (general)<br><br>
+                                <strong>e ≤ 2v - 4</strong> (if no triangles, i.e., bipartite)
+                            </div>
+
+                            <h3>Kuratowski's Theorem</h3>
+                            <div class="definition-box">
+                                <h4>Theorem</h4>
+                                <p>G is planar ⟺ G contains no subdivision of K₅ or K₃,₃</p>
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Kuratowski's Forbidden Subgraphs</h4>
+                                <img src="../images/graph10.png" alt="K5 and K3,3 - non-planar forbidden subgraphs">
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>K₄ is Planar</h4>
+                                <img src="../images/graph11.png" alt="K4 drawn as planar graph without edge crossings">
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Test Planarity</h4>
+                                <p>Is K₅ planar?</p>
+                                <div class="solution">
+                                    K₅: v = 5, e = 10<br>
+                                    Check: e ≤ 3v - 6 → 10 ≤ 3(5) - 6 = 9?<br>
+                                    10 ≤ 9 is FALSE<br>
+                                    <strong>K₅ is NOT planar</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GRAPH COLORING -->
+                        <div class="topic-section" id="coloring">
+                            <h2><i class="fas fa-palette"></i> Graph Coloring</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>A <strong>proper k-coloring</strong> assigns one of k colors to each vertex such that no two adjacent vertices have the same color.<br><br>
+                                <strong>Chromatic number χ(G)</strong> = minimum k for which G has a proper k-coloring.</p>
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Graph Coloring Example</h4>
+                                <img src="../images/graph12.png" alt="Graph with proper 3-coloring example">
+                            </div>
+
+                            <h3>Chromatic Number Bounds</h3>
+                            <div class="formula-box">
+                                <strong>Lower Bound:</strong> χ(G) ≥ ω(G) where ω(G) = size of largest clique<br><br>
+                                <strong>Upper Bound:</strong> χ(G) ≤ Δ(G) + 1 where Δ(G) = maximum degree<br><br>
+                                <strong>Brooks' Theorem:</strong> χ(G) ≤ Δ(G) unless G is complete or odd cycle
+                            </div>
+
+                            <h3>Special Cases</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Graph Type</th><th>Chromatic Number</th></tr>
+                                    <tr><td>Complete Kₙ</td><td>χ = n</td></tr>
+                                    <tr><td>Cycle Cₙ (n even)</td><td>χ = 2</td></tr>
+                                    <tr><td>Cycle Cₙ (n odd)</td><td>χ = 3</td></tr>
+                                    <tr><td>Tree (n ≥ 2)</td><td>χ = 2</td></tr>
+                                    <tr><td>Bipartite graph</td><td>χ = 2</td></tr>
+                                    <tr><td>Wheel Wₙ (n even)</td><td>χ = 3</td></tr>
+                                    <tr><td>Wheel Wₙ (n odd)</td><td>χ = 4</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="info-box">
+                                <h4><i class="fas fa-lightbulb"></i> Four Color Theorem</h4>
+                                <p>Every planar graph can be colored with at most 4 colors. This means any map can be colored with 4 colors such that no adjacent regions share the same color!</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>Find χ(K₅).</p>
+                                <div class="solution">
+                                    In K₅, every vertex is adjacent to every other vertex.<br>
+                                    So each vertex needs a different color.<br>
+                                    <strong>χ(K₅) = 5</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GRAPH ISOMORPHISM & HOMEOMORPHISM -->
+                        <div class="topic-section" id="isomorphism">
+                            <h2><i class="fas fa-exchange-alt"></i> Isomorphism & Homeomorphism</h2>
+                            
+                            <h3>Graph Isomorphism</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>Two graphs G₁ and G₂ are <strong>isomorphic</strong> (G₁ ≅ G₂) if there exists a bijection f: V(G₁) → V(G₂) that preserves adjacency.<br><br>
+                                In other words: same structure, just different vertex labels.</p>
+                            </div>
+
+                            <div class="formula-box">
+                                <strong>Necessary conditions (must be equal):</strong><br>
+                                • Number of vertices<br>
+                                • Number of edges<br>
+                                • Degree sequence (sorted list of all degrees)<br>
+                                • Number of cycles of each length<br><br>
+                                <strong>Note:</strong> These conditions are necessary but NOT sufficient!
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Isomorphic Graphs Example</h4>
+                                <img src="../images/graph13.png" alt="Two isomorphic graphs with vertex mapping">
+                            </div>
+
+                            <h3>Homeomorphism</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>Two graphs G₁ and G₂ are <strong>homeomorphic</strong> if they can be obtained from the same graph by a sequence of <strong>elementary subdivisions</strong>.</p>
+                                <p><strong>Elementary subdivision:</strong> Replacing an edge (u, v) with a path u → w → v (adding a new vertex w of degree 2).</p>
+                            </div>
+
+                            <div class="diagram-box">
+                                <h4>Homeomorphic Graphs Example</h4>
+                                <img src="../images/graph14.png" alt="Homeomorphic graphs showing subdivision">
+                            </div>
+
+                            <div class="info-box">
+                                <h4><i class="fas fa-lightbulb"></i> Relationship to Kuratowski</h4>
+                                <p>Kuratowski's theorem uses homeomorphism: G is non-planar if and only if it contains a subgraph homeomorphic to K₅ or K₃,₃.</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>Are these isomorphic? G₁: degrees {2,2,2,2}, G₂: degrees {1,2,2,3}</p>
+                                <div class="solution">
+                                    Degree sequences are different!<br>
+                                    <strong>NOT isomorphic</strong> (quick rejection using necessary condition)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COMBINATORICS -->
+                        <div class="topic-section" id="combinatorics">
+                            <h2><i class="fas fa-calculator"></i> Combinatorics</h2>
+                            
+                            <h3>Counting Principles</h3>
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>Sum Rule</h4>
+                                    <p>If A and B are disjoint:<br>|A ∪ B| = |A| + |B|<br>"OR" situations</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Product Rule</h4>
+                                    <p>For independent choices:<br>|A × B| = |A| × |B|<br>"AND" situations</p>
+                                </div>
+                            </div>
+
+                            <h3>Permutations & Combinations</h3>
+                            <div class="formula-box">
+                                <strong>Permutations (order matters):</strong><br>
+                                P(n, r) = n!/(n-r)! = n × (n-1) × ... × (n-r+1)<br><br>
+                                <strong>Combinations (order doesn't matter):</strong><br>
+                                C(n, r) = n!/(r!(n-r)!) = P(n,r)/r!
+                            </div>
+
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Scenario</th><th>Formula</th><th>Example</th></tr>
+                                    <tr><td>Arrange r from n (order)</td><td>P(n,r)</td><td>Podium finishes</td></tr>
+                                    <tr><td>Choose r from n (no order)</td><td>C(n,r)</td><td>Committee selection</td></tr>
+                                    <tr><td>Arrange n with repetition</td><td>nʳ</td><td>Passwords (digits 0-9)</td></tr>
+                                    <tr><td>Arrange with identical items</td><td>n!/(n₁!n₂!...)</td><td>Rearrange "MISSISSIPPI"</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Pigeonhole Principle</h3>
+                            <div class="definition-box">
+                                <h4>Basic Form</h4>
+                                <p>If n items are placed into k containers and n > k, at least one container has more than one item.</p>
+                            </div>
+
+                            <div class="definition-box">
+                                <h4>Generalized Form</h4>
+                                <p>If n items in k containers, at least one has ⌈n/k⌉ items.</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Pigeonhole</h4>
+                                <p>In 367 people, prove at least 2 share a birthday.</p>
+                                <div class="solution">
+                                    n = 367 people, k = 366 days (including Feb 29)<br>
+                                    Since 367 > 366, by Pigeonhole Principle,<br>
+                                    <strong>at least 2 people share a birthday ✓</strong>
+                                </div>
+                            </div>
+
+                            <h3>Inclusion-Exclusion Principle</h3>
+                            <div class="formula-box">
+                                |A ∪ B| = |A| + |B| - |A ∩ B|<br><br>
+                                |A ∪ B ∪ C| = |A| + |B| + |C| - |A∩B| - |B∩C| - |A∩C| + |A∩B∩C|
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>How many integers 1-100 are divisible by 2 or 3?</p>
+                                <div class="solution">
+                                    |A| = divisible by 2 = 50<br>
+                                    |B| = divisible by 3 = 33<br>
+                                    |A ∩ B| = divisible by 6 = 16<br>
+                                    |A ∪ B| = 50 + 33 - 16 = <strong>67</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="unit-navigation">
+                            <a href="unit4.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Unit IV</a>
+                            <a href="../index.html" class="nav-btn next">Home <i class="fas fa-home"></i></a>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section">
+            <div class="container">
+                <h2 class="section-title">Test Your Knowledge</h2>
+                <div class="quiz-container" id="quiz-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="unit1.html">Unit I</a></li>
+                        <li><a href="unit2.html">Unit II</a></li>
+                        <li><a href="unit3.html">Unit III</a></li>
+                        <li><a href="unit4.html">Unit IV</a></li>
+                        <li><a href="unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        const unit5Questions = [
+            { question: "Handshaking theorem: ∑deg(v) = ?", options: ["|E|", "2|E|", "|V|", "2|V|"], correct: 1, explanation: "Sum of all degrees = twice the number of edges." },
+            { question: "K₅ has how many edges?", options: ["5", "10", "15", "20"], correct: 1, explanation: "K_n has n(n-1)/2 edges. K₅: 5(4)/2 = 10" },
+            { question: "Euler circuit exists iff:", options: ["All even degree", "All odd degree", "Exactly 2 odd", "Graph is complete"], correct: 0, explanation: "Euler circuit needs ALL vertices with even degree." },
+            { question: "Euler path exists iff odd vertices count is:", options: ["0", "1", "0 or 2", "Any number"], correct: 2, explanation: "Euler path: exactly 0 or 2 vertices with odd degree." },
+            { question: "Euler's formula for planar: v - e + f = ?", options: ["0", "1", "2", "3"], correct: 2, explanation: "Euler's formula: v - e + f = 2" },
+            { question: "For planar graph (v≥3): e ≤ ?", options: ["2v-4", "3v-6", "v²", "2v"], correct: 1, explanation: "For simple connected planar: e ≤ 3v - 6" },
+            { question: "K₃,₃ is:", options: ["Planar", "Non-planar", "Bipartite", "All of these"], correct: 1, explanation: "K₃,₃ is non-planar (one of Kuratowski's forbidden graphs)." },
+            { question: "P(5,2) = ?", options: ["10", "20", "25", "60"], correct: 1, explanation: "P(5,2) = 5!/(5-2)! = 5×4 = 20" },
+            { question: "C(6,2) = ?", options: ["12", "15", "30", "36"], correct: 1, explanation: "C(6,2) = 6!/(2!4!) = 15" },
+            { question: "If 13 people, minimum sharing birth month?", options: ["1", "2", "3", "13"], correct: 1, explanation: "Pigeonhole: ⌈13/12⌉ = 2" },
+            { question: "Hamiltonian path visits every:", options: ["Edge once", "Vertex once", "Edge twice", "Face"], correct: 1, explanation: "Hamiltonian path visits every vertex exactly once." },
+            { question: "Complete bipartite K₂,₄ has edges:", options: ["4", "6", "8", "16"], correct: 2, explanation: "K_{m,n} has m×n = 2×4 = 8 edges." },
+            { question: "Degree of each vertex in Cₙ:", options: ["1", "2", "n-1", "n"], correct: 1, explanation: "In cycle graph, each vertex connects to exactly 2 neighbors." },
+            { question: "|A∪B| using inclusion-exclusion:", options: ["|A|+|B|", "|A|+|B|-|A∩B|", "|A|×|B|", "|A|-|B|"], correct: 1, explanation: "Inclusion-exclusion: |A∪B| = |A| + |B| - |A∩B|" },
+            { question: "Dirac's theorem requires deg(v) ≥ ?", options: ["1", "n/3", "n/2", "n-1"], correct: 2, explanation: "Dirac: if deg(v) ≥ n/2 for all v, Hamiltonian cycle exists." },
+            { question: "MISSISSIPPI rearrangements: 11!/(?):", options: ["1!4!4!2!", "4!4!2!", "1!2!4!4!", "4!4!"], correct: 0, explanation: "11 letters with M=1, I=4, S=4, P=2: 11!/(1!4!4!2!)" },
+            { question: "Simple graph means:", options: ["No loops, no multiple edges", "Has loops", "Has multiple edges", "Is directed"], correct: 0, explanation: "Simple graph: no self-loops, no parallel edges." },
+            { question: "Adjacency matrix space complexity:", options: ["O(n)", "O(e)", "O(n²)", "O(n+e)"], correct: 2, explanation: "Adjacency matrix is n×n, so O(n²) space." },
+            { question: "A graph is bipartite iff it has no:", options: ["Even cycle", "Odd cycle", "Edges", "Vertices"], correct: 1, explanation: "A graph is bipartite iff it contains no odd-length cycles." },
+            { question: "If graph has Euler circuit, it has:", options: ["No Euler path", "Euler path too", "Hamiltonian path", "No cycles"], correct: 1, explanation: "Euler circuit is also an Euler path (starts and ends same place)." }
+        ];
+        const quiz = new QuizManager('quiz-container', unit5Questions);
+    </script>
+</body>
+</html>

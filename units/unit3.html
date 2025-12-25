@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit III - Theory of Logic | DSTL Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .diagram-box { background: #f0f4ff; border: 2px solid #6366f1; border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
+        .diagram-box pre { font-family: monospace; font-size: 14px; line-height: 1.4; }
+        .truth-table { margin: 15px auto; }
+        .truth-table td, .truth-table th { padding: 8px 15px; border: 1px solid #ddd; text-align: center; }
+        .truth-table th { background: #6366f1; color: white; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="unit1.html">Unit I</a></li>
+                <li><a href="unit2.html">Unit II</a></li>
+                <li><a href="unit3.html" class="active">Unit III</a></li>
+                <li><a href="unit4.html">Unit IV</a></li>
+                <li><a href="unit5.html">Unit V</a></li>
+                <li><a href="../theory.html">Theory</a></li>
+                <li><a href="../questions.html">Questions</a></li>
+                <li><a href="../previousyear.html">PYQ</a></li>
+                <li><a href="../formulas.html">Formulas</a></li>
+                <li><a href="../theorems.html">Theorems</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-brain"></i> Unit III: Theory of Logic</h1>
+                <p>Complete guide to Propositional Logic, Predicate Logic & Inference</p>
+            </div>
+        </header>
+
+        <section class="unit-content">
+            <div class="container">
+                <div class="page-layout">
+                    <aside class="sidebar">
+                        <h3>Topics</h3>
+                        <nav class="sidebar-nav">
+                            <a href="#propositions">Propositions</a>
+                            <a href="#connectives">Logical Connectives</a>
+                            <a href="#equivalence">Logical Equivalence</a>
+                            <a href="#predicates">Predicate Logic</a>
+                            <a href="#inference">Rules of Inference</a>
+                            <a href="#proofs">Proof Methods</a>
+                        </nav>
+                    </aside>
+
+                    <main class="main-content">
+                        <!-- PROPOSITIONS -->
+                        <div class="topic-section" id="propositions">
+                            <h2><i class="fas fa-comment-dots"></i> Propositions</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Proposition</h4>
+                                <p>A <strong>proposition</strong> is a declarative statement that is either <strong>TRUE (T/1)</strong> or <strong>FALSE (F/0)</strong>, but not both. Also called a statement or assertion.</p>
+                            </div>
+
+                            <h3>Examples</h3>
+                            <div class="properties-grid">
+                                <div class="property-card" style="background:#d4edda;">
+                                    <h4>✓ Propositions</h4>
+                                    <p>• "2 + 2 = 4" (True)<br>
+                                    • "Paris is in Germany" (False)<br>
+                                    • "7 is a prime number" (True)<br>
+                                    • "All cats are mammals" (True)</p>
+                                </div>
+                                <div class="property-card" style="background:#f8d7da;">
+                                    <h4>✗ Not Propositions</h4>
+                                    <p>• "What time is it?" (question)<br>
+                                    • "Close the door" (command)<br>
+                                    • "x + 1 = 2" (variable, no truth value)<br>
+                                    • "This statement is false" (paradox)</p>
+                                </div>
+                            </div>
+
+                            <h3>Propositional Variables</h3>
+                            <div class="info-box note">
+                                <h4><i class="fas fa-info-circle"></i> Notation</h4>
+                                <p>We use lowercase letters p, q, r, s... to represent propositions.<br>
+                                Example: Let p = "It is raining", q = "I will carry umbrella"</p>
+                            </div>
+                        </div>
+
+                        <!-- LOGICAL CONNECTIVES -->
+                        <div class="topic-section" id="connectives">
+                            <h2><i class="fas fa-link"></i> Logical Connectives</h2>
+                            
+                            <h3>Five Basic Connectives</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Name</th><th>Symbol</th><th>Read As</th><th>Example</th></tr>
+                                    <tr><td>Negation</td><td>¬p or ~p</td><td>"NOT p"</td><td>¬p: "It is NOT raining"</td></tr>
+                                    <tr><td>Conjunction</td><td>p ∧ q</td><td>"p AND q"</td><td>p ∧ q: "Raining AND cold"</td></tr>
+                                    <tr><td>Disjunction</td><td>p ∨ q</td><td>"p OR q"</td><td>p ∨ q: "Raining OR cold"</td></tr>
+                                    <tr><td>Implication</td><td>p → q</td><td>"IF p THEN q"</td><td>p → q: "If rain, then umbrella"</td></tr>
+                                    <tr><td>Biconditional</td><td>p ↔ q</td><td>"p IF AND ONLY IF q"</td><td>p ↔ q: "Rain iff clouds"</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Truth Tables</h3>
+                            <div class="table-container">
+                                <table class="truth-table">
+                                    <tr><th>p</th><th>q</th><th>¬p</th><th>p∧q</th><th>p∨q</th><th>p→q</th><th>p↔q</th></tr>
+                                    <tr><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+                                    <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td></tr>
+                                    <tr><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td></tr>
+                                    <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Understanding Implication (p → q)</h3>
+                            <div class="definition-box">
+                                <h4>Key Insight</h4>
+                                <p><strong>p → q is FALSE only when p is TRUE and q is FALSE</strong><br><br>
+                                Think of it as a promise: "If you get A, I'll buy you a car"<br>
+                                • Get A, get car: Promise kept (T)<br>
+                                • Get A, no car: Promise broken (F)<br>
+                                • No A, get car: Promise not violated (T)<br>
+                                • No A, no car: Promise not violated (T)</p>
+                            </div>
+
+                            <h3>Related Conditionals</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Name</th><th>Form</th><th>Example</th></tr>
+                                    <tr><td>Conditional</td><td>p → q</td><td>"If it rains, ground is wet"</td></tr>
+                                    <tr><td>Converse</td><td>q → p</td><td>"If ground is wet, it rains"</td></tr>
+                                    <tr><td>Inverse</td><td>¬p → ¬q</td><td>"If no rain, ground not wet"</td></tr>
+                                    <tr><td>Contrapositive</td><td>¬q → ¬p</td><td>"If ground not wet, no rain"</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="info-box tip">
+                                <h4><i class="fas fa-lightbulb"></i> Important</h4>
+                                <p>• p → q ≡ ¬q → ¬p (Conditional ≡ Contrapositive)<br>
+                                • Converse and Inverse are NOT equivalent to original</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>Construct truth table for: (p → q) ∧ (q → r)</p>
+                                <div class="solution">
+                                    <table class="truth-table" style="font-size:14px;">
+                                        <tr><th>p</th><th>q</th><th>r</th><th>p→q</th><th>q→r</th><th>(p→q)∧(q→r)</th></tr>
+                                        <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+                                        <tr><td>T</td><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td></tr>
+                                        <tr><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td></tr>
+                                        <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td></tr>
+                                        <tr><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+                                        <tr><td>F</td><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td></tr>
+                                        <tr><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+                                        <tr><td>F</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LOGICAL EQUIVALENCE -->
+                        <div class="topic-section" id="equivalence">
+                            <h2><i class="fas fa-equals"></i> Logical Equivalence</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definitions</h4>
+                                <p><strong>Tautology:</strong> Always TRUE for all truth values (e.g., p ∨ ¬p)<br>
+                                <strong>Contradiction:</strong> Always FALSE for all truth values (e.g., p ∧ ¬p)<br>
+                                <strong>Contingency:</strong> Sometimes TRUE, sometimes FALSE<br>
+                                <strong>Logical Equivalence:</strong> p ≡ q means p ↔ q is a tautology</p>
+                            </div>
+
+                            <h3>Important Equivalences (Laws)</h3>
+                            <div class="formula-box">
+                                <strong>Identity:</strong> p ∧ T ≡ p, p ∨ F ≡ p<br>
+                                <strong>Domination:</strong> p ∨ T ≡ T, p ∧ F ≡ F<br>
+                                <strong>Idempotent:</strong> p ∨ p ≡ p, p ∧ p ≡ p<br>
+                                <strong>Double Negation:</strong> ¬(¬p) ≡ p<br>
+                                <strong>Commutative:</strong> p ∨ q ≡ q ∨ p, p ∧ q ≡ q ∧ p<br>
+                                <strong>Associative:</strong> (p ∨ q) ∨ r ≡ p ∨ (q ∨ r)<br>
+                                <strong>Distributive:</strong> p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)<br>
+                                <strong>De Morgan:</strong> ¬(p ∧ q) ≡ ¬p ∨ ¬q, ¬(p ∨ q) ≡ ¬p ∧ ¬q<br>
+                                <strong>Absorption:</strong> p ∨ (p ∧ q) ≡ p, p ∧ (p ∨ q) ≡ p<br>
+                                <strong>Implication:</strong> p → q ≡ ¬p ∨ q<br>
+                                <strong>Contrapositive:</strong> p → q ≡ ¬q → ¬p<br>
+                                <strong>Biconditional:</strong> p ↔ q ≡ (p → q) ∧ (q → p)
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Simplify</h4>
+                                <p>Simplify: ¬(p → q)</p>
+                                <div class="solution">
+                                    ¬(p → q)<br>
+                                    ≡ ¬(¬p ∨ q) &nbsp;&nbsp;(Implication law)<br>
+                                    ≡ ¬(¬p) ∧ ¬q &nbsp;&nbsp;(De Morgan's)<br>
+                                    ≡ <strong>p ∧ ¬q</strong> &nbsp;&nbsp;(Double negation)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PREDICATE LOGIC -->
+                        <div class="topic-section" id="predicates">
+                            <h2><i class="fas fa-filter"></i> Predicate Logic</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Predicate</h4>
+                                <p>A <strong>predicate</strong> P(x) is a statement containing variable x that becomes a proposition when x is assigned a specific value.<br><br>
+                                Example: P(x) = "x > 5"<br>
+                                P(3) is FALSE, P(7) is TRUE</p>
+                            </div>
+
+                            <h3>Quantifiers</h3>
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>Universal Quantifier (∀)</h4>
+                                    <p><strong>∀x P(x)</strong>: "For ALL x, P(x) is true"<br><br>
+                                    True if P(x) is true for EVERY x in domain<br>
+                                    False if even ONE x makes P(x) false</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Existential Quantifier (∃)</h4>
+                                    <p><strong>∃x P(x)</strong>: "There EXISTS an x such that P(x)"<br><br>
+                                    True if at least ONE x makes P(x) true<br>
+                                    False if NO x makes P(x) true</p>
+                                </div>
+                            </div>
+
+                            <h3>Negating Quantifiers</h3>
+                            <div class="formula-box">
+                                <strong>¬(∀x P(x)) ≡ ∃x ¬P(x)</strong><br>
+                                "Not all x satisfy P" ≡ "Some x does not satisfy P"<br><br>
+                                <strong>¬(∃x P(x)) ≡ ∀x ¬P(x)</strong><br>
+                                "No x satisfies P" ≡ "All x fail P"
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>Negate: "All students passed the exam"</p>
+                                <div class="solution">
+                                    Let P(x) = "x passed the exam"<br>
+                                    Original: ∀x P(x)<br>
+                                    Negation: ¬(∀x P(x)) ≡ ∃x ¬P(x)<br>
+                                    <strong>"Some student did not pass the exam"</strong>
+                                </div>
+                            </div>
+
+                            <h3>Nested Quantifiers</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Statement</th><th>Meaning</th></tr>
+                                    <tr><td>∀x∀y P(x,y)</td><td>For all x and all y, P(x,y) is true</td></tr>
+                                    <tr><td>∀x∃y P(x,y)</td><td>For every x, there exists some y such that P(x,y)</td></tr>
+                                    <tr><td>∃x∀y P(x,y)</td><td>There exists x such that for all y, P(x,y)</td></tr>
+                                    <tr><td>∃x∃y P(x,y)</td><td>There exist x and y such that P(x,y)</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="info-box warning">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Order Matters!</h4>
+                                <p>∀x∃y P(x,y) ≠ ∃y∀x P(x,y)<br>
+                                "Everyone has a mother" ≠ "Someone is everyone's mother"</p>
+                            </div>
+                        </div>
+
+                        <!-- RULES OF INFERENCE -->
+                        <div class="topic-section" id="inference">
+                            <h2><i class="fas fa-gavel"></i> Rules of Inference</h2>
+                            
+                            <div class="definition-box">
+                                <h4>What is Inference?</h4>
+                                <p>An <strong>argument</strong> is a sequence of statements (premises) leading to a conclusion. An argument is <strong>valid</strong> if the conclusion follows logically from premises.</p>
+                            </div>
+
+                            <h3>Rules for Propositional Logic</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Rule</th><th>Form</th><th>Example</th></tr>
+                                    <tr><td><strong>Modus Ponens</strong></td><td>p→q, p ∴ q</td><td>If rain then wet. It rains. ∴ Ground wet.</td></tr>
+                                    <tr><td><strong>Modus Tollens</strong></td><td>p→q, ¬q ∴ ¬p</td><td>If rain then wet. Not wet. ∴ No rain.</td></tr>
+                                    <tr><td><strong>Hypothetical Syllogism</strong></td><td>p→q, q→r ∴ p→r</td><td>If A then B. If B then C. ∴ If A then C.</td></tr>
+                                    <tr><td><strong>Disjunctive Syllogism</strong></td><td>p∨q, ¬p ∴ q</td><td>A or B. Not A. ∴ B.</td></tr>
+                                    <tr><td><strong>Addition</strong></td><td>p ∴ p∨q</td><td>It rains. ∴ It rains or snows.</td></tr>
+                                    <tr><td><strong>Simplification</strong></td><td>p∧q ∴ p</td><td>Hot and sunny. ∴ Hot.</td></tr>
+                                    <tr><td><strong>Conjunction</strong></td><td>p, q ∴ p∧q</td><td>Hot. Sunny. ∴ Hot and sunny.</td></tr>
+                                    <tr><td><strong>Resolution</strong></td><td>p∨q, ¬p∨r ∴ q∨r</td><td>A∨B, ¬A∨C ∴ B∨C</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Rules for Quantified Statements</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Rule</th><th>Form</th></tr>
+                                    <tr><td>Universal Instantiation</td><td>∀x P(x) ∴ P(c) for any c</td></tr>
+                                    <tr><td>Universal Generalization</td><td>P(c) for arbitrary c ∴ ∀x P(x)</td></tr>
+                                    <tr><td>Existential Instantiation</td><td>∃x P(x) ∴ P(c) for some c</td></tr>
+                                    <tr><td>Existential Generalization</td><td>P(c) for specific c ∴ ∃x P(x)</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Valid Argument</h4>
+                                <p>Premises: (1) All humans are mortal. (2) Socrates is human.<br>Conclusion: Socrates is mortal.</p>
+                                <div class="solution">
+                                    Let H(x) = "x is human", M(x) = "x is mortal"<br>
+                                    1. ∀x (H(x) → M(x)) &nbsp;&nbsp;(Premise)<br>
+                                    2. H(Socrates) &nbsp;&nbsp;(Premise)<br>
+                                    3. H(Socrates) → M(Socrates) &nbsp;&nbsp;(Universal Instantiation from 1)<br>
+                                    4. M(Socrates) &nbsp;&nbsp;(Modus Ponens from 2, 3)<br>
+                                    <strong>Valid argument ✓</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PROOF METHODS -->
+                        <div class="topic-section" id="proofs">
+                            <h2><i class="fas fa-check-double"></i> Proof Methods</h2>
+                            
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>Direct Proof</h4>
+                                    <p>Assume p is true, show q follows.<br>To prove p → q: Assume p, derive q.</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Proof by Contrapositive</h4>
+                                    <p>Prove ¬q → ¬p instead of p → q.<br>Assume ¬q, show ¬p follows.</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Proof by Contradiction</h4>
+                                    <p>Assume negation of conclusion.<br>Derive a contradiction. Original must be true.</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Proof by Cases</h4>
+                                    <p>Split into exhaustive cases.<br>Prove each case separately.</p>
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Direct Proof</h4>
+                                <p>Prove: If n is odd, then n² is odd.</p>
+                                <div class="solution">
+                                    <strong>Direct Proof:</strong><br>
+                                    Assume n is odd.<br>
+                                    Then n = 2k + 1 for some integer k.<br>
+                                    n² = (2k + 1)² = 4k² + 4k + 1 = 2(2k² + 2k) + 1<br>
+                                    Let m = 2k² + 2k, then n² = 2m + 1<br>
+                                    Therefore n² is odd. ∎
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Contradiction</h4>
+                                <p>Prove: √2 is irrational.</p>
+                                <div class="solution">
+                                    <strong>Proof by Contradiction:</strong><br>
+                                    Assume √2 is rational, so √2 = a/b (lowest terms).<br>
+                                    Then 2 = a²/b², so a² = 2b².<br>
+                                    Thus a² is even, so a is even. Let a = 2k.<br>
+                                    (2k)² = 2b² → 4k² = 2b² → b² = 2k²<br>
+                                    So b² is even, meaning b is even.<br>
+                                    Both a and b even contradicts "lowest terms".<br>
+                                    Therefore √2 is irrational. ∎
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="unit-navigation">
+                            <a href="unit2.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Unit II</a>
+                            <a href="unit4.html" class="nav-btn next">Unit IV: Algebra <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section">
+            <div class="container">
+                <h2 class="section-title">Test Your Knowledge</h2>
+                <div class="quiz-container" id="quiz-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="unit1.html">Unit I</a></li>
+                        <li><a href="unit2.html">Unit II</a></li>
+                        <li><a href="unit3.html">Unit III</a></li>
+                        <li><a href="unit4.html">Unit IV</a></li>
+                        <li><a href="unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        const unit3Questions = [
+            { question: "Which is NOT a proposition?", options: ["2+2=5", "Close the door", "Paris is in France", "5>3"], correct: 1, explanation: "'Close the door' is a command, not a statement with truth value." },
+            { question: "p → q is FALSE only when:", options: ["p=T, q=T", "p=T, q=F", "p=F, q=T", "p=F, q=F"], correct: 1, explanation: "Implication is false only when premise is true but conclusion is false." },
+            { question: "The contrapositive of p → q is:", options: ["q → p", "¬p → ¬q", "¬q → ¬p", "p ↔ q"], correct: 2, explanation: "Contrapositive negates and swaps: ¬q → ¬p" },
+            { question: "p → q is equivalent to:", options: ["p ∧ q", "¬p ∨ q", "p ∨ q", "¬p ∧ q"], correct: 1, explanation: "Implication law: p → q ≡ ¬p ∨ q" },
+            { question: "De Morgan's law: ¬(p ∧ q) ≡ ?", options: ["¬p ∧ ¬q", "¬p ∨ ¬q", "p ∨ q", "p ∧ q"], correct: 1, explanation: "De Morgan: NOT(p AND q) = (NOT p) OR (NOT q)" },
+            { question: "A tautology is:", options: ["Always false", "Always true", "Sometimes true", "A contradiction"], correct: 1, explanation: "Tautology is true for ALL truth value combinations." },
+            { question: "p ∧ ¬p is a:", options: ["Tautology", "Contradiction", "Contingency", "Implication"], correct: 1, explanation: "p AND (NOT p) is always false - a contradiction." },
+            { question: "¬(∀x P(x)) is equivalent to:", options: ["∀x ¬P(x)", "∃x ¬P(x)", "∃x P(x)", "¬∃x P(x)"], correct: 1, explanation: "Negation of 'all' becomes 'some not': ∃x ¬P(x)" },
+            { question: "Modus Ponens: p→q, p gives:", options: ["¬p", "¬q", "q", "p∧q"], correct: 2, explanation: "If p→q is true and p is true, then q must be true." },
+            { question: "Modus Tollens: p→q, ¬q gives:", options: ["p", "q", "¬p", "p∧q"], correct: 2, explanation: "If p→q and q is false, then p must be false." },
+            { question: "∀x∃y P(x,y) means:", options: ["For some x, all y satisfy P", "For all x, some y satisfies P", "For all x and y, P holds", "For some x and y, P holds"], correct: 1, explanation: "For every x, there exists at least one y such that P(x,y)." },
+            { question: "Which proves p → q?", options: ["Assume q, prove p", "Assume p, prove q", "Assume p, prove ¬q", "Assume ¬p, prove q"], correct: 1, explanation: "Direct proof: assume premise p, derive conclusion q." },
+            { question: "Proof by contrapositive proves p→q by showing:", options: ["p → q", "¬p → ¬q", "¬q → ¬p", "q → p"], correct: 2, explanation: "Contrapositive ¬q → ¬p is logically equivalent to p → q." },
+            { question: "p ↔ q is equivalent to:", options: ["(p→q) ∨ (q→p)", "(p→q) ∧ (q→p)", "p → q", "¬p → ¬q"], correct: 1, explanation: "Biconditional = both implications must hold." },
+            { question: "Disjunctive Syllogism: p∨q, ¬p gives:", options: ["p", "q", "¬q", "p∧q"], correct: 1, explanation: "If p OR q, and NOT p, then q must be true." },
+            { question: "Universal Instantiation allows:", options: ["∃x P(x) → P(c)", "∀x P(x) → P(c)", "P(c) → ∀x P(x)", "P(c) → ∃x P(x)"], correct: 1, explanation: "If P holds for all x, it holds for any specific c." },
+            { question: "p ∨ (p ∧ q) simplifies to:", options: ["p", "q", "p ∧ q", "p ∨ q"], correct: 0, explanation: "Absorption law: p ∨ (p ∧ q) ≡ p" },
+            { question: "Which is the converse of p → q?", options: ["¬p → ¬q", "¬q → ¬p", "q → p", "p ↔ q"], correct: 2, explanation: "Converse swaps premise and conclusion: q → p" },
+            { question: "Hypothetical Syllogism: p→q, q→r gives:", options: ["p → r", "r → p", "p ∧ r", "q"], correct: 0, explanation: "Chain rule: if p implies q and q implies r, then p implies r." },
+            { question: "Resolution rule: p∨q, ¬p∨r gives:", options: ["p ∨ r", "q ∨ r", "p ∧ r", "q ∧ r"], correct: 1, explanation: "Resolution: p∨q and ¬p∨r resolves to q∨r" }
+        ];
+        const quiz = new QuizManager('quiz-container', unit3Questions);
+    </script>
+</body>
+</html>

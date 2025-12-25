@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit IV - Algebraic Structures | DSTL Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .diagram-box { background: #f0f4ff; border: 2px solid #6366f1; border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
+        .diagram-box pre { font-family: monospace; font-size: 14px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="unit1.html">Unit I</a></li>
+                <li><a href="unit2.html">Unit II</a></li>
+                <li><a href="unit3.html">Unit III</a></li>
+                <li><a href="unit4.html" class="active">Unit IV</a></li>
+                <li><a href="unit5.html">Unit V</a></li>
+                <li><a href="../theory.html">Theory</a></li>
+                <li><a href="../questions.html">Questions</a></li>
+                <li><a href="../previousyear.html">PYQ</a></li>
+                <li><a href="../formulas.html">Formulas</a></li>
+                <li><a href="../theorems.html">Theorems</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-cubes"></i> Unit IV: Algebraic Structures</h1>
+                <p>Complete guide to Groups, Subgroups, Cosets, Rings & Fields</p>
+            </div>
+        </header>
+
+        <section class="unit-content">
+            <div class="container">
+                <div class="page-layout">
+                    <aside class="sidebar">
+                        <h3>Topics</h3>
+                        <nav class="sidebar-nav">
+                            <a href="#binary">Binary Operations</a>
+                            <a href="#groups">Groups</a>
+                            <a href="#subgroups">Subgroups</a>
+                            <a href="#cyclic">Cyclic Groups</a>
+                            <a href="#cosets">Cosets & Lagrange</a>
+                            <a href="#rings">Rings & Fields</a>
+                        </nav>
+                    </aside>
+
+                    <main class="main-content">
+                        <!-- BINARY OPERATIONS -->
+                        <div class="topic-section" id="binary">
+                            <h2><i class="fas fa-asterisk"></i> Binary Operations</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>A <strong>binary operation</strong> * on set S is a function *: S × S → S<br>
+                                For a, b ∈ S, we write a * b instead of *(a, b).<br>
+                                Examples: +, ×, -, ÷ on numbers</p>
+                            </div>
+
+                            <h3>Properties of Binary Operations</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Property</th><th>Definition</th><th>Example</th></tr>
+                                    <tr><td>Closure</td><td>a * b ∈ S for all a, b ∈ S</td><td>ℤ under + is closed</td></tr>
+                                    <tr><td>Associativity</td><td>(a * b) * c = a * (b * c)</td><td>+ is associative</td></tr>
+                                    <tr><td>Commutativity</td><td>a * b = b * a</td><td>+ is commutative</td></tr>
+                                    <tr><td>Identity</td><td>∃e: a * e = e * a = a</td><td>0 for +, 1 for ×</td></tr>
+                                    <tr><td>Inverse</td><td>∃a⁻¹: a * a⁻¹ = e</td><td>-a for +, 1/a for ×</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Cayley Table</h4>
+                                <p>Operation * on {0, 1, 2} defined by a * b = (a + b) mod 3</p>
+                                <div class="solution">
+                                    <table style="margin:10px auto; border-collapse:collapse;">
+                                        <tr><th style="border:1px solid #333; padding:8px;">*</th><th style="border:1px solid #333; padding:8px;">0</th><th style="border:1px solid #333; padding:8px;">1</th><th style="border:1px solid #333; padding:8px;">2</th></tr>
+                                        <tr><td style="border:1px solid #333; padding:8px;"><strong>0</strong></td><td style="border:1px solid #333; padding:8px;">0</td><td style="border:1px solid #333; padding:8px;">1</td><td style="border:1px solid #333; padding:8px;">2</td></tr>
+                                        <tr><td style="border:1px solid #333; padding:8px;"><strong>1</strong></td><td style="border:1px solid #333; padding:8px;">1</td><td style="border:1px solid #333; padding:8px;">2</td><td style="border:1px solid #333; padding:8px;">0</td></tr>
+                                        <tr><td style="border:1px solid #333; padding:8px;"><strong>2</strong></td><td style="border:1px solid #333; padding:8px;">2</td><td style="border:1px solid #333; padding:8px;">0</td><td style="border:1px solid #333; padding:8px;">1</td></tr>
+                                    </table>
+                                    Identity = 0, Inverse of 1 is 2 (1*2=0)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GROUPS -->
+                        <div class="topic-section" id="groups">
+                            <h2><i class="fas fa-object-group"></i> Groups</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Group</h4>
+                                <p>A <strong>group</strong> (G, *) is a set G with binary operation * satisfying:<br>
+                                <strong>G1. Closure:</strong> a * b ∈ G for all a, b ∈ G<br>
+                                <strong>G2. Associativity:</strong> (a * b) * c = a * (b * c)<br>
+                                <strong>G3. Identity:</strong> ∃e ∈ G: a * e = e * a = a<br>
+                                <strong>G4. Inverse:</strong> ∀a ∈ G, ∃a⁻¹: a * a⁻¹ = a⁻¹ * a = e</p>
+                            </div>
+
+                            <div class="definition-box">
+                                <h4>Abelian Group</h4>
+                                <p>A group is <strong>Abelian</strong> (commutative) if a * b = b * a for all a, b ∈ G.</p>
+                            </div>
+
+                            <h3>Common Groups</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Group</th><th>Set</th><th>Operation</th><th>Identity</th><th>Inverse of a</th></tr>
+                                    <tr><td>(ℤ, +)</td><td>Integers</td><td>Addition</td><td>0</td><td>-a</td></tr>
+                                    <tr><td>(ℚ*, ×)</td><td>Non-zero rationals</td><td>Multiplication</td><td>1</td><td>1/a</td></tr>
+                                    <tr><td>(ℤₙ, +ₙ)</td><td>{0,1,...,n-1}</td><td>Addition mod n</td><td>0</td><td>n-a</td></tr>
+                                    <tr><td>(Sₙ, ∘)</td><td>Permutations</td><td>Composition</td><td>Id</td><td>σ⁻¹</td></tr>
+                                    <tr><td>(GL(n,ℝ), ×)</td><td>Invertible matrices</td><td>Matrix multiply</td><td>Iₙ</td><td>A⁻¹</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Not Groups - Examples</h3>
+                            <div class="info-box warning">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Why These Fail</h4>
+                                <p>• (ℤ, ×): No inverse for 2 (since 1/2 ∉ ℤ)<br>
+                                • (ℕ, +): No inverse for 1 (since -1 ∉ ℕ)<br>
+                                • (ℤ, -): Not associative: (5-3)-2 ≠ 5-(3-2)</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Verify Group</h4>
+                                <p>Show (ℤ₄, +₄) = ({0,1,2,3}, addition mod 4) is a group.</p>
+                                <div class="solution">
+                                    <strong>Closure:</strong> (a + b) mod 4 ∈ {0,1,2,3} ✓<br>
+                                    <strong>Associativity:</strong> Inherited from integer addition ✓<br>
+                                    <strong>Identity:</strong> 0 (a + 0 ≡ a mod 4) ✓<br>
+                                    <strong>Inverses:</strong> 0⁻¹=0, 1⁻¹=3, 2⁻¹=2, 3⁻¹=1 ✓<br>
+                                    <strong>Commutative:</strong> Yes, so it's Abelian ✓
+                                </div>
+                            </div>
+
+                            <h3>Group Properties</h3>
+                            <div class="formula-box">
+                                • Identity is unique<br>
+                                • Each element has unique inverse<br>
+                                • (a⁻¹)⁻¹ = a<br>
+                                • (a * b)⁻¹ = b⁻¹ * a⁻¹ (shoes-socks property)<br>
+                                • Cancellation: a * b = a * c ⟹ b = c
+                            </div>
+                        </div>
+
+                        <!-- SUBGROUPS -->
+                        <div class="topic-section" id="subgroups">
+                            <h2><i class="fas fa-sitemap"></i> Subgroups</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>H ⊆ G is a <strong>subgroup</strong> of (G, *), written H ≤ G, if (H, *) is itself a group under the same operation.</p>
+                            </div>
+
+                            <h3>Subgroup Tests</h3>
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>One-Step Test</h4>
+                                    <p>H ≤ G iff H ≠ ∅ and<br>∀a, b ∈ H: a * b⁻¹ ∈ H</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Two-Step Test</h4>
+                                    <p>H ≤ G iff:<br>1. a, b ∈ H ⟹ a * b ∈ H<br>2. a ∈ H ⟹ a⁻¹ ∈ H</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Finite Subgroup Test</h4>
+                                    <p>If H is finite, H ≤ G iff<br>H ≠ ∅ and H is closed under *</p>
+                                </div>
+                            </div>
+
+                            <h3>Trivial Subgroups</h3>
+                            <p>Every group G has:</p>
+                            <ul>
+                                <li><strong>Trivial subgroup:</strong> {e} (just identity)</li>
+                                <li><strong>Improper subgroup:</strong> G itself</li>
+                            </ul>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>Show that 2ℤ = {..., -4, -2, 0, 2, 4, ...} is a subgroup of (ℤ, +).</p>
+                                <div class="solution">
+                                    <strong>One-step test:</strong><br>
+                                    • 2ℤ ≠ ∅ (contains 0) ✓<br>
+                                    • For 2a, 2b ∈ 2ℤ: 2a + (-2b) = 2(a-b) ∈ 2ℤ ✓<br>
+                                    Therefore 2ℤ ≤ ℤ
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CYCLIC GROUPS -->
+                        <div class="topic-section" id="cyclic">
+                            <h2><i class="fas fa-sync-alt"></i> Cyclic Groups</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>Group G is <strong>cyclic</strong> if ∃g ∈ G such that every element can be written as gⁿ for some integer n.<br>
+                                g is called a <strong>generator</strong>. Write G = ⟨g⟩.</p>
+                            </div>
+
+                            <h3>Order of an Element</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p><strong>Order of a</strong>, denoted |a| or ord(a), is the smallest positive integer n such that aⁿ = e.<br>
+                                If no such n exists, order is infinite.</p>
+                            </div>
+
+                            <h3>Properties of Cyclic Groups</h3>
+                            <div class="formula-box">
+                                • Every cyclic group is Abelian<br>
+                                • Subgroups of cyclic groups are cyclic<br>
+                                • If |G| = n, then G ≅ ℤₙ<br>
+                                • If G is infinite cyclic, then G ≅ ℤ<br>
+                                • a is generator of ℤₙ iff gcd(a, n) = 1<br>
+                                • Number of generators of ℤₙ = φ(n) (Euler's totient)
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Find Generators</h4>
+                                <p>Find all generators of ℤ₈ = {0,1,2,3,4,5,6,7}.</p>
+                                <div class="solution">
+                                    a generates ℤ₈ iff gcd(a, 8) = 1<br>
+                                    gcd(1,8)=1 ✓, gcd(3,8)=1 ✓, gcd(5,8)=1 ✓, gcd(7,8)=1 ✓<br>
+                                    <strong>Generators: {1, 3, 5, 7}</strong><br>
+                                    Count = φ(8) = 4 ✓
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Order</h4>
+                                <p>Find order of 3 in ℤ₁₂.</p>
+                                <div class="solution">
+                                    3¹ = 3, 3² = 6 (mod 12), 3³ = 9, 3⁴ = 12 ≡ 0<br>
+                                    <strong>ord(3) = 4</strong> (smallest n where 3n ≡ 0 mod 12)<br>
+                                    Note: ord(3) = 12/gcd(3,12) = 12/3 = 4 ✓
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COSETS & LAGRANGE -->
+                        <div class="topic-section" id="cosets">
+                            <h2><i class="fas fa-layer-group"></i> Cosets & Lagrange's Theorem</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Coset</h4>
+                                <p>For H ≤ G and a ∈ G:<br>
+                                <strong>Left coset:</strong> aH = {ah | h ∈ H}<br>
+                                <strong>Right coset:</strong> Ha = {ha | h ∈ H}</p>
+                            </div>
+
+                            <h3>Coset Properties</h3>
+                            <div class="formula-box">
+                                • |aH| = |H| (all cosets same size)<br>
+                                • aH = H iff a ∈ H<br>
+                                • aH = bH iff a⁻¹b ∈ H<br>
+                                • Two cosets are either equal or disjoint<br>
+                                • Cosets partition G
+                            </div>
+
+                            <h3>Lagrange's Theorem</h3>
+                            <div class="definition-box">
+                                <h4>Theorem</h4>
+                                <p>If G is finite and H ≤ G, then <strong>|H| divides |G|</strong>.<br><br>
+                                <strong>Index:</strong> [G : H] = |G|/|H| = number of distinct cosets</p>
+                            </div>
+
+                            <h3>Corollaries of Lagrange's Theorem</h3>
+                            <div class="formula-box">
+                                1. Order of any element divides |G|<br>
+                                2. Groups of prime order are cyclic<br>
+                                3. aᴵᴳᴵ = e for all a ∈ G<br>
+                                4. Prime order groups have no proper subgroups
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>List cosets of H = {0, 3} in ℤ₆.</p>
+                                <div class="solution">
+                                    0 + H = {0, 3}<br>
+                                    1 + H = {1, 4}<br>
+                                    2 + H = {2, 5}<br>
+                                    3 + H = {3, 0} = H (same as 0+H)<br><br>
+                                    <strong>Distinct cosets:</strong> {0,3}, {1,4}, {2,5}<br>
+                                    [ℤ₆ : H] = 6/2 = 3 ✓
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Using Lagrange</h4>
+                                <p>Can a group of order 15 have a subgroup of order 6?</p>
+                                <div class="solution">
+                                    By Lagrange, |H| must divide |G|.<br>
+                                    Does 6 divide 15? 15/6 = 2.5 (not integer)<br>
+                                    <strong>No, impossible!</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- RINGS & FIELDS -->
+                        <div class="topic-section" id="rings">
+                            <h2><i class="fas fa-ring"></i> Rings & Fields</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Ring</h4>
+                                <p>A <strong>ring</strong> (R, +, ·) is a set R with two operations where:<br>
+                                <strong>R1.</strong> (R, +) is an Abelian group<br>
+                                <strong>R2.</strong> · is associative<br>
+                                <strong>R3.</strong> Distributive: a·(b+c) = a·b + a·c and (a+b)·c = a·c + b·c</p>
+                            </div>
+
+                            <h3>Types of Rings</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Type</th><th>Additional Property</th><th>Example</th></tr>
+                                    <tr><td>Commutative Ring</td><td>a · b = b · a</td><td>ℤ, ℤₙ</td></tr>
+                                    <tr><td>Ring with Unity</td><td>Has multiplicative identity 1</td><td>ℤ, Matrices</td></tr>
+                                    <tr><td>Integral Domain</td><td>Commutative + unity + no zero divisors</td><td>ℤ</td></tr>
+                                    <tr><td>Division Ring</td><td>Every non-zero has mult. inverse</td><td>ℍ (Quaternions)</td></tr>
+                                    <tr><td>Field</td><td>Commutative division ring</td><td>ℚ, ℝ, ℂ, ℤₚ</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="definition-box">
+                                <h4>Definition: Field</h4>
+                                <p>A <strong>field</strong> (F, +, ·) is a commutative ring where (F - {0}, ·) is also a group.<br>
+                                Equivalently: Every non-zero element has a multiplicative inverse.</p>
+                            </div>
+
+                            <h3>Zero Divisors</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>In ring R, a ≠ 0 is a <strong>zero divisor</strong> if ∃b ≠ 0 such that ab = 0.</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Zero Divisors in ℤ₆</h4>
+                                <p>Find zero divisors in ℤ₆.</p>
+                                <div class="solution">
+                                    2 × 3 = 6 ≡ 0 (mod 6)<br>
+                                    So 2 and 3 are zero divisors.<br>
+                                    Also: 3 × 4 = 12 ≡ 0 ⟹ 4 is zero divisor<br>
+                                    <strong>Zero divisors: {2, 3, 4}</strong>
+                                </div>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: ℤ₅ is a Field</h4>
+                                <p>Show ℤ₅ = {0, 1, 2, 3, 4} is a field.</p>
+                                <div class="solution">
+                                    5 is prime, so ℤ₅ has no zero divisors.<br>
+                                    <strong>Multiplicative inverses:</strong><br>
+                                    1⁻¹ = 1 (1×1 = 1)<br>
+                                    2⁻¹ = 3 (2×3 = 6 ≡ 1)<br>
+                                    3⁻¹ = 2 (3×2 = 6 ≡ 1)<br>
+                                    4⁻¹ = 4 (4×4 = 16 ≡ 1)<br>
+                                    All non-zero have inverses ⟹ Field ✓
+                                </div>
+                            </div>
+
+                            <div class="info-box note">
+                                <h4><i class="fas fa-star"></i> Key Result</h4>
+                                <p><strong>ℤₙ is a field iff n is prime.</strong><br>
+                                When n is prime, gcd(a, n) = 1 for all 0 < a < n, so all have inverses.</p>
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="unit-navigation">
+                            <a href="unit3.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Unit III</a>
+                            <a href="unit5.html" class="nav-btn next">Unit V: Graphs <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section">
+            <div class="container">
+                <h2 class="section-title">Test Your Knowledge</h2>
+                <div class="quiz-container" id="quiz-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="unit1.html">Unit I</a></li>
+                        <li><a href="unit2.html">Unit II</a></li>
+                        <li><a href="unit3.html">Unit III</a></li>
+                        <li><a href="unit4.html">Unit IV</a></li>
+                        <li><a href="unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        const unit4Questions = [
+            { question: "A group requires which properties?", options: ["Closure only", "Closure, associativity", "Closure, associativity, identity, inverse", "All + commutativity"], correct: 2, explanation: "Groups need: closure, associativity, identity, and inverse." },
+            { question: "In group (ℤ, +), the identity is:", options: ["1", "0", "-1", "Does not exist"], correct: 1, explanation: "0 is identity since a + 0 = a for all a." },
+            { question: "Abelian group means:", options: ["Has identity", "Has inverse", "Is commutative", "Is finite"], correct: 2, explanation: "Abelian = commutative: a * b = b * a" },
+            { question: "(ab)⁻¹ in a group equals:", options: ["a⁻¹b⁻¹", "b⁻¹a⁻¹", "ab⁻¹", "a⁻¹b"], correct: 1, explanation: "Shoes-socks property: (ab)⁻¹ = b⁻¹a⁻¹" },
+            { question: "By Lagrange's theorem, if |G|=12, which cannot be |H|?", options: ["2", "3", "5", "6"], correct: 2, explanation: "5 doesn't divide 12, so impossible." },
+            { question: "Generators of ℤ₆ are:", options: ["{1, 2}", "{1, 5}", "{2, 3}", "{0, 3}"], correct: 1, explanation: "gcd(a,6)=1 for a=1,5. So generators are {1,5}." },
+            { question: "Order of 4 in ℤ₁₂ is:", options: ["2", "3", "4", "6"], correct: 1, explanation: "ord(4) = 12/gcd(4,12) = 12/4 = 3. Check: 4×3=12≡0." },
+            { question: "Cyclic groups are always:", options: ["Non-abelian", "Abelian", "Finite", "Infinite"], correct: 1, explanation: "Every cyclic group is Abelian." },
+            { question: "How many cosets does H ≤ G have?", options: ["|G|", "|H|", "|G|/|H|", "|G|×|H|"], correct: 2, explanation: "Index [G:H] = |G|/|H| = number of cosets." },
+            { question: "A ring must have:", options: ["Multiplicative identity", "Commutative multiplication", "(R,+) as Abelian group", "All non-zero invertible"], correct: 2, explanation: "Ring requires (R,+) to be Abelian group." },
+            { question: "An integral domain has:", options: ["Zero divisors", "No zero divisors", "No identity", "Non-commutative multiplication"], correct: 1, explanation: "Integral domain: commutative ring with unity and no zero divisors." },
+            { question: "A field is:", options: ["Non-commutative ring", "Ring without unity", "Commutative division ring", "Just a group"], correct: 2, explanation: "Field = commutative ring where all non-zero have mult. inverses." },
+            { question: "ℤₙ is a field iff:", options: ["n is even", "n is odd", "n is prime", "n is composite"], correct: 2, explanation: "ℤₙ is field iff n is prime (all non-zero have inverses)." },
+            { question: "Zero divisors in ℤ₁₀ include:", options: ["1, 3", "2, 5", "3, 7", "4, 9"], correct: 1, explanation: "2×5=10≡0, so 2 and 5 are zero divisors." },
+            { question: "In ℤ₇, multiplicative inverse of 3 is:", options: ["2", "3", "4", "5"], correct: 3, explanation: "3×5=15≡1 (mod 7), so 3⁻¹=5." },
+            { question: "If |G|=p (prime), G is:", options: ["Not a group", "Cyclic", "Non-abelian", "Has proper subgroups"], correct: 1, explanation: "Groups of prime order are cyclic with no proper subgroups." },
+            { question: "For H ≤ G, aH = H iff:", options: ["a = e", "a ∈ H", "a ∉ H", "H = G"], correct: 1, explanation: "aH = H exactly when a is already in H." },
+            { question: "Subgroup test requires H ≠ ∅ and:", options: ["ab ∈ H", "ab⁻¹ ∈ H", "a⁻¹b ∈ H", "a + b ∈ H"], correct: 1, explanation: "One-step test: H ≠ ∅ and ab⁻¹ ∈ H for all a,b ∈ H." },
+            { question: "Number of generators of ℤ₁₂ is:", options: ["2", "4", "6", "12"], correct: 1, explanation: "φ(12) = 12(1-1/2)(1-1/3) = 4. Generators: 1,5,7,11." },
+            { question: "In group theory, identity element is:", options: ["Not unique", "Unique", "Always 0", "Always 1"], correct: 1, explanation: "Identity is always unique in a group." }
+        ];
+        const quiz = new QuizManager('quiz-container', unit4Questions);
+    </script>
+</body>
+</html>

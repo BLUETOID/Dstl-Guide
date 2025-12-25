@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Theorems | DSTL Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .theorems-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .theorem-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-color);
+        }
+        .theorem-card.important {
+            border-top-color: #dc3545;
+        }
+        .theorem-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .theorem-card.important h3 {
+            color: #dc3545;
+        }
+        .badge-important {
+            background: #dc3545;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-unit {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .theorem-statement {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        .proof-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+            display: none;
+        }
+        .proof-section.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        .proof-section h4 {
+            color: #28a745;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .proof-step {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+            gap: 15px;
+        }
+        .proof-step:last-child {
+            border-bottom: none;
+        }
+        .step-num {
+            background: var(--primary-color);
+            color: white;
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+        .toggle-proof {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        .toggle-proof:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+        .example-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .example-box h5 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .corollary-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .corollary-box h5 {
+            color: #0c5460;
+            margin-bottom: 10px;
+        }
+        .section-divider {
+            text-align: center;
+            margin: 40px 0;
+            color: #999;
+        }
+        .section-divider h2 {
+            background: var(--bg-color);
+            display: inline-block;
+            padding: 0 20px;
+            color: var(--primary-color);
+        }
+        .section-divider::before {
+            content: '';
+            display: block;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            margin-bottom: -18px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="units/unit1.html">Unit I</a></li>
+                <li><a href="units/unit2.html">Unit II</a></li>
+                <li><a href="units/unit3.html">Unit III</a></li>
+                <li><a href="units/unit4.html">Unit IV</a></li>
+                <li><a href="units/unit5.html">Unit V</a></li>
+                <li><a href="theory.html">Theory</a></li>
+                <li><a href="questions.html">Questions</a></li>
+                <li><a href="previousyear.html">PYQ</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="theorems.html" class="active">Theorems</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-graduation-cap"></i> Important Theorems</h1>
+                <p>Key Theorems with Proofs for AKTU DSTL Exams</p>
+            </div>
+        </header>
+
+        <section class="theorems-container">
+            
+            <!-- Sets & Relations -->
+            <div class="section-divider">
+                <h2><i class="fas fa-layer-group"></i> Unit I: Sets & Relations</h2>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> De Morgan's Laws for Sets <span class="badge-unit">Unit I</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> For any sets A and B:<br><br>
+                    (i) (A ∪ B)' = A' ∩ B'<br>
+                    (ii) (A ∩ B)' = A' ∪ B'
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof of (i): (A ∪ B)' = A' ∩ B'</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>Let x ∈ (A ∪ B)'</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>Then x ∉ (A ∪ B) &nbsp;&nbsp;&nbsp;[Definition of complement]</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>So x ∉ A and x ∉ B &nbsp;&nbsp;&nbsp;[Definition of union]</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">4</span>
+                        <div>Therefore x ∈ A' and x ∈ B' &nbsp;&nbsp;&nbsp;[Definition of complement]</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">5</span>
+                        <div>Hence x ∈ A' ∩ B' &nbsp;&nbsp;&nbsp;[Definition of intersection]</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>The reverse inclusion follows similarly. Therefore (A ∪ B)' = A' ∩ B'</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Equivalence Classes Partition Theorem <span class="badge-important">IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> Let R be an equivalence relation on set A. Then the equivalence classes of R partition A.
+                    <br><br>
+                    That is: (1) A = ⋃[a] for all a ∈ A, and (2) [a] ∩ [b] = ∅ or [a] = [b]
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof:</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div><strong>Union covers A:</strong> For any a ∈ A, a ∈ [a] (by reflexivity), so A ⊆ ⋃[a]. Clearly ⋃[a] ⊆ A.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div><strong>Disjoint or Equal:</strong> Suppose [a] ∩ [b] ≠ ∅. Let c ∈ [a] ∩ [b].</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>Then aRc and bRc. By symmetry, cRb. By transitivity, aRb.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">4</span>
+                        <div>For any x ∈ [a]: aRx. Since aRb, by transitivity bRx, so x ∈ [b]. Hence [a] ⊆ [b].</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Similarly [b] ⊆ [a]. Therefore [a] = [b]. ∎</div>
+                    </div>
+                </div>
+                <div class="corollary-box">
+                    <h5><i class="fas fa-arrow-right"></i> Corollary:</h5>
+                    Number of equivalence classes = Number of partitions
+                </div>
+            </div>
+
+            <!-- Propositional Logic -->
+            <div class="section-divider">
+                <h2><i class="fas fa-brain"></i> Unit II: Propositional Logic</h2>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> Contrapositive Equivalence <span class="badge-unit">Unit II</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> p → q ≡ ¬q → ¬p
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof using Truth Table:</h4>
+                    <table style="width:100%; border-collapse: collapse; margin: 15px 0;">
+                        <tr style="background: var(--primary-color); color: white;">
+                            <th style="padding: 10px; border: 1px solid #ddd;">p</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">q</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">p → q</th>
+                            <th style="padding: 10px; border: 1px solid #ddd;">¬q → ¬p</th>
+                        </tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">F</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">F</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">F</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">F</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td></tr>
+                        <tr><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">F</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">F</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td><td style="padding: 10px; border: 1px solid #ddd; text-align: center;">T</td></tr>
+                    </table>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Columns 3 and 4 are identical, proving the equivalence.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> De Morgan's Laws for Logic <span class="badge-unit">Unit II</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong><br>
+                    (i) ¬(p ∧ q) ≡ ¬p ∨ ¬q<br>
+                    (ii) ¬(p ∨ q) ≡ ¬p ∧ ¬q
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof of (i): ¬(p ∧ q) ≡ ¬p ∨ ¬q</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>¬(p ∧ q) is TRUE when p ∧ q is FALSE</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>p ∧ q is FALSE when at least one of p or q is FALSE</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>This means ¬p is TRUE or ¬q is TRUE</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Which is exactly ¬p ∨ ¬q. Verify with truth table for complete proof.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Boolean Algebra & Lattices -->
+            <div class="section-divider">
+                <h2><i class="fas fa-sitemap"></i> Unit III: Boolean Algebra & Lattices</h2>
+            </div>
+
+            <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Every Finite Lattice has Max and Min Elements <span class="badge-important">IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> Every finite lattice has a greatest element (1) and a least element (0).
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof:</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>Let L = {a₁, a₂, ..., aₙ} be a finite lattice.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>Since L is a lattice, every pair has a join (LUB).</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>Consider: 1 = a₁ ∨ a₂ ∨ ... ∨ aₙ</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">4</span>
+                        <div>This exists by repeated application of binary join, and is the greatest element.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Similarly, 0 = a₁ ∧ a₂ ∧ ... ∧ aₙ is the least element. ∎</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> Duality Principle <span class="badge-unit">Unit III</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> In Boolean algebra, if an identity holds, its dual (obtained by swapping + and ·, and 0 and 1) also holds.
+                </div>
+                <div class="example-box">
+                    <h5><i class="fas fa-lightbulb"></i> Example:</h5>
+                    Original: A + 0 = A &nbsp;&nbsp;⟹&nbsp;&nbsp; Dual: A · 1 = A<br>
+                    Original: A + 1 = 1 &nbsp;&nbsp;⟹&nbsp;&nbsp; Dual: A · 0 = 0
+                </div>
+            </div>
+
+            <!-- Group Theory -->
+            <div class="section-divider">
+                <h2><i class="fas fa-cubes"></i> Unit IV: Group Theory</h2>
+            </div>
+
+            <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Lagrange's Theorem <span class="badge-important">VERY IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> If H is a subgroup of finite group G, then |H| divides |G|.
+                    <br><br>
+                    Moreover, [G : H] = |G| / |H| (index of H in G)
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof:</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>The left cosets of H in G partition G (proved separately).</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>All left cosets have the same cardinality as H (|aH| = |H| for all a ∈ G).</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>Let [G : H] = k be the number of distinct cosets.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">4</span>
+                        <div>Then |G| = k × |H| since cosets partition G.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Therefore |H| divides |G|, and [G : H] = |G|/|H|. ∎</div>
+                    </div>
+                </div>
+                <div class="corollary-box">
+                    <h5><i class="fas fa-arrow-right"></i> Corollaries:</h5>
+                    1. Order of any element divides |G|<br>
+                    2. a<sup>|G|</sup> = e for all a ∈ G<br>
+                    3. Groups of prime order are cyclic
+                </div>
+                <div class="example-box">
+                    <h5><i class="fas fa-lightbulb"></i> Example:</h5>
+                    In ℤ₁₂, subgroup H = {0, 4, 8} has order 3, which divides 12 ✓<br>
+                    Index [ℤ₁₂ : H] = 12/3 = 4 cosets ✓
+                </div>
+            </div>
+
+            <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Euler's Theorem <span class="badge-important">IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> If gcd(a, n) = 1, then a<sup>φ(n)</sup> ≡ 1 (mod n)
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof:</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>Consider U(n) = {x ∈ ℤₙ : gcd(x, n) = 1} under multiplication mod n.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>U(n) is a group of order φ(n).</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>Since gcd(a, n) = 1, we have a ∈ U(n).</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">4</span>
+                        <div>By Lagrange's corollary: a<sup>|U(n)|</sup> = e in U(n).</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Therefore a<sup>φ(n)</sup> ≡ 1 (mod n). ∎</div>
+                    </div>
+                </div>
+                <div class="corollary-box">
+                    <h5><i class="fas fa-arrow-right"></i> Fermat's Little Theorem (Special Case):</h5>
+                    If p is prime and gcd(a, p) = 1, then a<sup>p-1</sup> ≡ 1 (mod p)
+                </div>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> Cyclic Group Generator Theorem <span class="badge-unit">Unit IV</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> In a cyclic group ⟨a⟩ of order n, the element a<sup>k</sup> is a generator iff gcd(k, n) = 1.
+                    <br><br>
+                    <strong>Corollary:</strong> Number of generators = φ(n)
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof:</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>Order of a<sup>k</sup> is n/gcd(k, n).</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>a<sup>k</sup> generates the group iff its order equals n.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>n/gcd(k, n) = n iff gcd(k, n) = 1.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Count of such k from 1 to n is φ(n). ∎</div>
+                    </div>
+                </div>
+                <div class="example-box">
+                    <h5><i class="fas fa-lightbulb"></i> Example (ℤ₈):</h5>
+                    Generators are 1, 3, 5, 7 (coprime to 8)<br>
+                    φ(8) = 4 generators ✓
+                </div>
+            </div>
+
+            <!-- Graph Theory -->
+            <div class="section-divider">
+                <h2><i class="fas fa-project-diagram"></i> Unit V: Graph Theory</h2>
+            </div>
+
+            <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Handshaking Lemma <span class="badge-important">IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> In any graph G = (V, E), the sum of degrees equals twice the number of edges:
+                    <br><br>
+                    Σ deg(v) = 2|E|
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof:</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>Each edge contributes exactly 2 to the total degree sum.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>One for each endpoint of the edge.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Therefore Σ deg(v) = 2|E|. ∎</div>
+                    </div>
+                </div>
+                <div class="corollary-box">
+                    <h5><i class="fas fa-arrow-right"></i> Corollary:</h5>
+                    The number of vertices with odd degree is always even.
+                </div>
+            </div>
+
+            <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Euler's Formula for Planar Graphs <span class="badge-important">VERY IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> For any connected planar graph with V vertices, E edges, and F faces:
+                    <br><br>
+                    <strong style="font-size: 1.3rem;">V - E + F = 2</strong>
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof by Induction on Edges:</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div><strong>Base:</strong> Tree with n vertices has n-1 edges, 1 face. V-E+F = n-(n-1)+1 = 2 ✓</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div><strong>Induction:</strong> Add edge e connecting existing vertices.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>E increases by 1, F increases by 1 (edge divides a face).</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>V - (E+1) + (F+1) = V - E + F = 2 (preserved). ∎</div>
+                    </div>
+                </div>
+                <div class="corollary-box">
+                    <h5><i class="fas fa-arrow-right"></i> Corollaries:</h5>
+                    1. E ≤ 3V - 6 for simple planar graphs (V ≥ 3)<br>
+                    2. E ≤ 2V - 4 if no triangles<br>
+                    3. K₅ and K₃,₃ are not planar
+                </div>
+            </div>
+
+            <div class="theorem-card important">
+                <h3><i class="fas fa-star"></i> Kuratowski's Theorem <span class="badge-important">IMPORTANT</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> A graph is planar if and only if it contains no subdivision of K₅ or K₃,₃.
+                </div>
+                <div class="example-box">
+                    <h5><i class="fas fa-lightbulb"></i> Application:</h5>
+                    • K₅: Complete graph on 5 vertices (non-planar)<br>
+                    • K₃,₃: Complete bipartite graph (non-planar)<br>
+                    • Any graph containing these (or their subdivisions) is non-planar
+                </div>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> Eulerian Graph Characterization <span class="badge-unit">Unit V</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> A connected graph has an Eulerian circuit if and only if every vertex has even degree.
+                    <br><br>
+                    A connected graph has an Eulerian path (but not circuit) if and only if it has exactly two vertices of odd degree.
+                </div>
+                <button class="toggle-proof" onclick="toggleProof(this)">Show Proof</button>
+                <div class="proof-section">
+                    <h4><i class="fas fa-pen"></i> Proof Sketch (Necessity):</h4>
+                    <div class="proof-step">
+                        <span class="step-num">1</span>
+                        <div>An Eulerian circuit visits each edge exactly once.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">2</span>
+                        <div>At each vertex, we enter and leave the same number of times.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">3</span>
+                        <div>So each vertex must have even degree.</div>
+                    </div>
+                    <div class="proof-step">
+                        <span class="step-num">∎</span>
+                        <div>Sufficiency proved by Fleury's algorithm. ∎</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="theorem-card">
+                <h3><i class="fas fa-check-double"></i> Pigeonhole Principle <span class="badge-unit">Unit V</span></h3>
+                <div class="theorem-statement">
+                    <strong>Theorem:</strong> If n items are placed into k containers where n > k, then at least one container has more than one item.
+                    <br><br>
+                    <strong>Generalized:</strong> At least one container has ⌈n/k⌉ items.
+                </div>
+                <div class="example-box">
+                    <h5><i class="fas fa-lightbulb"></i> Classic Example:</h5>
+                    In a room of 13 people, at least 2 share a birth month (13 people, 12 months).
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="units/unit1.html">Unit I</a></li>
+                        <li><a href="units/unit2.html">Unit II</a></li>
+                        <li><a href="units/unit3.html">Unit III</a></li>
+                        <li><a href="units/unit4.html">Unit IV</a></li>
+                        <li><a href="units/unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function toggleProof(btn) {
+            const proof = btn.nextElementSibling;
+            proof.classList.toggle('show');
+            btn.textContent = proof.classList.contains('show') ? 'Hide Proof' : 'Show Proof';
+        }
+    </script>
+</body>
+</html>

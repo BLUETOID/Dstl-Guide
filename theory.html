@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory - Chapter-wise Summary | DSTL Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .theory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .chapter-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 70px;
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 10px;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        .chapter-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .chapter-btn:hover, .chapter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .chapter-content {
+            display: none;
+        }
+        .chapter-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        .theory-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+        }
+        .theory-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+        .theory-card h4 {
+            color: var(--dark-color);
+            margin: 15px 0 10px;
+        }
+        .theory-card ul {
+            list-style: disc;
+            padding-left: 25px;
+        }
+        .theory-card li {
+            margin-bottom: 8px;
+            line-height: 1.7;
+        }
+        .key-formula {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f4ff 100%);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .key-formula code {
+            background: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .quick-summary {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .quick-summary h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="units/unit1.html">Unit I</a></li>
+                <li><a href="units/unit2.html">Unit II</a></li>
+                <li><a href="units/unit3.html">Unit III</a></li>
+                <li><a href="units/unit4.html">Unit IV</a></li>
+                <li><a href="units/unit5.html">Unit V</a></li>
+                <li><a href="theory.html" class="active">Theory</a></li>
+                <li><a href="questions.html">Questions</a></li>
+                <li><a href="previousyear.html">PYQ</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="theorems.html">Theorems</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-book-open"></i> Chapter-wise Theory</h1>
+                <p>Comprehensive theory summaries for quick revision</p>
+            </div>
+        </header>
+
+        <div class="theory-container">
+            <!-- Chapter Selector -->
+            <div class="chapter-selector">
+                <button class="chapter-btn active" onclick="showChapter('unit1')">Unit I: Sets & Relations</button>
+                <button class="chapter-btn" onclick="showChapter('unit2')">Unit II: Functions & Boolean</button>
+                <button class="chapter-btn" onclick="showChapter('unit3')">Unit III: Logic</button>
+                <button class="chapter-btn" onclick="showChapter('unit4')">Unit IV: Algebraic Structures</button>
+                <button class="chapter-btn" onclick="showChapter('unit5')">Unit V: Graphs</button>
+            </div>
+
+            <!-- UNIT 1 THEORY -->
+            <div class="chapter-content active" id="unit1">
+                <div class="theory-card">
+                    <h3><i class="fas fa-layer-group"></i> Set Theory</h3>
+                    
+                    <h4>What is a Set?</h4>
+                    <p>A <strong>set</strong> is a well-defined collection of distinct objects called elements or members. Sets are usually denoted by capital letters (A, B, C) and elements by lowercase letters (a, b, c).</p>
+                    
+                    <div class="key-formula">
+                        <strong>Notation:</strong><br>
+                        • <code>a ∈ A</code> - 'a' is an element of set A<br>
+                        • <code>a ∉ A</code> - 'a' is not an element of set A<br>
+                        • <code>|A|</code> or <code>n(A)</code> - Cardinality (number of elements)
+                    </div>
+
+                    <h4>Types of Sets</h4>
+                    <ul>
+                        <li><strong>Empty Set (∅ or {}):</strong> Set with no elements</li>
+                        <li><strong>Singleton Set:</strong> Set with exactly one element</li>
+                        <li><strong>Finite Set:</strong> Set with countable number of elements</li>
+                        <li><strong>Infinite Set:</strong> Set with uncountable elements (e.g., ℕ, ℤ, ℝ)</li>
+                        <li><strong>Universal Set (U):</strong> Set containing all elements under consideration</li>
+                        <li><strong>Power Set P(A):</strong> Set of all subsets of A, |P(A)| = 2^|A|</li>
+                    </ul>
+
+                    <h4>Set Operations</h4>
+                    <div class="key-formula">
+                        • <code>A ∪ B</code> - Union: elements in A OR B (or both)<br>
+                        • <code>A ∩ B</code> - Intersection: elements in BOTH A and B<br>
+                        • <code>A - B</code> or <code>A \ B</code> - Difference: elements in A but not in B<br>
+                        • <code>A'</code> or <code>Aᶜ</code> - Complement: elements NOT in A<br>
+                        • <code>A × B</code> - Cartesian Product: all ordered pairs (a,b)
+                    </div>
+
+                    <h4>Important Laws</h4>
+                    <ul>
+                        <li><strong>De Morgan's Laws:</strong> (A ∪ B)' = A' ∩ B' and (A ∩ B)' = A' ∪ B'</li>
+                        <li><strong>Distributive:</strong> A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)</li>
+                        <li><strong>Absorption:</strong> A ∪ (A ∩ B) = A and A ∩ (A ∪ B) = A</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-exchange-alt"></i> Relations</h3>
+                    
+                    <h4>What is a Relation?</h4>
+                    <p>A <strong>relation R</strong> from set A to set B is a subset of A × B. For binary relations on a single set A, R ⊆ A × A.</p>
+
+                    <h4>Properties of Relations</h4>
+                    <ul>
+                        <li><strong>Reflexive:</strong> (a, a) ∈ R for all a ∈ A (every element related to itself)</li>
+                        <li><strong>Irreflexive:</strong> (a, a) ∉ R for any a ∈ A</li>
+                        <li><strong>Symmetric:</strong> If (a, b) ∈ R then (b, a) ∈ R</li>
+                        <li><strong>Antisymmetric:</strong> If (a, b) ∈ R and (b, a) ∈ R then a = b</li>
+                        <li><strong>Transitive:</strong> If (a, b) ∈ R and (b, c) ∈ R then (a, c) ∈ R</li>
+                    </ul>
+
+                    <h4>Special Relations</h4>
+                    <div class="key-formula">
+                        • <strong>Equivalence Relation:</strong> Reflexive + Symmetric + Transitive<br>
+                        • <strong>Partial Order:</strong> Reflexive + Antisymmetric + Transitive<br>
+                        • <strong>Total Order:</strong> Partial Order where every pair is comparable
+                    </div>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-sitemap"></i> POSET & Lattices</h3>
+                    
+                    <h4>Partially Ordered Set (POSET)</h4>
+                    <p>A POSET is a set with a partial order relation (≤). Not all elements need to be comparable. Represented using <strong>Hasse diagrams</strong>.</p>
+
+                    <h4>Key Terms</h4>
+                    <ul>
+                        <li><strong>Maximal element:</strong> No element is greater than it</li>
+                        <li><strong>Minimal element:</strong> No element is less than it</li>
+                        <li><strong>Greatest element (top):</strong> Greater than or equal to all elements</li>
+                        <li><strong>Least element (bottom):</strong> Less than or equal to all elements</li>
+                        <li><strong>LUB (Supremum):</strong> Least Upper Bound of a subset</li>
+                        <li><strong>GLB (Infimum):</strong> Greatest Lower Bound of a subset</li>
+                    </ul>
+
+                    <h4>Lattice</h4>
+                    <div class="key-formula">
+                        A <strong>Lattice</strong> is a POSET where every pair of elements has:<br>
+                        • A unique LUB (join, denoted a ∨ b)<br>
+                        • A unique GLB (meet, denoted a ∧ b)
+                    </div>
+                </div>
+
+                <div class="quick-summary">
+                    <h4><i class="fas fa-lightbulb"></i> Quick Revision Points</h4>
+                    <ul>
+                        <li>Power set of n elements has 2ⁿ elements</li>
+                        <li>|A × B| = |A| × |B|</li>
+                        <li>Equivalence relation partitions a set into equivalence classes</li>
+                        <li>Hasse diagram: Remove reflexive loops, transitive edges, direction arrows</li>
+                        <li>Boolean lattice: Power set with ⊆ relation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- UNIT 2 THEORY -->
+            <div class="chapter-content" id="unit2">
+                <div class="theory-card">
+                    <h3><i class="fas fa-function"></i> Functions</h3>
+                    
+                    <h4>What is a Function?</h4>
+                    <p>A <strong>function</strong> f: A → B is a relation where every element of A (domain) is related to exactly one element of B (codomain).</p>
+
+                    <h4>Types of Functions</h4>
+                    <ul>
+                        <li><strong>Injective (One-to-One):</strong> f(a) = f(b) implies a = b. Different inputs → different outputs.</li>
+                        <li><strong>Surjective (Onto):</strong> Every element in codomain is an image of some element in domain.</li>
+                        <li><strong>Bijective:</strong> Both injective and surjective. Creates a one-to-one correspondence.</li>
+                    </ul>
+
+                    <div class="key-formula">
+                        <strong>Counting Functions (|A| = m, |B| = n):</strong><br>
+                        • Total functions from A to B: nᵐ<br>
+                        • Injective functions (m ≤ n): n!/(n-m)!<br>
+                        • Bijective functions (m = n): n!
+                    </div>
+
+                    <h4>Function Composition</h4>
+                    <p>If f: A → B and g: B → C, then (g ∘ f): A → C where (g ∘ f)(x) = g(f(x))</p>
+                    <p><strong>Note:</strong> Composition is associative but NOT commutative.</p>
+
+                    <h4>Inverse Function</h4>
+                    <p>f⁻¹ exists if and only if f is bijective. Then f⁻¹ ∘ f = identity on A.</p>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-chart-line"></i> Growth of Functions</h3>
+                    
+                    <h4>Big-O Notation</h4>
+                    <div class="key-formula">
+                        <strong>f(n) = O(g(n))</strong> means f grows at most as fast as g<br>
+                        ∃c > 0, n₀ such that f(n) ≤ c·g(n) for all n ≥ n₀
+                    </div>
+
+                    <h4>Common Growth Rates (Slowest to Fastest)</h4>
+                    <ul>
+                        <li>O(1) - Constant</li>
+                        <li>O(log n) - Logarithmic</li>
+                        <li>O(n) - Linear</li>
+                        <li>O(n log n) - Linearithmic</li>
+                        <li>O(n²) - Quadratic</li>
+                        <li>O(n³) - Cubic</li>
+                        <li>O(2ⁿ) - Exponential</li>
+                        <li>O(n!) - Factorial</li>
+                    </ul>
+
+                    <h4>Other Notations</h4>
+                    <ul>
+                        <li><strong>Ω(g(n)):</strong> Lower bound (at least as fast)</li>
+                        <li><strong>Θ(g(n)):</strong> Tight bound (exactly as fast)</li>
+                        <li><strong>o(g(n)):</strong> Strictly slower than</li>
+                        <li><strong>ω(g(n)):</strong> Strictly faster than</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-toggle-on"></i> Boolean Algebra</h3>
+                    
+                    <h4>Boolean Operations</h4>
+                    <ul>
+                        <li><strong>AND (·):</strong> 1 only if both inputs are 1</li>
+                        <li><strong>OR (+):</strong> 1 if at least one input is 1</li>
+                        <li><strong>NOT ('):</strong> Flips 0 to 1, 1 to 0</li>
+                        <li><strong>XOR (⊕):</strong> 1 if inputs are different</li>
+                    </ul>
+
+                    <h4>Important Laws</h4>
+                    <div class="key-formula">
+                        • <strong>Identity:</strong> A + 0 = A, A · 1 = A<br>
+                        • <strong>Complement:</strong> A + A' = 1, A · A' = 0<br>
+                        • <strong>Idempotent:</strong> A + A = A, A · A = A<br>
+                        • <strong>Absorption:</strong> A + AB = A, A(A + B) = A<br>
+                        • <strong>De Morgan:</strong> (A + B)' = A'B', (AB)' = A' + B'
+                    </div>
+
+                    <h4>Canonical Forms</h4>
+                    <ul>
+                        <li><strong>SOP (Sum of Products):</strong> OR of AND terms (minterms)</li>
+                        <li><strong>POS (Product of Sums):</strong> AND of OR terms (maxterms)</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-th"></i> Karnaugh Maps (K-Maps)</h3>
+                    
+                    <p>K-Maps are used to simplify Boolean expressions by grouping adjacent 1s (for SOP) or 0s (for POS).</p>
+
+                    <h4>Grouping Rules</h4>
+                    <ul>
+                        <li>Groups must be rectangles with size = power of 2 (1, 2, 4, 8...)</li>
+                        <li>Groups can wrap around edges</li>
+                        <li>Each 1 must be in at least one group</li>
+                        <li>Larger groups = simpler terms</li>
+                        <li>Overlapping groups are allowed</li>
+                    </ul>
+                </div>
+
+                <div class="quick-summary">
+                    <h4><i class="fas fa-lightbulb"></i> Quick Revision Points</h4>
+                    <ul>
+                        <li>A function must map every domain element to exactly one codomain element</li>
+                        <li>Bijection: inverse exists, |A| = |B|</li>
+                        <li>O(n²) + O(n) = O(n²) - dominant term wins</li>
+                        <li>K-map: 2 variables = 4 cells, 3 variables = 8 cells, 4 variables = 16 cells</li>
+                        <li>Gray code ordering in K-maps: only one variable changes between adjacent cells</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- UNIT 3 THEORY -->
+            <div class="chapter-content" id="unit3">
+                <div class="theory-card">
+                    <h3><i class="fas fa-lightbulb"></i> Propositional Logic</h3>
+                    
+                    <h4>Propositions</h4>
+                    <p>A <strong>proposition</strong> is a declarative statement that is either TRUE or FALSE, but not both.</p>
+
+                    <h4>Logical Connectives</h4>
+                    <div class="key-formula">
+                        • <strong>¬P</strong> (NOT): Negation - flips truth value<br>
+                        • <strong>P ∧ Q</strong> (AND): True only if both true<br>
+                        • <strong>P ∨ Q</strong> (OR): True if at least one true<br>
+                        • <strong>P → Q</strong> (Implication): False only if P true and Q false<br>
+                        • <strong>P ↔ Q</strong> (Biconditional): True if both same truth value<br>
+                        • <strong>P ⊕ Q</strong> (XOR): True if exactly one is true
+                    </div>
+
+                    <h4>Implication Equivalents</h4>
+                    <ul>
+                        <li><strong>P → Q ≡ ¬P ∨ Q</strong></li>
+                        <li><strong>Contrapositive:</strong> P → Q ≡ ¬Q → ¬P (logically equivalent)</li>
+                        <li><strong>Converse:</strong> Q → P (NOT equivalent)</li>
+                        <li><strong>Inverse:</strong> ¬P → ¬Q (NOT equivalent)</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-balance-scale"></i> Tautology, Contradiction, Contingency</h3>
+                    
+                    <div class="key-formula">
+                        • <strong>Tautology:</strong> Always TRUE regardless of truth values (e.g., P ∨ ¬P)<br>
+                        • <strong>Contradiction:</strong> Always FALSE (e.g., P ∧ ¬P)<br>
+                        • <strong>Contingency:</strong> Sometimes true, sometimes false
+                    </div>
+
+                    <h4>Logical Equivalences</h4>
+                    <ul>
+                        <li><strong>De Morgan's:</strong> ¬(P ∧ Q) ≡ ¬P ∨ ¬Q, ¬(P ∨ Q) ≡ ¬P ∧ ¬Q</li>
+                        <li><strong>Double Negation:</strong> ¬¬P ≡ P</li>
+                        <li><strong>Distributive:</strong> P ∧ (Q ∨ R) ≡ (P ∧ Q) ∨ (P ∧ R)</li>
+                        <li><strong>Absorption:</strong> P ∨ (P ∧ Q) ≡ P</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-code"></i> Predicate Logic</h3>
+                    
+                    <h4>Predicates</h4>
+                    <p>A <strong>predicate</strong> P(x) is a statement whose truth depends on the variable x. Example: P(x): "x is even"</p>
+
+                    <h4>Quantifiers</h4>
+                    <div class="key-formula">
+                        • <strong>∀x P(x)</strong> - Universal: "For ALL x, P(x) is true"<br>
+                        • <strong>∃x P(x)</strong> - Existential: "There EXISTS some x such that P(x) is true"<br>
+                        • <strong>∃!x P(x)</strong> - Unique existential: "There exists exactly one x"
+                    </div>
+
+                    <h4>Negation of Quantifiers</h4>
+                    <ul>
+                        <li>¬(∀x P(x)) ≡ ∃x ¬P(x)</li>
+                        <li>¬(∃x P(x)) ≡ ∀x ¬P(x)</li>
+                    </ul>
+
+                    <h4>Nested Quantifiers</h4>
+                    <p>∀x∃y P(x,y) means "For every x, there exists some y (possibly different for each x)"</p>
+                    <p><strong>Order matters!</strong> ∀x∃y ≠ ∃y∀x in general</p>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-project-diagram"></i> Inference & Proofs</h3>
+                    
+                    <h4>Rules of Inference</h4>
+                    <div class="key-formula">
+                        • <strong>Modus Ponens:</strong> P, P→Q ⊢ Q<br>
+                        • <strong>Modus Tollens:</strong> ¬Q, P→Q ⊢ ¬P<br>
+                        • <strong>Hypothetical Syllogism:</strong> P→Q, Q→R ⊢ P→R<br>
+                        • <strong>Disjunctive Syllogism:</strong> P∨Q, ¬P ⊢ Q<br>
+                        • <strong>Addition:</strong> P ⊢ P∨Q<br>
+                        • <strong>Simplification:</strong> P∧Q ⊢ P<br>
+                        • <strong>Resolution:</strong> P∨Q, ¬P∨R ⊢ Q∨R
+                    </div>
+
+                    <h4>Proof Techniques</h4>
+                    <ul>
+                        <li><strong>Direct Proof:</strong> Assume P, derive Q to prove P → Q</li>
+                        <li><strong>Contraposition:</strong> Prove ¬Q → ¬P instead</li>
+                        <li><strong>Contradiction:</strong> Assume ¬P, derive a contradiction</li>
+                        <li><strong>Mathematical Induction:</strong> Base case + inductive step</li>
+                    </ul>
+                </div>
+
+                <div class="quick-summary">
+                    <h4><i class="fas fa-lightbulb"></i> Quick Revision Points</h4>
+                    <ul>
+                        <li>P → Q is only FALSE when P is TRUE and Q is FALSE</li>
+                        <li>Contrapositive is always equivalent to original implication</li>
+                        <li>De Morgan's: swap AND/OR and negate each part</li>
+                        <li>To disprove ∀x P(x), find ONE counterexample</li>
+                        <li>To disprove ∃x P(x), show NO x satisfies P(x)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- UNIT 4 THEORY -->
+            <div class="chapter-content" id="unit4">
+                <div class="theory-card">
+                    <h3><i class="fas fa-cubes"></i> Groups</h3>
+                    
+                    <h4>Definition</h4>
+                    <p>A <strong>group</strong> (G, *) is a set G with operation * satisfying:</p>
+                    <div class="key-formula">
+                        1. <strong>Closure:</strong> a * b ∈ G for all a, b ∈ G<br>
+                        2. <strong>Associativity:</strong> (a * b) * c = a * (b * c)<br>
+                        3. <strong>Identity:</strong> ∃e ∈ G such that a * e = e * a = a<br>
+                        4. <strong>Inverse:</strong> ∀a ∈ G, ∃a⁻¹ such that a * a⁻¹ = a⁻¹ * a = e
+                    </div>
+
+                    <h4>Types of Groups</h4>
+                    <ul>
+                        <li><strong>Abelian (Commutative) Group:</strong> a * b = b * a for all a, b</li>
+                        <li><strong>Finite Group:</strong> Has finite number of elements</li>
+                        <li><strong>Order of Group:</strong> |G| = number of elements</li>
+                        <li><strong>Order of Element:</strong> Smallest positive n where aⁿ = e</li>
+                    </ul>
+
+                    <h4>Examples of Groups</h4>
+                    <ul>
+                        <li>(ℤ, +) - Integers under addition</li>
+                        <li>(ℤₙ, +) - Integers mod n under addition</li>
+                        <li>(ℝ*, ×) - Non-zero reals under multiplication</li>
+                        <li>Symmetric group Sₙ - Permutations of n elements</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-sitemap"></i> Subgroups & Cyclic Groups</h3>
+                    
+                    <h4>Subgroup</h4>
+                    <p>H is a subgroup of G (H ≤ G) if H ⊆ G and H is itself a group under the same operation.</p>
+                    
+                    <div class="key-formula">
+                        <strong>Subgroup Test:</strong> H ≤ G iff:<br>
+                        1. H is non-empty<br>
+                        2. For all a, b ∈ H: a * b⁻¹ ∈ H
+                    </div>
+
+                    <h4>Cyclic Groups</h4>
+                    <p>G is <strong>cyclic</strong> if G = ⟨a⟩ = {aⁿ : n ∈ ℤ} for some generator a.</p>
+                    <ul>
+                        <li>Every cyclic group is abelian</li>
+                        <li>ℤₙ is cyclic with generator 1</li>
+                        <li>Subgroups of cyclic groups are cyclic</li>
+                        <li>If |G| = n, then G ≅ ℤₙ or G ≅ ℤ</li>
+                    </ul>
+
+                    <h4>Cosets</h4>
+                    <p>For subgroup H of G and a ∈ G:</p>
+                    <ul>
+                        <li><strong>Left coset:</strong> aH = {ah : h ∈ H}</li>
+                        <li><strong>Right coset:</strong> Ha = {ha : h ∈ H}</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-balance-scale"></i> Lagrange's Theorem</h3>
+                    
+                    <div class="key-formula">
+                        <strong>Lagrange's Theorem:</strong><br>
+                        If H is a subgroup of finite group G, then |H| divides |G|.<br><br>
+                        <strong>Index of H:</strong> [G : H] = |G| / |H| = number of distinct cosets
+                    </div>
+
+                    <h4>Consequences</h4>
+                    <ul>
+                        <li>Order of any element divides order of group</li>
+                        <li>For prime p: group of order p has only trivial subgroups {e} and G</li>
+                        <li>aᴳ = e for all a ∈ G (where |G| = n)</li>
+                        <li>Groups of prime order are cyclic</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-ring"></i> Rings & Fields</h3>
+                    
+                    <h4>Ring</h4>
+                    <p>A <strong>ring</strong> (R, +, ·) has two operations satisfying:</p>
+                    <ul>
+                        <li>(R, +) is an abelian group</li>
+                        <li>Multiplication is associative</li>
+                        <li>Distributive laws hold</li>
+                    </ul>
+
+                    <div class="key-formula">
+                        <strong>Types of Rings:</strong><br>
+                        • <strong>Commutative Ring:</strong> ab = ba<br>
+                        • <strong>Ring with Unity:</strong> Has multiplicative identity 1<br>
+                        • <strong>Integral Domain:</strong> Commutative, unity, no zero divisors<br>
+                        • <strong>Division Ring:</strong> Every non-zero element has multiplicative inverse
+                    </div>
+
+                    <h4>Field</h4>
+                    <p>A <strong>field</strong> is a commutative division ring. Examples: ℚ, ℝ, ℂ, ℤₚ (p prime)</p>
+                </div>
+
+                <div class="quick-summary">
+                    <h4><i class="fas fa-lightbulb"></i> Quick Revision Points</h4>
+                    <ul>
+                        <li>Group requires 4 properties: closure, associativity, identity, inverse</li>
+                        <li>Abelian = commutative</li>
+                        <li>Lagrange: |H| divides |G|</li>
+                        <li>Every subgroup of a cyclic group is cyclic</li>
+                        <li>ℤₚ is a field only when p is prime</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- UNIT 5 THEORY -->
+            <div class="chapter-content" id="unit5">
+                <div class="theory-card">
+                    <h3><i class="fas fa-project-diagram"></i> Graph Basics</h3>
+                    
+                    <h4>Definition</h4>
+                    <p>A <strong>graph</strong> G = (V, E) consists of a set V of vertices and a set E of edges connecting pairs of vertices.</p>
+
+                    <div class="key-formula">
+                        <strong>Handshaking Theorem:</strong><br>
+                        ∑ deg(v) = 2|E|<br>
+                        (Sum of all degrees = twice the number of edges)<br><br>
+                        <strong>Corollary:</strong> Number of odd-degree vertices is always EVEN
+                    </div>
+
+                    <h4>Graph Types</h4>
+                    <ul>
+                        <li><strong>Simple Graph:</strong> No loops, no multiple edges</li>
+                        <li><strong>Multigraph:</strong> Multiple edges allowed</li>
+                        <li><strong>Directed Graph (Digraph):</strong> Edges have direction</li>
+                        <li><strong>Weighted Graph:</strong> Edges have weights/costs</li>
+                    </ul>
+
+                    <h4>Special Graphs</h4>
+                    <ul>
+                        <li><strong>Complete Kₙ:</strong> Every pair connected, edges = n(n-1)/2</li>
+                        <li><strong>Cycle Cₙ:</strong> n vertices in a cycle, each degree 2</li>
+                        <li><strong>Path Pₙ:</strong> n vertices in a line, n-1 edges</li>
+                        <li><strong>Complete Bipartite Kₘ,ₙ:</strong> Two sets, all cross-edges, m×n edges</li>
+                        <li><strong>Wheel Wₙ:</strong> Cycle with central hub</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-route"></i> Paths & Circuits</h3>
+                    
+                    <h4>Definitions</h4>
+                    <ul>
+                        <li><strong>Walk:</strong> Sequence of vertices with edges between consecutive pairs</li>
+                        <li><strong>Trail:</strong> Walk with no repeated edges</li>
+                        <li><strong>Path:</strong> Walk with no repeated vertices</li>
+                        <li><strong>Circuit:</strong> Closed trail</li>
+                        <li><strong>Cycle:</strong> Circuit with no repeated vertices (except endpoints)</li>
+                    </ul>
+
+                    <h4>Euler Paths & Circuits</h4>
+                    <div class="key-formula">
+                        <strong>Euler Path:</strong> Visits every EDGE exactly once<br>
+                        Exists iff: Exactly 0 or 2 vertices have odd degree<br><br>
+                        <strong>Euler Circuit:</strong> Euler path returning to start<br>
+                        Exists iff: ALL vertices have EVEN degree
+                    </div>
+
+                    <h4>Hamiltonian Paths & Cycles</h4>
+                    <div class="key-formula">
+                        <strong>Hamiltonian Path:</strong> Visits every VERTEX exactly once<br>
+                        <strong>Hamiltonian Cycle:</strong> Hamiltonian path returning to start<br><br>
+                        <strong>Dirac's Theorem:</strong> If deg(v) ≥ n/2 for all v, Hamiltonian cycle exists<br>
+                        <strong>Ore's Theorem:</strong> If deg(u) + deg(v) ≥ n for non-adjacent u,v
+                    </div>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-draw-polygon"></i> Planar Graphs</h3>
+                    
+                    <h4>Definition</h4>
+                    <p>A graph is <strong>planar</strong> if it can be drawn in a plane without edge crossings.</p>
+
+                    <div class="key-formula">
+                        <strong>Euler's Formula:</strong> v - e + f = 2<br>
+                        (vertices - edges + faces = 2, for connected planar graphs)<br><br>
+                        <strong>Corollary:</strong> e ≤ 3v - 6 (for v ≥ 3)<br>
+                        <strong>For bipartite:</strong> e ≤ 2v - 4
+                    </div>
+
+                    <h4>Kuratowski's Theorem</h4>
+                    <p>G is planar iff G contains no subdivision of K₅ or K₃,₃</p>
+                    <ul>
+                        <li>K₅ is NOT planar (e = 10 > 3(5) - 6 = 9)</li>
+                        <li>K₃,₃ is NOT planar (e = 9 > 2(6) - 4 = 8)</li>
+                        <li>K₄ IS planar</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-tree"></i> Trees</h3>
+                    
+                    <h4>Definition</h4>
+                    <p>A <strong>tree</strong> is a connected graph with no cycles.</p>
+
+                    <div class="key-formula">
+                        <strong>Tree Properties (for n vertices):</strong><br>
+                        • Exactly n - 1 edges<br>
+                        • Unique path between any two vertices<br>
+                        • Removing any edge disconnects<br>
+                        • Adding any edge creates exactly one cycle
+                    </div>
+
+                    <h4>Spanning Tree</h4>
+                    <p>Subgraph that includes all vertices and is a tree. MST = Minimum Spanning Tree (minimum total edge weight).</p>
+                    <ul>
+                        <li><strong>Kruskal's:</strong> Sort edges, add smallest that doesn't create cycle</li>
+                        <li><strong>Prim's:</strong> Grow tree from start vertex, add cheapest edge to new vertex</li>
+                    </ul>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-palette"></i> Graph Coloring</h3>
+                    
+                    <div class="key-formula">
+                        <strong>Chromatic Number χ(G):</strong> Minimum colors needed so no adjacent vertices share a color<br><br>
+                        • χ(Kₙ) = n<br>
+                        • χ(Cₙ) = 2 (n even), 3 (n odd)<br>
+                        • χ(Tree) = 2<br>
+                        • χ(Bipartite) = 2
+                    </div>
+
+                    <p><strong>Four Color Theorem:</strong> Every planar graph can be colored with at most 4 colors.</p>
+                </div>
+
+                <div class="theory-card">
+                    <h3><i class="fas fa-calculator"></i> Combinatorics</h3>
+                    
+                    <div class="key-formula">
+                        <strong>Permutations:</strong> P(n, r) = n!/(n-r)! (order matters)<br>
+                        <strong>Combinations:</strong> C(n, r) = n!/(r!(n-r)!) (order doesn't matter)<br><br>
+                        <strong>Pigeonhole Principle:</strong><br>
+                        If n items in k containers and n > k, at least one container has ≥ 2 items<br>
+                        Generalized: At least ⌈n/k⌉ items in some container
+                    </div>
+
+                    <h4>Inclusion-Exclusion</h4>
+                    <div class="key-formula">
+                        |A ∪ B| = |A| + |B| - |A ∩ B|<br>
+                        |A ∪ B ∪ C| = |A| + |B| + |C| - |A∩B| - |B∩C| - |A∩C| + |A∩B∩C|
+                    </div>
+                </div>
+
+                <div class="quick-summary">
+                    <h4><i class="fas fa-lightbulb"></i> Quick Revision Points</h4>
+                    <ul>
+                        <li>Euler = edges, Hamiltonian = vertices</li>
+                        <li>Tree: n vertices → n-1 edges</li>
+                        <li>Euler's formula: v - e + f = 2</li>
+                        <li>K₅ and K₃,₃ are non-planar</li>
+                        <li>Planar graph χ ≤ 4 (Four Color Theorem)</li>
+                        <li>Pigeonhole: more items than containers → sharing occurs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="units/unit1.html">Unit I</a></li>
+                        <li><a href="units/unit2.html">Unit II</a></li>
+                        <li><a href="units/unit3.html">Unit III</a></li>
+                        <li><a href="units/unit4.html">Unit IV</a></li>
+                        <li><a href="units/unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        function showChapter(chapterId) {
+            // Hide all chapters
+            document.querySelectorAll('.chapter-content').forEach(ch => {
+                ch.classList.remove('active');
+            });
+            // Remove active from all buttons
+            document.querySelectorAll('.chapter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected chapter
+            document.getElementById(chapterId).classList.add('active');
+            // Add active to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit II - Functions & Boolean Algebra | DSTL Guide</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .diagram-box { background: #f0f4ff; border: 2px solid #6366f1; border-radius: 12px; padding: 20px; margin: 20px 0; text-align: center; }
+        .diagram-box pre { font-family: monospace; font-size: 14px; line-height: 1.4; }
+        .kmap { display: inline-block; margin: 10px; }
+        .kmap table { border-collapse: collapse; }
+        .kmap td, .kmap th { border: 1px solid #333; padding: 8px 12px; text-align: center; }
+        .kmap .highlight { background: #22d3ee; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo"><i class="fas fa-book"></i> DSTL Guide</a>
+            <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="unit1.html">Unit I</a></li>
+                <li><a href="unit2.html" class="active">Unit II</a></li>
+                <li><a href="unit3.html">Unit III</a></li>
+                <li><a href="unit4.html">Unit IV</a></li>
+                <li><a href="unit5.html">Unit V</a></li>
+                <li><a href="../theory.html">Theory</a></li>
+                <li><a href="../questions.html">Questions</a></li>
+                <li><a href="../previousyear.html">PYQ</a></li>
+                <li><a href="../formulas.html">Formulas</a></li>
+                <li><a href="../theorems.html">Theorems</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <header class="unit-header">
+            <div class="container">
+                <h1><i class="fas fa-function"></i> Unit II: Functions & Boolean Algebra</h1>
+                <p>Complete guide to Functions, Growth of Functions, and Boolean Algebra</p>
+            </div>
+        </header>
+
+        <section class="unit-content">
+            <div class="container">
+                <div class="page-layout">
+                    <aside class="sidebar">
+                        <h3>Topics</h3>
+                        <nav class="sidebar-nav">
+                            <a href="#functions">Functions</a>
+                            <a href="#types">Types of Functions</a>
+                            <a href="#composition">Composition & Inverse</a>
+                            <a href="#growth">Growth of Functions</a>
+                            <a href="#boolean">Boolean Algebra</a>
+                            <a href="#kmap">K-Maps</a>
+                        </nav>
+                    </aside>
+
+                    <main class="main-content">
+                        <!-- FUNCTIONS -->
+                        <div class="topic-section" id="functions">
+                            <h2><i class="fas fa-exchange-alt"></i> Functions</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Function</h4>
+                                <p>A <strong>function f</strong> from set A to set B (f: A → B) is a relation where each element in A is associated with <strong>exactly one</strong> element in B.<br><br>
+                                <strong>Domain:</strong> Set A (input set)<br>
+                                <strong>Codomain:</strong> Set B (possible outputs)<br>
+                                <strong>Range:</strong> {f(a) | a ∈ A} ⊆ B (actual outputs)</p>
+                            </div>
+
+                            <div class="diagram-box">
+                                <p><strong>Function vs Not a Function</strong></p>
+                                <pre>
+   FUNCTION                    NOT A FUNCTION              NOT A FUNCTION
+   (each input → one output)   (one input → two outputs)   (input has no output)
+   
+   A       B                   A       B                   A       B
+   ┌───┐   ┌───┐               ┌───┐   ┌───┐               ┌───┐   ┌───┐
+   │ 1 │──→│ a │               │ 1 │──→│ a │               │ 1 │──→│ a │
+   │ 2 │──→│ b │               │ 2 │╲  │ b │               │ 2 │   │ b │
+   │ 3 │──→│ b │               │   │ ╲→│ c │               │ 3 │──→│ c │
+   └───┘   └───┘               └───┘   └───┘               └───┘   └───┘
+      ✓ Valid                     ✗ Invalid                   ✗ Invalid
+                                </pre>
+                            </div>
+
+                            <h3>Function Notation</h3>
+                            <div class="formula-box">
+                                f: A → B<br>
+                                f(x) = expression (e.g., f(x) = x²)<br>
+                                f: x ↦ f(x) (maps x to f(x))
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>Let f: ℤ → ℤ where f(x) = x². Find domain, codomain, range.</p>
+                                <div class="solution">
+                                    <strong>Domain:</strong> ℤ (all integers)<br>
+                                    <strong>Codomain:</strong> ℤ (all integers)<br>
+                                    <strong>Range:</strong> {0, 1, 4, 9, 16, ...} = {n² | n ∈ ℤ}<br>
+                                    Note: Range ⊂ Codomain (not all integers are squares)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TYPES OF FUNCTIONS -->
+                        <div class="topic-section" id="types">
+                            <h2><i class="fas fa-shapes"></i> Types of Functions</h2>
+                            
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>Injective (One-to-One)</h4>
+                                    <p>f(a) = f(b) ⟹ a = b<br>Different inputs → different outputs<br>No two elements map to same output</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Surjective (Onto)</h4>
+                                    <p>∀b ∈ B, ∃a ∈ A: f(a) = b<br>Every element in B is mapped to<br>Range = Codomain</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Bijective (One-to-One & Onto)</h4>
+                                    <p>Both injective AND surjective<br>Perfect pairing between A and B<br>Has an inverse function</p>
+                                </div>
+                            </div>
+
+                            <div class="diagram-box">
+                                <pre>
+INJECTIVE (1-1)           SURJECTIVE (Onto)         BIJECTIVE (1-1 & Onto)
+A       B                 A       B                 A       B
+┌───┐   ┌───┐             ┌───┐   ┌───┐             ┌───┐   ┌───┐
+│ 1 │──→│ a │             │ 1 │──→│ a │             │ 1 │──→│ a │
+│ 2 │──→│ b │             │ 2 │╲  │   │             │ 2 │──→│ b │
+│ 3 │──→│ c │             │ 3 │─╲→│ b │             │ 3 │──→│ c │
+└───┘   │ d │←(unused)    └───┘   └───┘             └───┘   └───┘
+        └───┘             Every b covered           Perfect matching
+                                </pre>
+                            </div>
+
+                            <h3>Testing Injectivity & Surjectivity</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Property</th><th>Test</th><th>For f: A → B</th></tr>
+                                    <tr><td>Injective</td><td>Horizontal line test (graphs) OR f(a)=f(b)⟹a=b</td><td>|A| ≤ |B| needed</td></tr>
+                                    <tr><td>Surjective</td><td>Every b has preimage OR Range = B</td><td>|A| ≥ |B| needed</td></tr>
+                                    <tr><td>Bijective</td><td>Both above</td><td>|A| = |B| needed</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Classify Functions</h4>
+                                <p>f: ℝ → ℝ, f(x) = 2x + 3</p>
+                                <div class="solution">
+                                    <strong>Injective?</strong> f(a) = f(b) ⟹ 2a+3 = 2b+3 ⟹ a = b ✓<br>
+                                    <strong>Surjective?</strong> For any y ∈ ℝ, x = (y-3)/2 gives f(x) = y ✓<br>
+                                    <strong>Conclusion:</strong> f is bijective ✓
+                                </div>
+                            </div>
+
+                            <h3>Special Functions</h3>
+                            <div class="properties-grid">
+                                <div class="property-card">
+                                    <h4>Floor Function ⌊x⌋</h4>
+                                    <p>Greatest integer ≤ x<br>⌊3.7⌋ = 3, ⌊-2.3⌋ = -3</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Ceiling Function ⌈x⌉</h4>
+                                    <p>Smallest integer ≥ x<br>⌈3.2⌉ = 4, ⌈-2.7⌉ = -2</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Identity Function</h4>
+                                    <p>I(x) = x for all x<br>Maps every element to itself</p>
+                                </div>
+                                <div class="property-card">
+                                    <h4>Constant Function</h4>
+                                    <p>f(x) = c for all x<br>Every input maps to same output</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COMPOSITION & INVERSE -->
+                        <div class="topic-section" id="composition">
+                            <h2><i class="fas fa-link"></i> Composition & Inverse</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition: Composition</h4>
+                                <p>If f: A → B and g: B → C, then <strong>g ∘ f: A → C</strong><br>
+                                (g ∘ f)(x) = g(f(x))<br>
+                                "Apply f first, then g"</p>
+                            </div>
+
+                            <div class="diagram-box">
+                                <pre>
+Composition g ∘ f:   A ──f──→ B ──g──→ C
+                     x ──────→ f(x) ──→ g(f(x))
+                                </pre>
+                            </div>
+
+                            <div class="info-box warning">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Important</h4>
+                                <p>Composition is NOT commutative: g ∘ f ≠ f ∘ g (generally)<br>
+                                Composition IS associative: (h ∘ g) ∘ f = h ∘ (g ∘ f)</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example</h4>
+                                <p>f(x) = x + 2, g(x) = x². Find g ∘ f and f ∘ g.</p>
+                                <div class="solution">
+                                    <strong>(g ∘ f)(x)</strong> = g(f(x)) = g(x+2) = (x+2)² = x² + 4x + 4<br>
+                                    <strong>(f ∘ g)(x)</strong> = f(g(x)) = f(x²) = x² + 2<br><br>
+                                    Note: g ∘ f ≠ f ∘ g
+                                </div>
+                            </div>
+
+                            <h3>Inverse Function</h3>
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>For bijective f: A → B, the <strong>inverse f⁻¹: B → A</strong> satisfies:<br>
+                                f⁻¹(f(x)) = x and f(f⁻¹(y)) = y<br>
+                                f⁻¹ ∘ f = Iₐ and f ∘ f⁻¹ = Iᵦ</p>
+                            </div>
+
+                            <div class="info-box note">
+                                <h4><i class="fas fa-star"></i> Key Facts</h4>
+                                <p>• Only bijective functions have inverses<br>
+                                • (f⁻¹)⁻¹ = f<br>
+                                • (g ∘ f)⁻¹ = f⁻¹ ∘ g⁻¹</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Find Inverse</h4>
+                                <p>f(x) = 3x + 5. Find f⁻¹(x).</p>
+                                <div class="solution">
+                                    Let y = 3x + 5<br>
+                                    Solve for x: y - 5 = 3x ⟹ x = (y-5)/3<br>
+                                    <strong>f⁻¹(x) = (x - 5)/3</strong><br><br>
+                                    Verify: f(f⁻¹(x)) = f((x-5)/3) = 3·(x-5)/3 + 5 = x ✓
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GROWTH OF FUNCTIONS -->
+                        <div class="topic-section" id="growth">
+                            <h2><i class="fas fa-chart-line"></i> Growth of Functions (Asymptotic Notation)</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Big-O Notation O(g(n))</h4>
+                                <p>f(n) = O(g(n)) if ∃ positive constants c and n₀ such that:<br>
+                                <strong>0 ≤ f(n) ≤ c·g(n)</strong> for all n ≥ n₀<br>
+                                "f grows at most as fast as g" (upper bound)</p>
+                            </div>
+
+                            <div class="definition-box">
+                                <h4>Big-Ω Notation Ω(g(n))</h4>
+                                <p>f(n) = Ω(g(n)) if ∃ positive constants c and n₀ such that:<br>
+                                <strong>0 ≤ c·g(n) ≤ f(n)</strong> for all n ≥ n₀<br>
+                                "f grows at least as fast as g" (lower bound)</p>
+                            </div>
+
+                            <div class="definition-box">
+                                <h4>Big-Θ Notation Θ(g(n))</h4>
+                                <p>f(n) = Θ(g(n)) if f(n) = O(g(n)) AND f(n) = Ω(g(n))<br>
+                                "f grows exactly as fast as g" (tight bound)</p>
+                            </div>
+
+                            <h3>Common Growth Rates (Slowest to Fastest)</h3>
+                            <div class="formula-box">
+                                O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(n³) < O(2ⁿ) < O(n!)
+                            </div>
+
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>Notation</th><th>Name</th><th>Example</th></tr>
+                                    <tr><td>O(1)</td><td>Constant</td><td>Array access</td></tr>
+                                    <tr><td>O(log n)</td><td>Logarithmic</td><td>Binary search</td></tr>
+                                    <tr><td>O(n)</td><td>Linear</td><td>Linear search</td></tr>
+                                    <tr><td>O(n log n)</td><td>Linearithmic</td><td>Merge sort</td></tr>
+                                    <tr><td>O(n²)</td><td>Quadratic</td><td>Bubble sort</td></tr>
+                                    <tr><td>O(2ⁿ)</td><td>Exponential</td><td>Subset generation</td></tr>
+                                </table>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Prove Big-O</h4>
+                                <p>Show that 3n² + 5n + 2 = O(n²)</p>
+                                <div class="solution">
+                                    Need to find c, n₀ such that 3n² + 5n + 2 ≤ cn² for n ≥ n₀<br><br>
+                                    For n ≥ 1: 5n ≤ 5n² and 2 ≤ 2n²<br>
+                                    So: 3n² + 5n + 2 ≤ 3n² + 5n² + 2n² = 10n²<br><br>
+                                    Choose c = 10, n₀ = 1<br>
+                                    Therefore, 3n² + 5n + 2 = O(n²) ✓
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BOOLEAN ALGEBRA -->
+                        <div class="topic-section" id="boolean">
+                            <h2><i class="fas fa-toggle-on"></i> Boolean Algebra</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p><strong>Boolean Algebra</strong> is an algebraic structure (B, +, ·, ', 0, 1) where:<br>
+                                B = {0, 1}, + = OR, · = AND, ' = NOT<br>
+                                Used in digital logic, computer circuits, and set theory.</p>
+                            </div>
+
+                            <h3>Boolean Operations Truth Table</h3>
+                            <div class="table-container">
+                                <table>
+                                    <tr><th>A</th><th>B</th><th>A + B (OR)</th><th>A · B (AND)</th><th>A' (NOT)</th><th>A ⊕ B (XOR)</th></tr>
+                                    <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                                    <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                                    <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                                    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+                                </table>
+                            </div>
+
+                            <h3>Laws of Boolean Algebra</h3>
+                            <div class="formula-box">
+                                <strong>Identity:</strong> A + 0 = A, A · 1 = A<br>
+                                <strong>Null:</strong> A + 1 = 1, A · 0 = 0<br>
+                                <strong>Idempotent:</strong> A + A = A, A · A = A<br>
+                                <strong>Complement:</strong> A + A' = 1, A · A' = 0<br>
+                                <strong>Involution:</strong> (A')' = A<br>
+                                <strong>Commutative:</strong> A + B = B + A, A · B = B · A<br>
+                                <strong>Associative:</strong> (A + B) + C = A + (B + C)<br>
+                                <strong>Distributive:</strong> A · (B + C) = A·B + A·C<br>
+                                <strong>Absorption:</strong> A + A·B = A, A · (A + B) = A<br>
+                                <strong>De Morgan:</strong> (A + B)' = A' · B', (A · B)' = A' + B'
+                            </div>
+
+                            <h3>Boolean Expressions</h3>
+                            <div class="definition-box">
+                                <h4>Canonical Forms</h4>
+                                <p><strong>SOP (Sum of Products):</strong> OR of AND terms (minterms)<br>
+                                Example: F = A'B + AB' + AB = Σm(1,2,3)<br><br>
+                                <strong>POS (Product of Sums):</strong> AND of OR terms (maxterms)<br>
+                                Example: F = (A+B)(A+B')(A'+B) = ΠM(0)</p>
+                            </div>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: Simplify</h4>
+                                <p>Simplify: F = AB + AB' + A'B</p>
+                                <div class="solution">
+                                    F = AB + AB' + A'B<br>
+                                    = A(B + B') + A'B &nbsp;&nbsp;(factoring A)<br>
+                                    = A(1) + A'B &nbsp;&nbsp;(complement law)<br>
+                                    = A + A'B<br>
+                                    = A + B &nbsp;&nbsp;(absorption: A + A'B = A + B)<br>
+                                    <strong>F = A + B</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- K-MAPS -->
+                        <div class="topic-section" id="kmap">
+                            <h2><i class="fas fa-th-large"></i> Karnaugh Maps (K-Maps)</h2>
+                            
+                            <div class="definition-box">
+                                <h4>Definition</h4>
+                                <p>A <strong>K-Map</strong> is a visual method for simplifying Boolean expressions. Adjacent cells differ by exactly one variable (Gray code ordering).</p>
+                            </div>
+
+                            <h3>2-Variable K-Map</h3>
+                            <div class="diagram-box">
+                                <pre>
+          B=0   B=1
+        ┌─────┬─────┐
+   A=0  │ m₀  │ m₁  │     m₀ = A'B'
+        ├─────┼─────┤     m₁ = A'B
+   A=1  │ m₂  │ m₃  │     m₂ = AB'
+        └─────┴─────┘     m₃ = AB
+                                </pre>
+                            </div>
+
+                            <h3>3-Variable K-Map</h3>
+                            <div class="diagram-box">
+                                <pre>
+              BC
+           00  01  11  10
+         ┌────┬────┬────┬────┐
+    A=0  │ m₀ │ m₁ │ m₃ │ m₂ │
+         ├────┼────┼────┼────┤
+    A=1  │ m₄ │ m₅ │ m₇ │ m₆ │
+         └────┴────┴────┴────┘
+         Gray code: 00→01→11→10
+                                </pre>
+                            </div>
+
+                            <h3>K-Map Simplification Rules</h3>
+                            <ol>
+                                <li>Group adjacent 1s in powers of 2 (1, 2, 4, 8...)</li>
+                                <li>Groups can wrap around edges</li>
+                                <li>Make groups as large as possible</li>
+                                <li>Every 1 must be in at least one group</li>
+                                <li>Overlapping groups are allowed</li>
+                                <li>Variables that stay constant in a group remain in the term</li>
+                            </ol>
+
+                            <div class="example-box">
+                                <h4><i class="fas fa-pencil-alt"></i> Example: 3-Variable K-Map</h4>
+                                <p>Simplify F(A,B,C) = Σm(0,1,2,4,5,6)</p>
+                                <div class="solution">
+                                    <pre>
+              BC
+           00  01  11  10
+         ┌────┬────┬────┬────┐
+    A=0  │ 1  │ 1  │ 0  │ 1  │
+         ├────┼────┼────┼────┤
+    A=1  │ 1  │ 1  │ 0  │ 1  │
+         └────┴────┴────┴────┘
+                                    </pre>
+                                    Groups:<br>
+                                    • Column BC=00 (m₀,m₄): gives B'C'<br>
+                                    • Column BC=01 (m₁,m₅): gives B'C<br>
+                                    • Column BC=10 (m₂,m₆): gives BC'<br><br>
+                                    <strong>F = B'C' + B'C + BC' = B' + C'</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="unit-navigation">
+                            <a href="unit1.html" class="nav-btn prev"><i class="fas fa-arrow-left"></i> Unit I</a>
+                            <a href="unit3.html" class="nav-btn next">Unit III: Logic <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section">
+            <div class="container">
+                <h2 class="section-title">Test Your Knowledge</h2>
+                <div class="quiz-container" id="quiz-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> DSTL Guide</h3>
+                    <p>Your complete guide to Discrete Structures & Theory of Logic.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="unit1.html">Unit I</a></li>
+                        <li><a href="unit2.html">Unit II</a></li>
+                        <li><a href="unit3.html">Unit III</a></li>
+                        <li><a href="unit4.html">Unit IV</a></li>
+                        <li><a href="unit5.html">Unit V</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DSTL Guide. Made with <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        const unit2Questions = [
+            { question: "A function f: A → B is injective if:", options: ["Every b has preimage", "f(a)=f(b) implies a=b", "Range = Codomain", "f is constant"], correct: 1, explanation: "Injective means different inputs give different outputs." },
+            { question: "Which function has an inverse?", options: ["Injective only", "Surjective only", "Bijective only", "Any function"], correct: 2, explanation: "Only bijective functions (1-1 and onto) have inverses." },
+            { question: "If f(x)=2x and g(x)=x+3, then (g∘f)(2)=?", options: ["7", "8", "10", "14"], correct: 0, explanation: "g∘f(2) = g(f(2)) = g(4) = 4+3 = 7" },
+            { question: "⌊-3.7⌋ equals:", options: ["-3", "-4", "3", "4"], correct: 1, explanation: "Floor is greatest integer ≤ x. For -3.7, that's -4." },
+            { question: "⌈2.1⌉ equals:", options: ["2", "3", "2.1", "1"], correct: 1, explanation: "Ceiling is smallest integer ≥ x. For 2.1, that's 3." },
+            { question: "3n² + 2n = O(?)", options: ["O(n)", "O(n²)", "O(n³)", "O(1)"], correct: 1, explanation: "Dominant term is n², so it's O(n²)." },
+            { question: "Which grows faster?", options: ["n²", "2ⁿ", "n log n", "n³"], correct: 1, explanation: "Exponential 2ⁿ grows faster than any polynomial." },
+            { question: "In Boolean algebra, A + A' = ?", options: ["0", "1", "A", "A'"], correct: 1, explanation: "Complement law: A OR (NOT A) = 1" },
+            { question: "De Morgan's law: (A·B)' = ?", options: ["A'·B'", "A'+B'", "A·B", "(A+B)'"], correct: 1, explanation: "NOT(A AND B) = (NOT A) OR (NOT B)" },
+            { question: "Boolean absorption: A + AB = ?", options: ["AB", "A", "B", "A+B"], correct: 1, explanation: "Absorption law: A + AB = A" },
+            { question: "In K-map, adjacent cells differ by:", options: ["All variables", "Two variables", "One variable", "No variables"], correct: 2, explanation: "K-maps use Gray code - adjacent cells differ by exactly one variable." },
+            { question: "SOP stands for:", options: ["Sum of Products", "System of Powers", "Set of Primes", "Sum of Pairs"], correct: 0, explanation: "SOP = Sum of Products (OR of AND terms)" },
+            { question: "If |A|=3 and |B|=2, max injective functions A→B?", options: ["0", "6", "8", "Cannot exist"], correct: 3, explanation: "Injective needs |A|≤|B|. Since 3>2, no injective function exists." },
+            { question: "f⁻¹(f(x)) equals:", options: ["f(x)", "x", "f⁻¹(x)", "0"], correct: 1, explanation: "Inverse undoes the function: f⁻¹(f(x)) = x" },
+            { question: "(g∘f)⁻¹ equals:", options: ["f⁻¹∘g⁻¹", "g⁻¹∘f⁻¹", "f∘g", "g∘f"], correct: 0, explanation: "Inverse of composition reverses order: (g∘f)⁻¹ = f⁻¹∘g⁻¹" },
+            { question: "f(n) = Θ(g(n)) means:", options: ["f = O(g) only", "f = Ω(g) only", "f = O(g) AND f = Ω(g)", "None"], correct: 2, explanation: "Theta notation means both upper AND lower bound." },
+            { question: "Boolean: A·(B+C) = ?", options: ["AB+C", "AB+AC", "A+BC", "(A+B)(A+C)"], correct: 1, explanation: "Distributive law: A·(B+C) = A·B + A·C" },
+            { question: "Minterm for A=1, B=0, C=1 is:", options: ["ABC", "A'BC", "AB'C", "ABC'"], correct: 2, explanation: "Minterm: complement variables that are 0. A=1, B=0, C=1 → AB'C" },
+            { question: "Range of f: ℝ→ℝ, f(x)=x² is:", options: ["ℝ", "[0,∞)", "(-∞,0]", "{0,1}"], correct: 1, explanation: "x² is always ≥ 0, so range is non-negative reals." },
+            { question: "K-map group sizes must be:", options: ["Any number", "Odd numbers", "Powers of 2", "Prime numbers"], correct: 2, explanation: "Groups must be 1, 2, 4, 8... (powers of 2)" }
+        ];
+        const quiz = new QuizManager('quiz-container', unit2Questions);
+    </script>
+</body>
+</html>
